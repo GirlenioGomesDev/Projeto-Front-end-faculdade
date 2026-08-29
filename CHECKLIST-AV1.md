@@ -1,0 +1,33 @@
+# Checklist AV1 - PetNear
+
+- [ ] React
+- [ ] JavaScript
+- [ ] Vite
+- [ ] React Router
+- [ ] Home explica a finalidade
+- [ ] Pelo menos 3 rotas uteis
+- [ ] Existe rota de cadastro/operacao
+- [ ] Dados vem de JSON local
+- [ ] Pet Shops sao listados
+- [ ] Existe filtro controlado por estado
+- [ ] Existe formulario controlado
+- [ ] Campos obrigatorios sao validados
+- [ ] Cadastro do pet altera estado
+- [ ] Agendamento altera estado
+- [ ] Existe persistencia no localStorage
+- [ ] Existe mensagem de lista vazia
+- [ ] Existe mensagem de validacao
+- [ ] Existe mensagem de sucesso
+- [ ] Navegacao completa
+- [ ] Componentes funcionais
+- [ ] Props
+- [ ] useState
+- [ ] Listas com keys estaveis
+- [ ] Eventos tratados por funcoes
+- [ ] Componentes reutilizaveis
+- [ ] CSS organizado
+- [ ] README completo
+- [ ] Uso de IA documentado
+- [ ] Cada integrante possui commits proprios
+- [ ] npm install funciona
+- [ ] npm run dev funciona

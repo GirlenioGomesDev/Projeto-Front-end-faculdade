@@ -1,0 +1,36 @@
+.banner {
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(rgba(0, 72, 65, 0.74), rgba(0, 72, 65, 0.58)),
+    url('/images/petnear-banner.svg');
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.banner__content {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.banner__eyebrow {
+  margin: 0 0 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.banner h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(2.3rem, 6vw, 4.6rem);
+  letter-spacing: 0;
+}
+
+.banner__content > p:last-of-type {
+  max-width: 620px;
+  margin: 14px 0 0;
+  font-size: 1.18rem;
+  line-height: 1.55;
+}

@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.navbar a {
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #52616b;
+  font-weight: 700;
+}
+
+.navbar a.active {
+  background: #e7f3f0;
+  color: #007f73;
+}

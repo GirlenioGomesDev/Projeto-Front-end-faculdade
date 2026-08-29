@@ -1,0 +1,7 @@
+[
+  { "id": 1, "nome": "Banho" },
+  { "id": 2, "nome": "Tosa" },
+  { "id": 3, "nome": "Banho + Tosa" },
+  { "id": 4, "nome": "Higiene" },
+  { "id": 5, "nome": "Corte de unhas" }
+]
