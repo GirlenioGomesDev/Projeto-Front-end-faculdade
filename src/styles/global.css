@@ -1,3 +1,42 @@
+/*
+=================================================
+GUIA PETNEAR - CSS GLOBAL
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+REQUISITO DA AV1:
+A interface precisa ser consistente, legivel e minimamente
+responsiva.
+
+ANTES DE COMEÇAR:
+Execute o projeto e observe a aparencia atual antes de alterar
+qualquer estilo.
+
+COMECE POR:
+Verifique estrutura, espacamento e leitura dos textos. Nao tente
+deixar tudo perfeito na primeira passada.
+
+DEPOIS:
+Revise botoes, cards, formularios e comportamento em telas
+menores.
+
+QUANDO ISSO FUNCIONAR:
+Faca pequenos ajustes visuais e teste cada pagina depois de
+alterar o CSS.
+
+DICA:
+CSS global afeta muitas telas. Uma mudanca pequena aqui pode
+aparecer em varias partes do projeto.
+
+COMO TESTAR:
+Abra Home, Cadastros, Mapa, Agendamento e NotFound em largura
+grande e em largura parecida com celular.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 :root {
   font-family: Arial, Helvetica, sans-serif;
   color: #263238;

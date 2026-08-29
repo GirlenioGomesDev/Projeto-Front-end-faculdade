@@ -18,6 +18,52 @@ useState, value, onChange, onSubmit, preventDefault e validacao.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - FORMULARIO DO TUTOR
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+REQUISITO DA AV1:
+Este componente pode ajudar no requisito de formulario controlado
+com validacao de campos obrigatorios.
+
+ANTES DE COMEÇAR:
+Leia todos os campos e decida quais sao essenciais para um
+cadastro minimo do tutor.
+
+COMECE POR:
+Escolha apenas um campo para entender como a tela acompanha o
+valor digitado pelo usuario.
+
+DEPOIS:
+Quando um campo estiver claro, aplique o mesmo raciocinio aos
+demais campos importantes.
+
+QUANDO ISSO FUNCIONAR:
+Pense no envio do formulario e nas mensagens de validacao. A
+mensagem deve aparecer apenas quando fizer sentido.
+
+DICA:
+Nao misture formulario, validacao e armazenamento ao mesmo tempo.
+Cada etapa fica mais facil quando testada separadamente.
+
+CONCEITOS PARA ESTUDAR:
+- estado
+- eventos
+- formulario controlado
+- envio de formulario
+- validacao
+
+COMO TESTAR:
+Digite valores diferentes, tente enviar vazio e observe se a
+interface responde de forma compreensivel.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function UserForm() {
   return (
     <form className="form-grid">

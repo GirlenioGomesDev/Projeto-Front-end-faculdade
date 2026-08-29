@@ -18,6 +18,52 @@ useState, eventos, formulario controlado, objeto e localStorage.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - FORMULARIO DO PET
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+REQUISITO DA AV1:
+O cadastro do pet pode ser uma das acoes que alteram estado e
+tambem pode ser o dado relevante persistido localmente.
+
+ANTES DE COMEÇAR:
+Identifique quais campos realmente representam um pet e quais
+precisam ser obrigatorios para a AV1.
+
+COMECE POR:
+Trabalhe primeiro nos campos obrigatorios. Depois acrescente os
+campos complementares.
+
+DEPOIS:
+Quando os valores estiverem sendo acompanhados corretamente,
+pense em como reunir as informacoes em um unico cadastro.
+
+QUANDO ISSO FUNCIONAR:
+Somente depois estude persistencia local. Antes disso, confirme
+que os dados digitados estao corretos.
+
+DICA:
+Persistir dados errados apenas guarda o problema por mais tempo.
+Teste formulario e validacao antes de pensar em armazenamento.
+
+CONCEITOS PARA ESTUDAR:
+- estado
+- formulario controlado
+- validacao
+- objeto de dados
+- persistencia local
+
+COMO TESTAR:
+Cadastre um pet, tente deixar campos obrigatorios vazios e
+confira se a tela orienta o usuario.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function PetForm() {
   return (
     <form className="form-grid">

@@ -21,6 +21,36 @@ React Router, NavLink, rota ativa e componente reutilizavel.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - NAVBAR
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+REQUISITO DA AV1:
+Garantir navegacao completa entre Home, Cadastros, Mapa e
+Agendamento.
+
+COMECE POR:
+Clique em todos os links e confirme que nenhuma pagina exige URL
+digitada manualmente.
+
+DEPOIS:
+Observe se o usuario consegue entender em qual area esta.
+
+DICA:
+A navegacao e parte da experiencia, nao apenas um detalhe visual.
+
+CONCEITOS PARA ESTUDAR:
+- React Router
+- links de navegacao
+- rota ativa
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function Navbar() {
   return (
     <nav className="navbar" aria-label="Navegacao principal">

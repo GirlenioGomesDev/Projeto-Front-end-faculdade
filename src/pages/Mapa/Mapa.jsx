@@ -22,6 +22,57 @@ useState, map, filter, includes, props, key e useNavigate.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - MAPA E PET SHOPS
+
+RESPONSAVEL: LENO
+NIVEL: DIFICIL
+
+REQUISITO DA AV1:
+Esta pagina concentra a listagem de dados locais, o filtro
+controlado por estado, a mensagem de lista vazia e a selecao
+do Pet Shop.
+
+ANTES DE COMEÇAR:
+Abra o arquivo de dados dos Pet Shops e observe quais campos
+existem, quais servicos cada estabelecimento oferece e qual
+informacao identifica cada item.
+
+COMECE POR:
+Antes de pensar em filtro, confirme que todos os Pet Shops dos
+dados locais aparecem corretamente na tela.
+
+DEPOIS:
+Escolha apenas uma opcao de filtro para estudar o comportamento.
+Quando essa opcao funcionar, avance para as demais.
+
+QUANDO ISSO FUNCIONAR:
+Provoque uma situacao sem resultado e planeje a mensagem de
+lista vazia. Esse ponto ajuda diretamente em um requisito da AV1.
+
+DICA:
+Pergunte sempre: qual informacao muda quando o usuario escolhe
+um servico? A resposta indica o que precisa ser acompanhado pela
+tela.
+
+CONCEITOS PARA ESTUDAR:
+- arrays
+- listagem
+- props
+- estado
+- eventos
+- filtros
+- navegacao
+
+COMO TESTAR:
+Compare a tela com os dados locais, altere o filtro e observe
+se a lista muda de forma previsivel.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function Mapa() {
   const petshopsVisiveis = petshops;
 

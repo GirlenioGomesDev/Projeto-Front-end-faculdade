@@ -18,6 +18,50 @@ useState, onChange, onSubmit, useNavigate e validacao.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - LOCALIZACAO
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+REQUISITO DA AV1:
+Esta etapa ajuda o fluxo a chegar ao mapa sem depender de uma
+API real de CEP.
+
+ANTES DE COMEÇAR:
+Lembre que a AV1 trabalha com dados locais e preenchimento
+manual. Nao implemente consulta externa.
+
+COMECE POR:
+Verifique quais campos sao necessarios para o usuario informar
+onde esta procurando Pet Shops.
+
+DEPOIS:
+Pense nas validacoes e no momento certo de permitir avancar para
+o mapa.
+
+QUANDO ISSO FUNCIONAR:
+Teste o caminho completo: cadastro, localizacao e abertura do
+mapa simulado.
+
+DICA:
+Se algum dia esta parte usar API de CEP, isso fica para AV2.
+Na AV1, o objetivo e aprender estado, validacao e navegacao.
+
+CONCEITOS PARA ESTUDAR:
+- estado
+- eventos
+- validacao
+- navegacao entre rotas
+
+COMO TESTAR:
+Tente continuar sem preencher e depois com os dados manuais.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function LocationForm() {
   return (
     <form className="form-grid">

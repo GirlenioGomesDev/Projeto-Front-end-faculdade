@@ -20,6 +20,56 @@ useState, localStorage, validacao, renderizacao condicional e eventos.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - AGENDAMENTO
+
+RESPONSAVEIS:
+BIANKA - LEVE, estrutura visual
+LENO - DIFICIL, logica principal
+ANITA - MEDIO, validacoes e persistencia quando necessario
+
+REQUISITO DA AV1:
+Esta pagina ajuda a cumprir a operacao de agendamento, mensagem
+de resultado de acao e alteracao de estado.
+
+ANTES DE COMEÇAR:
+Confirme se o fluxo anterior ja permite chegar ate aqui pela
+navegacao. O usuario nao deve depender de digitar a rota.
+
+COMECE POR:
+Bianka deve organizar a leitura visual: Seu pet, Pet Shop
+selecionado, servico, data, horario e confirmacao.
+
+DEPOIS:
+Leno deve trabalhar por partes: primeiro servico, depois data,
+depois horario. Cada pequena parte precisa ser testada antes da
+proxima.
+
+QUANDO ISSO FUNCIONAR:
+Anita e Leno podem pensar nas validacoes e nas mensagens que
+aparecem somente quando fazem sentido.
+
+DICA:
+Nao tente resolver agendamento inteiro de uma vez. Separe a
+tela em pequenas perguntas: o que o usuario escolheu, o que
+falta preencher e qual retorno a interface deve mostrar.
+
+CONCEITOS PARA ESTUDAR:
+- estado
+- eventos
+- validacao
+- renderizacao condicional
+- persistencia local
+
+COMO TESTAR:
+Tente confirmar incompleto, depois preencha servico, data e
+horario e observe se a resposta da tela faz sentido.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function Agendamento() {
   return (
     <section className="page">

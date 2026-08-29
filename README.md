@@ -1,5 +1,23 @@
 # PetNear
 
+<!--
+GUIA PETNEAR - README DA AV1
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+Este README deve ser atualizado pela equipe somente depois que
+as funcionalidades forem realmente desenvolvidas e testadas.
+
+Antes de documentar uma funcionalidade, confirme:
+1. ela existe na interface;
+2. ela foi testada no navegador;
+3. o integrante responsavel consegue explicar como funciona;
+4. ela ajuda a cumprir algum requisito da AV1.
+
+Nao descreva como pronto algo que ainda esta apenas planejado.
+-->
+
 Projeto academico de Front-end Frameworks criado como esqueleto inicial para a AV1.
 
 ## Problema e publico
@@ -8,11 +26,37 @@ O PetNear auxilia tutores de animais a localizar Pet Shops proximos e organizar 
 
 ## Integrantes
 
+<!--
+GUIA PETNEAR - INTEGRANTES
+
+Preencha esta parte com os nomes reais da equipe e a contribuicao
+final de cada pessoa.
+
+Divisao oficial para orientar o trabalho:
+- Leno: nivel dificil.
+- Anita: nivel medio.
+- Bianka: nivel leve.
+
+Nao invente contribuicoes. Registre apenas o que cada integrante
+realmente implementou, testou ou documentou.
+-->
+
 - Integrante 1 - preencher
 - Integrante 2 - preencher
 - Integrante 3 - preencher
 
 ## Funcionalidades
+
+<!--
+GUIA PETNEAR - FUNCIONALIDADES
+
+Quando uma funcionalidade sair do planejamento e passar a
+funcionar, volte aqui e confira se a descricao continua correta.
+
+Use este bloco como apoio para explicar ao professor quais
+requisitos da AV1 foram trabalhados, mas nao marque nada como
+concluido sem testar.
+-->
 
 - Apresentacao da finalidade do produto.
 - Cadastro inicial do tutor.
@@ -69,6 +113,21 @@ Na AV1, nao usar API real, back-end, Google Maps, Leaflet, Firebase, Supabase ou
 
 ## Persistencia
 
+<!--
+GUIA PETNEAR - PERSISTENCIA
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+Nao comece a AV1 por esta parte.
+
+Primeiro faca o formulario funcionar, depois valide os campos e
+somente entao pense em guardar um dado relevante no navegador.
+
+Teste atualizando a pagina para verificar se o dado continua
+disponivel.
+-->
+
 A persistencia principal sugerida para a AV1 e o pet cadastrado, usando `localStorage`.
 
 Conceitos que a equipe devera estudar:
@@ -92,6 +151,16 @@ Consulte `TAREFAS.md` para a divisao entre Pessoa 1, Pessoa 2 e Pessoa 3.
 - As mensagens condicionais ainda precisam ser implementadas.
 
 ## Uso de Inteligencia Artificial
+
+<!--
+GUIA PETNEAR - USO DE IA
+
+Registre o uso de IA com transparencia.
+
+A IA pode apoiar com orientacoes, explicacoes, revisao e
+organizacao, mas a equipe precisa desenvolver, testar e entender
+as funcionalidades que serao avaliadas.
+-->
 
 Foi utilizada inteligencia artificial como apoio para criacao do esqueleto inicial, organizacao da arquitetura e comentarios didaticos. As funcionalidades avaliativas serao implementadas, testadas, revisadas e compreendidas pela equipe.
 

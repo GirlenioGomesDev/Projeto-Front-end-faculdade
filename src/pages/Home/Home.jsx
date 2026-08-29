@@ -22,6 +22,47 @@ Link, componentes reutilizaveis, props e CSS.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - HOME
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+REQUISITO DA AV1:
+A pagina inicial precisa comunicar a finalidade do produto e
+dar caminhos claros para iniciar o fluxo.
+
+ANTES DE COMEÇAR:
+Observe quais partes da Home ja existem: Banner, servicos,
+beneficios e botoes de navegacao.
+
+COMECE POR:
+Leia os textos atuais e verifique se uma pessoa entenderia que
+o PetNear ajuda tutores a encontrar Pet Shops e agendar servicos.
+
+DEPOIS:
+Confira se os botoes levam para o fluxo correto. A navegacao
+precisa funcionar sem o usuario digitar enderecos manualmente.
+
+QUANDO ISSO FUNCIONAR:
+Revise os cards visuais e veja se eles usam bem componentes
+reutilizaveis.
+
+CONCEITOS PARA ESTUDAR:
+- componentes
+- props
+- Link
+- CSS
+
+COMO TESTAR:
+Abra a Home, leia como usuario final e clique nos caminhos
+principais.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 const servicos = [
   { titulo: 'Banho', descricao: 'Servico previsto para ser escolhido no agendamento.' },
   { titulo: 'Tosa', descricao: 'Opcao visual para compor o catalogo de servicos.' },

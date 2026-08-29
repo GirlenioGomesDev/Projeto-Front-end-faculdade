@@ -1,8 +1,57 @@
 # Divisao de tarefas - PetNear
 
+<!--
+GUIA PETNEAR - ORDEM GERAL DE TRABALHO
+
+Nao tente fazer o projeto inteiro de uma vez.
+
+Metodologia para todos:
+1. leia a orientacao;
+2. abra o arquivo relacionado;
+3. entenda o que ja existe;
+4. execute o projeto;
+5. escolha uma tarefa pequena;
+6. desenvolva manualmente;
+7. teste;
+8. corrija;
+9. teste novamente;
+10. registre a contribuicao quando estiver funcionando.
+
+Divisao oficial da equipe:
+- Leno: nivel dificil.
+- Anita: nivel medio.
+- Bianka: nivel leve.
+-->
+
 Esta divisao busca equilibrar dificuldade e volume de trabalho. Nao criem commits artificiais: cada commit deve representar uma alteracao real.
 
 ## Pessoa 1 - DIFICIL
+
+<!--
+GUIA PETNEAR - LENO / NIVEL DIFICIL
+
+Primeira tarefa recomendada:
+abrir os dados locais dos Pet Shops e entender propriedades,
+servicos e identificadores.
+
+Ordem sugerida:
+1. dados dos Pet Shops;
+2. listagem;
+3. PetShopCard;
+4. teste da listagem;
+5. filtro por servico;
+6. mensagem de lista vazia;
+7. selecao do Pet Shop;
+8. navegacao para Agendamento;
+9. integracao com o fluxo;
+10. logica do Agendamento;
+11. testes.
+
+Requisito da AV1 para atacar primeiro:
+listagem de dados do dominio a partir de JSON local.
+
+Nao implemente API real, mapa real ou autenticacao.
+-->
 
 Responsabilidade principal: mapa, filtro e selecao de Pet Shop.
 
@@ -45,6 +94,33 @@ Sugestoes de commits reais:
 
 ## Pessoa 2 - MEDIO
 
+<!--
+GUIA PETNEAR - ANITA / NIVEL MEDIO
+
+Primeira tarefa recomendada:
+entender o cadastro do tutor e controlar apenas um campo antes
+de pensar no formulario inteiro.
+
+Ordem sugerida:
+1. cadastro do tutor;
+2. controle dos campos;
+3. envio do formulario;
+4. validacao;
+5. cadastro do pet;
+6. validacao do pet;
+7. localizacao manual;
+8. fluxo entre etapas;
+9. testes;
+10. persistencia;
+11. teste apos atualizar a pagina.
+
+Requisito da AV1 para atacar primeiro:
+formulario controlado com validacao de obrigatorios.
+
+Nao comece por localStorage. Primeiro garanta que os dados estao
+corretos na tela.
+-->
+
 Responsabilidade principal: cadastros e persistencia.
 
 Tarefas:
@@ -81,6 +157,34 @@ Sugestoes de commits reais:
 - `feat: adiciona persistencia local do pet`
 
 ## Pessoa 3 - LEVE + agendamento visual
+
+<!--
+GUIA PETNEAR - BIANKA / NIVEL LEVE
+
+Primeira tarefa recomendada:
+revisar a Home e confirmar se ela explica claramente a finalidade
+do PetNear.
+
+Ordem sugerida:
+1. Home;
+2. Header e Navbar;
+3. navegacao;
+4. Banner;
+5. servicos;
+6. beneficios;
+7. componentes visuais;
+8. CSS;
+9. Agendamento visual;
+10. responsividade;
+11. NotFound;
+12. README.
+
+Requisito da AV1 para atacar primeiro:
+pagina inicial que comunique a finalidade do produto.
+
+Bianka pode organizar a parte visual do Agendamento, mas a logica
+complexa fica com Leno, com apoio de Anita nas validacoes.
+-->
 
 Responsabilidade principal: interface, navegacao e documentacao.
 

@@ -21,6 +21,32 @@ componentes, composicao e CSS.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - HEADER
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+REQUISITO DA AV1:
+Manter identidade do projeto e acesso claro a navegacao principal.
+
+COMECE POR:
+Verifique se o nome PetNear aparece de forma clara e se o menu
+esta facil de encontrar.
+
+DEPOIS:
+Teste em uma largura menor de tela para observar se os links
+continuam utilizaveis.
+
+DICA:
+O Header agrupa componentes. Ao ajustar visual, confira tambem
+o Navbar.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function Header() {
   return (
     <header className="site-header">

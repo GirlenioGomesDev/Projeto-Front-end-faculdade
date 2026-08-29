@@ -22,6 +22,56 @@ useState, formularios controlados, eventos, validacao e localStorage.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - CADASTROS
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+REQUISITO DA AV1:
+Esta pagina ajuda a cumprir a rota de cadastro, o formulario
+controlado, validacoes, mensagens condicionais e uma acao que
+altera estado.
+
+ANTES DE COMEÇAR:
+Teste visualmente os tres formularios como estao. Entenda a
+funcao de cada etapa antes de tentar conectar tudo.
+
+COMECE POR:
+Trabalhe primeiro com cada formulario isolado. O cadastro do
+tutor, o cadastro do pet e a localizacao precisam fazer sentido
+separadamente.
+
+DEPOIS:
+Quando cada parte estiver compreendida, pense no fluxo entre
+Tutor, Pet e Localizacao.
+
+QUANDO ISSO FUNCIONAR:
+Escolha qual dado relevante devera permanecer disponivel depois
+de atualizar a pagina. Para a AV1, o pet cadastrado e uma boa
+opcao pedagogica.
+
+DICA:
+Nao comece pela persistencia. Primeiro garanta que os dados
+digitados estao corretos e que as validacoes aparecem no momento
+certo.
+
+CONCEITOS PARA ESTUDAR:
+- estado
+- formularios controlados
+- eventos
+- renderizacao condicional
+- persistencia local
+
+COMO TESTAR:
+Preencha as etapas em ordem, tente continuar com campos vazios
+e confira se a interface orienta o usuario.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function Cadastros() {
   return (
     <section className="page">

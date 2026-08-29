@@ -21,6 +21,55 @@ useState, eventos, validacao, localStorage e renderizacao condicional.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - FORMULARIO DE AGENDAMENTO
+
+RESPONSAVEIS:
+LENO - DIFICIL
+ANITA - MEDIO, apoio nas validacoes
+
+REQUISITO DA AV1:
+Este componente ajuda na acao de agendamento, validacao e
+mensagem de sucesso apos uma acao do usuario.
+
+ANTES DE COMEÇAR:
+Confira se os dados locais de servicos e horarios aparecem na
+tela. Antes de controlar escolhas, a listagem precisa estar
+correta.
+
+COMECE POR:
+Escolha uma parte do formulario, como servico, e entenda qual
+informacao muda quando o usuario interage.
+
+DEPOIS:
+Repita a ideia para data e horario, sempre testando uma parte
+antes de seguir para a proxima.
+
+QUANDO ISSO FUNCIONAR:
+Planeje as validacoes. O usuario precisa receber uma mensagem
+quando faltar alguma informacao obrigatoria.
+
+DICA:
+O formulario de agendamento e mais facil quando tratado em
+camadas: escolha, validacao, confirmacao e depois persistencia,
+se a equipe decidir salvar esse dado.
+
+CONCEITOS PARA ESTUDAR:
+- estado
+- eventos
+- formulario
+- validacao
+- renderizacao condicional
+
+COMO TESTAR:
+Tente confirmar vazio, depois preencha cada campo aos poucos e
+observe qual mensagem deveria aparecer.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function ScheduleForm() {
   return (
     <form className="form-grid">

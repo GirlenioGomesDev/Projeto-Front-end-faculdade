@@ -23,3 +23,15 @@ Possiveis responsabilidades futuras:
 - tratar loading;
 - tratar erro;
 - criar retry.
+<!--
+GUIA PETNEAR - SERVICES
+
+RESPONSAVEIS: LENO E ANITA
+NIVEIS: DIFICIL E MEDIO
+
+Na AV1, nao implemente API real, autenticacao, CEP remoto ou
+mapa externo. Esta pasta pode ficar reservada para AV2.
+
+Antes de criar qualquer service, confirme se a tarefa da AV1
+nao pode ser feita com dados locais.
+-->

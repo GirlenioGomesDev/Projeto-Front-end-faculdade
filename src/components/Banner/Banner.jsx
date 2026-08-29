@@ -21,6 +21,38 @@ Link, props simples no futuro, CSS e componente reutilizavel.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - BANNER
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+REQUISITO DA AV1:
+O primeiro contato do usuario precisa explicar a finalidade do
+PetNear e oferecer caminhos de navegacao.
+
+COMECE POR:
+Leia o titulo, o texto e os botoes como se fosse o primeiro uso
+do aplicativo.
+
+DEPOIS:
+Teste se os botoes levam para paginas uteis do fluxo.
+
+QUANDO ISSO FUNCIONAR:
+Trabalhe o visual no CSS sem alterar a ideia principal do
+produto.
+
+CONCEITOS PARA ESTUDAR:
+- Link
+- navegacao
+- componente visual
+- CSS
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function Banner() {
   return (
     <section className="banner">

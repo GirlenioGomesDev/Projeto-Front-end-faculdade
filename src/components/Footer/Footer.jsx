@@ -20,6 +20,32 @@ componente funcional e organizacao visual.
 =================================================
 */
 
+/*
+=================================================
+GUIA PETNEAR - FOOTER
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+REQUISITO DA AV1:
+Contribuir para a interface consistente e documentar visualmente
+que este e um projeto academico.
+
+COMECE POR:
+Confira se o rodape aparece em todas as paginas principais.
+
+DEPOIS:
+Se o professor solicitar dados do grupo na interface, planeje
+essa inclusao sem poluir a navegacao.
+
+DICA:
+Rodape e acabamento. Deixe para ajustar depois que as paginas
+principais estiverem compreendidas.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 function Footer() {
   return (
     <footer className="site-footer">

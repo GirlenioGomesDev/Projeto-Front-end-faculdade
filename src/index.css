@@ -1,1 +1,19 @@
+/*
+=================================================
+GUIA PETNEAR - IMPORTACAO DE ESTILOS
+
+RESPONSAVEL: BIANKA
+NIVEL: LEVE
+
+REQUISITO DA AV1:
+Manter CSS legivel e separado dos componentes.
+
+DICA:
+Este arquivo aponta para os estilos globais. Antes de criar
+novos estilos, verifique se ja existe uma classe global adequada.
+
+NAO ESCREVA A SOLUCAO.
+=================================================
+*/
+
 @import './styles/global.css';
