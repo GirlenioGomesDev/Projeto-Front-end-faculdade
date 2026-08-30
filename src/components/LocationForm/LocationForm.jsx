@@ -1,3 +1,6 @@
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+
 /*
 =================================================
 COMPONENTE: LocationForm
@@ -63,21 +66,66 @@ NAO ESCREVA A SOLUCAO.
 */
 
 function LocationForm() {
-  return (
-    <form className="form-grid">
+          const  [cep, setcep] = useState("");
+          const  [bairro, setbairro] = useState("");
+          const  [cidade, setcidade] = useState("");
+          const  [errocep, seterrocep] = useState("");
+          
+          const navigate = useNavigate();
+           return (
+    <form
+     className="form-grid"  
+     onSubmit={(evento) =>{ evento.preventDefault();
+      if (cep=== "") {
+        seterrocep("Informe seu CEP.");
+      } else { 
+        seterrocep("");
+        navigate("/mapa")
+      }
+     }}
+     >
+      {errocep && (errocep)}
       <div className="field">
         <label htmlFor="cep">CEP</label>
-        <input id="cep" name="cep" type="text" placeholder="00000-000" />
+        <input
+         id="cep"
+         name="cep"
+          type="text"
+           placeholder="00000-000"
+           onChange={(evento) => { 
+            setcep(evento.target.value);
+           }}
+              value={cep}
+           />
+           
       </div>
 
       <div className="field">
         <label htmlFor="bairro">Bairro</label>
-        <input id="bairro" name="bairro" type="text" placeholder="Informe manualmente" />
+        <input 
+         id="bairro"
+          name="bairro"
+           type="text"
+            placeholder="Informe manualmente"
+            onChange={(evento) => {
+              setbairro(evento.target.value); 
+            }}
+                value={bairro}
+            />
       </div>
 
       <div className="field">
         <label htmlFor="cidade">Cidade</label>
-        <input id="cidade" name="cidade" type="text" placeholder="Informe manualmente" />
+        <input 
+        id="cidade"
+         name="cidade"
+          type="text"
+           placeholder="Informe manualmente"
+           onChange={(evento) => {
+            setcidade(evento.target.value);
+           }}
+              value={cidade}
+           />
       </div>
 
       <button className="button" type="submit">
