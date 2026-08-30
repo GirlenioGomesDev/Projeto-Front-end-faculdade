@@ -82,8 +82,9 @@ function PetShopCard({ petShop, onSelecionar }) {
       <p>
         <strong>Servicos:</strong> {petShop.servicos.join(', ')}
       </p>
-      <button className="button" type="button"
-      onClick={()=> onSelecionar(petShop)}>
+      <button className="button"
+        type="button"
+        onClick={() => onSelecionar(petShop)}>
         Agendar banho e tosa
       </button>
 

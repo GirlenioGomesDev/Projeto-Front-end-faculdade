@@ -1,3 +1,4 @@
+import { useState } from 'react';
 /*
 =================================================
 COMPONENTE: PetForm
@@ -65,16 +66,61 @@ NAO ESCREVA A SOLUCAO.
 */
 
 function PetForm() {
+  const [nomePet, setNomePet] = useState('');
+  const [especiePet, setEspeciePet] = useState('');
+  const [racaPet, setRacaPet] = useState('');
+  const [idadePet, setIdadePet] = useState('');
+  const [portePet, setPortePet] = useState('');
+  const [observacoesPet, setObservacoesPet] = useState('');
+  const [sucesso, setSucesso] = useState(false);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setSucesso(false); // Resetar o estado de sucesso antes de validar
+    if (!nomePet || !especiePet || !racaPet || !idadePet || !portePet) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    const pet = {
+      nome: nomePet,
+      especie: especiePet,
+      raca: racaPet,
+      idade: idadePet,
+      porte: portePet,
+      observacoes: observacoesPet
+    };
+
+    localStorage.setItem('petCadastrado', JSON.stringify(pet));
+
+    setSucesso(true);
+  }
+
   return (
-    <form className="form-grid">
+
+
+
+    <form className="form-grid" onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="nomePet">Nome do pet</label>
-        <input id="nomePet" name="nomePet" type="text" placeholder="Ex.: Mel" />
+        <input
+          id="nomePet"
+          name="nomePet"
+          type="text"
+          placeholder="Ex.: Mel"
+          value={nomePet}
+          onChange={(event) => setNomePet(event.target.value)}
+        />
       </div>
 
       <div className="field">
         <label htmlFor="especiePet">Especie</label>
-        <select id="especiePet" name="especiePet" defaultValue="">
+        <select
+          id="especiePet"
+          name="especiePet"
+          value={especiePet}
+          onChange={(event) => setEspeciePet(event.target.value)}
+        >
           <option value="">Selecione</option>
           <option value="Cachorro">Cachorro</option>
           <option value="Gato">Gato</option>
@@ -83,17 +129,35 @@ function PetForm() {
 
       <div className="field">
         <label htmlFor="racaPet">Raca</label>
-        <input id="racaPet" name="racaPet" type="text" placeholder="Ex.: Shih-tzu" />
+        <input
+          id="racaPet"
+          name="racaPet"
+          type="text"
+          placeholder="Ex.: Shih-tzu"
+          value={racaPet}
+          onChange={(event) => setRacaPet(event.target.value)}
+        />
       </div>
 
       <div className="field">
         <label htmlFor="idadePet">Idade</label>
-        <input id="idadePet" name="idadePet" type="text" placeholder="Ex.: 2 anos" />
+        <input
+          id="idadePet"
+          name="idadePet"
+          type="text"
+          placeholder="Ex.: 2 anos"
+          value={idadePet}
+          onChange={(event) => setIdadePet(event.target.value)}
+        />
       </div>
 
       <div className="field">
         <label htmlFor="portePet">Porte</label>
-        <select id="portePet" name="portePet" defaultValue="">
+        <select id="portePet"
+          name="portePet"
+          value={portePet}
+          onChange={(event) => setPortePet(event.target.value)}
+        >
           <option value="">Selecione</option>
           <option value="Pequeno">Pequeno</option>
           <option value="Medio">Medio</option>
@@ -103,12 +167,23 @@ function PetForm() {
 
       <div className="field">
         <label htmlFor="observacoesPet">Observacoes</label>
-        <textarea id="observacoesPet" name="observacoesPet" rows="4" placeholder="Cuidados, alergias ou comportamento" />
+        <textarea
+          id="observacoesPet"
+          name="observacoesPet"
+          rows="4"
+          placeholder="Cuidados, alergias ou comportamento"
+          value={observacoesPet}
+          onChange={(event) => setObservacoesPet(event.target.value)}
+        />
       </div>
 
       <button className="button" type="submit">
         Continuar
       </button>
+
+      {sucesso && (
+        <p>Pet cadastrado com sucesso!</p>
+      )}
 
       {/* =================================================
       TODO AV1

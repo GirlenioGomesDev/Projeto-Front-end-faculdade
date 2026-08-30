@@ -75,6 +75,10 @@ function Agendamento() {
     localStorage.getItem('petShopSelecionado')
    );
 
+   const petCadastrado = JSON.parse(
+    localStorage.getItem('petCadastrado')
+  );
+
   return (
     <section className="page">
       <header className="page-header">
@@ -88,18 +92,24 @@ function Agendamento() {
       <div className="grid">
         <article className="card">
           <h2>Seu pet</h2>
-          <p>Mel</p>
-          <p>Shih-tzu</p>
-          <p>Pequeno porte</p>
+          {petCadastrado ? (
+            <>
+          <p>{petCadastrado.nome}</p>
+          <p>{petCadastrado.raca}</p>
+          <p>{petCadastrado.porte}</p>
+          </>
+          ) : (
+            <p>Nenhum pet cadastrado.</p>
+          )}
         </article>
 
         <article className="card">
           <h2>Pet Shop selecionado</h2>
            {petShopSelecionado ? ( 
             <>
-          <p>{petShopSelecionado?.nome}</p>
+          <p>{petShopSelecionado.nome}</p>
           <p>
-            {petShopSelecionado?.endereco} - {petShopSelecionado?.bairro}, {petShopSelecionado?.cidade}
+            {petShopSelecionado.endereco} - {petShopSelecionado.bairro}, {petShopSelecionado.cidade}
           </p>
           </>
            ) : (

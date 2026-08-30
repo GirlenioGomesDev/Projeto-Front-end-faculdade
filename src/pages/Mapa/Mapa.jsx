@@ -93,7 +93,7 @@ function Mapa() {
     console.log('Pet Shop selecionado:', petShop);
     localStorage.setItem(
       'petShopSelecionado',
-       JSON.stringify(petShop)
+      JSON.stringify(petShop)
     );
 
     navigate('/agendamento');

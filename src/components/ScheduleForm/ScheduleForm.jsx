@@ -78,14 +78,21 @@ function ScheduleForm({ petShopSelecionado }) {
   const [horario, setHorario] = useState('');
   const [sucesso, setSucesso] = useState(false); 
   const [agendamentoConfirmado, setAgendamentoConfirmado] = useState(null);
-  
+  const dataHoje = new Date().toISOString().split('T')[0];
+
   function handleSubmit(event) {
     event.preventDefault();
+    setSucesso(false); // Resetar o estado de sucesso antes de validar
 
     if (!servico || !data || !horario) {
       alert('Por favor, preencha todos os campos.');
       return;
     
+    }
+
+    if (data < dataHoje) {
+      alert('Escolha uma data válida. Não é possível agendar em uma data passada.');
+      return;
     }
 
     if (!petShopSelecionado) {
@@ -127,7 +134,7 @@ function ScheduleForm({ petShopSelecionado }) {
 
       <div className="field">
         <label htmlFor="data">Data</label>
-        <input id="data" name="data" type="date" value={data} onChange={(event) => setData(event.target.value)} />
+        <input id="data" name="data" type="date" value={data} min={dataHoje} onChange={(event) => setData(event.target.value)} />
       </div>
 
       <div className="field">
