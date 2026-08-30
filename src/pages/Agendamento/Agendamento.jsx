@@ -71,6 +71,10 @@ NAO ESCREVA A SOLUCAO.
 */
 
 function Agendamento() {
+   const petShopSelecionado = JSON.parse(
+    localStorage.getItem('petShopSelecionado')
+   );
+
   return (
     <section className="page">
       <header className="page-header">
@@ -91,24 +95,25 @@ function Agendamento() {
 
         <article className="card">
           <h2>Pet Shop selecionado</h2>
-          <p>Pet Shop Patinhas</p>
-          <p>Exemplo visual enquanto a selecao real nao foi criada.</p>
+           {petShopSelecionado ? ( 
+            <>
+          <p>{petShopSelecionado?.nome}</p>
+          <p>
+            {petShopSelecionado?.endereco} - {petShopSelecionado?.bairro}, {petShopSelecionado?.cidade}
+          </p>
+          </>
+           ) : (
+            <p>Nenhum Pet Shop selecionado.</p>
+           )} 
         </article>
 
         <article className="card">
           <h2>Escolha o servico</h2>
-          <ScheduleForm />
+          <ScheduleForm petShopSelecionado={petShopSelecionado} />
         </article>
       </div>
 
-      <section className="section-band">
-        <div className="placeholder-box">
-          <div>
-            <h2>Confirmacao futura</h2>
-            <p>Agendamento realizado com sucesso!</p>
-          </div>
-        </div>
-      </section>
+      
 
       {/* =================================================
       TODO AV1

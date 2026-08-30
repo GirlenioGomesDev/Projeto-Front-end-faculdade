@@ -72,11 +72,12 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function ScheduleForm() { 
+function ScheduleForm({ petShopSelecionado }) { 
   const [servico, setServico] = useState('');
   const [data, setData] = useState('');
   const [horario, setHorario] = useState('');
   const [sucesso, setSucesso] = useState(false); 
+  const [agendamentoConfirmado, setAgendamentoConfirmado] = useState(null);
   
   function handleSubmit(event) {
     event.preventDefault();
@@ -87,11 +88,20 @@ function ScheduleForm() {
     
     }
 
+    if (!petShopSelecionado) {
+      alert('selecione um Pet Shop antes de realizar o agendamento.');
+      return;
+    }
+
     const agendamento = {
       servico: servico,
       data: data,
       horario: horario,
+      petShop: petShopSelecionado?.nome,
     };
+
+    setAgendamentoConfirmado(agendamento);
+
     console.log('Agendamento realizado:', agendamento);
     localStorage.setItem('agendamento', JSON.stringify(agendamento));
        setSucesso(true);
@@ -135,7 +145,15 @@ function ScheduleForm() {
       <button className="button" type="submit">
         Confirmar Agendamento
       </button>
-      {sucesso && <p>Agendamento realizado com sucesso!</p> }
+      {sucesso && agendamentoConfirmado && (
+        <div>
+          <p>Agendamento realizado com sucesso!</p>
+          <p>Serviço: {agendamentoConfirmado.servico}</p>
+          <p>Data: {agendamentoConfirmado.data}</p>
+          <p>Horário: {agendamentoConfirmado.horario}</p>
+          <p>Pet Shop: {agendamentoConfirmado.petShop}</p>
+        </div>
+      )}
 
       {/* =================================================
       TODO AV1

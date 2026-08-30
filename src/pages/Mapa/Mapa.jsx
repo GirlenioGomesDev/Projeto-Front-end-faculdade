@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import EmptyState from '../../components/EmptyState/EmptyState.jsx';
 import PetShopCard from '../../components/PetShopCard/PetShopCard.jsx';
 import petshops from '../../data/petshops.json';
@@ -74,7 +77,29 @@ NAO ESCREVA A SOLUCAO.
 */
 
 function Mapa() {
-  const petshopsVisiveis = petshops;
+
+  const [filtroServico, setFiltroServico] = useState('');
+  const navigate = useNavigate();
+
+  const petshopsVisiveis = petshops.filter((petShop) => {
+    if (filtroServico === '') {
+      return true;
+    }
+    return petShop.servicos.includes(filtroServico);
+
+  });
+
+  function selecionarPetShop(petShop) {
+    console.log('Pet Shop selecionado:', petShop);
+    localStorage.setItem(
+      'petShopSelecionado',
+       JSON.stringify(petShop)
+    );
+
+    navigate('/agendamento');
+
+  }
+
 
   return (
     <section className="page">
@@ -95,7 +120,7 @@ function Mapa() {
 
       <section className="section-band">
         <div className="toolbar">
-          <select aria-label="Filtrar por servico" defaultValue="">
+          <select aria-label="Filtrar por servico" value={filtroServico} onChange={(event) => setFiltroServico(event.target.value)}>
             <option value="">Todos</option>
             <option value="Banho">Banho</option>
             <option value="Tosa">Tosa</option>
@@ -139,7 +164,7 @@ function Mapa() {
         {petshopsVisiveis.length > 0 ? (
           <div className="grid">
             {petshopsVisiveis.map((petShop) => (
-              <PetShopCard key={petShop.id} petShop={petShop} />
+              <PetShopCard key={petShop.id} petShop={petShop} onSelecionar={selecionarPetShop} />
             ))}
           </div>
         ) : (
