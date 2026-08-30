@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 import horarios from '../../data/horarios.json';
 import servicos from '../../data/servicos.json';
 
@@ -70,12 +72,40 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function ScheduleForm() {
+function ScheduleForm() { 
+  const [servico, setServico] = useState('');
+  const [data, setData] = useState('');
+  const [horario, setHorario] = useState('');
+  const [sucesso, setSucesso] = useState(false); 
+  
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!servico || !data || !horario) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    
+    }
+
+    const agendamento = {
+      servico: servico,
+      data: data,
+      horario: horario,
+    };
+    console.log('Agendamento realizado:', agendamento);
+    localStorage.setItem('agendamento', JSON.stringify(agendamento));
+       setSucesso(true);
+       setServico('');
+       setData('');
+       setHorario('');
+  }
+  
+
   return (
-    <form className="form-grid">
+    <form className="form-grid" onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="servico">Servico</label>
-        <select id="servico" name="servico" defaultValue="">
+        <select id="servico" name="servico" value={servico} onChange={(event) => setServico(event.target.value)}>
           <option value="">Escolha um servico</option>
           {servicos.map((servico) => (
             <option key={servico.id} value={servico.nome}>
@@ -87,12 +117,12 @@ function ScheduleForm() {
 
       <div className="field">
         <label htmlFor="data">Data</label>
-        <input id="data" name="data" type="date" />
+        <input id="data" name="data" type="date" value={data} onChange={(event) => setData(event.target.value)} />
       </div>
 
       <div className="field">
         <label htmlFor="horario">Horario</label>
-        <select id="horario" name="horario" defaultValue="">
+        <select id="horario" name="horario" value={horario} onChange={(event) => setHorario(event.target.value)}>
           <option value="">Escolha um horario</option>
           {horarios.map((horario) => (
             <option key={horario.id} value={horario.hora}>
@@ -105,6 +135,7 @@ function ScheduleForm() {
       <button className="button" type="submit">
         Confirmar Agendamento
       </button>
+      {sucesso && <p>Agendamento realizado com sucesso!</p> }
 
       {/* =================================================
       TODO AV1
