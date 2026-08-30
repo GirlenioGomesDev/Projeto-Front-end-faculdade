@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 /*
 =================================================
@@ -66,66 +66,92 @@ NAO ESCREVA A SOLUCAO.
 */
 
 function LocationForm() {
-          const  [cep, setcep] = useState("");
-          const  [bairro, setbairro] = useState("");
-          const  [cidade, setcidade] = useState("");
-          const  [errocep, seterrocep] = useState("");
-          
-          const navigate = useNavigate();
-           return (
+  const [cep, setCep] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [errocep, setErrocep] = useState("");
+  const [errobairro, setErrobairro] = useState("");
+  const [errocidade, setErrocidade] = useState("");
+
+  const navigate = useNavigate();
+  return (
     <form
-     className="form-grid"  
-     onSubmit={(evento) =>{ evento.preventDefault();
-      if (cep=== "") {
-        seterrocep("Informe seu CEP.");
-      } else { 
-        seterrocep("");
-        navigate("/mapa")
-      }
-     }}
-     >
+      className="form-grid"
+      onSubmit={(evento) => {
+        evento.preventDefault();
+
+        if (cep === "") {
+          setErrocep("Informe seu CEP.");
+        }
+        else {
+          setErrocep("");
+
+
+          if (bairro === "") {
+            setErrobairro("Informe seu BAIRRO.");
+          }
+          else {
+            setErrobairro("");
+
+
+          if (cidade === "") {
+            setErrocidade("Informe sua CIDADE.");
+          }
+          else {
+            setErrocidade("");
+
+            navigate("/mapa")
+          }
+
+          }
+        }
+
+      }}
+    >
       {errocep && (errocep)}
+      {errobairro && (errobairro)}
+      {errocidade && (errocidade)}
       <div className="field">
         <label htmlFor="cep">CEP</label>
         <input
-         id="cep"
-         name="cep"
+          id="cep"
+          name="cep"
           type="text"
-           placeholder="00000-000"
-           onChange={(evento) => { 
-            setcep(evento.target.value);
-           }}
-              value={cep}
-           />
-           
+          placeholder="00000-000"
+          onChange={(evento) => {
+            setCep(evento.target.value);
+          }}
+          value={cep}
+        />
+
       </div>
 
       <div className="field">
         <label htmlFor="bairro">Bairro</label>
-        <input 
-         id="bairro"
+        <input
+          id="bairro"
           name="bairro"
-           type="text"
-            placeholder="Informe manualmente"
-            onChange={(evento) => {
-              setbairro(evento.target.value); 
-            }}
-                value={bairro}
-            />
+          type="text"
+          placeholder="Informe manualmente"
+          onChange={(evento) => {
+            setBairro(evento.target.value);
+          }}
+          value={bairro}
+        />
       </div>
 
       <div className="field">
         <label htmlFor="cidade">Cidade</label>
-        <input 
-        id="cidade"
-         name="cidade"
+        <input
+          id="cidade"
+          name="cidade"
           type="text"
-           placeholder="Informe manualmente"
-           onChange={(evento) => {
-            setcidade(evento.target.value);
-           }}
-              value={cidade}
-           />
+          placeholder="Informe manualmente"
+          onChange={(evento) => {
+            setCidade(evento.target.value);
+          }}
+          value={cidade}
+        />
       </div>
 
       <button className="button" type="submit">
