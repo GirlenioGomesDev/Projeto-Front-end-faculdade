@@ -11,6 +11,10 @@
   font-weight: 700;
 }
 
+.navbar a:hover{
+  background: #f0f0f0;
+}
+
 .navbar a.active {
   background: #e7f3f0;
   color: #007f73;

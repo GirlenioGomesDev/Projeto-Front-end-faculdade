@@ -64,17 +64,17 @@ NAO ESCREVA A SOLUCAO.
 */
 
 const servicos = [
-  { titulo: 'Banho', descricao: 'Servico previsto para ser escolhido no agendamento.' },
-  { titulo: 'Tosa', descricao: 'Opcao visual para compor o catalogo de servicos.' },
-  { titulo: 'Higiene', descricao: 'Item inicial para demonstrar cards reutilizaveis.' },
-  { titulo: 'Corte de unhas', descricao: 'Servico extra para a equipe ajustar depois.' },
+  { titulo: 'Banho e Secagem' },
+  { titulo: 'Tosa Higiênica' },
+  { titulo: 'Cortes de Unhas', },
+  { titulo: 'Limpeza de Ouvidos', },
 ];
 
 const beneficios = [
-  { titulo: 'Praticidade', texto: 'Fluxo pensado para tutores organizarem cuidados.' },
-  { titulo: 'Localizacao', texto: 'Mapa simulado na AV1 e integracao futura na AV2.' },
-  { titulo: 'Organizacao', texto: 'Dados de pet, localizacao e horario em um fluxo.' },
-  { titulo: 'Facilidade', texto: 'Base preparada para agendamento guiado.' },
+  { titulo: 'Praticidade', texto: 'Encontre serviços para seu pet de forma rápida e fácil.' },
+  { titulo: 'Localização', texto: 'Encontre opções de banho e tosa próximas de você.' },
+  { titulo: 'Facilidade', texto: 'Organize os cuidados do seu pet em um só lugar.' },
+  { titulo: 'Comodidade', texto: 'Encontre serviços sem perder tempo.' },
 ];
 
 function Home() {
@@ -84,11 +84,10 @@ function Home() {
 
       <section className="page">
         <header className="page-header">
-          <h1 className="page-title">Como o PetNear ajuda</h1>
+          <h1 className="page-title">CUIDADOS PARA SEU PET</h1>
           <p className="page-description">
-            O PetNear sera uma aplicacao para tutores encontrarem Pet Shops
-            proximos e organizarem servicos para seus animais.
-          </p>
+            Conheça os serviços que seu pet pode encontrar 
+         </p>
         </header>
 
         <div className="grid">
@@ -98,6 +97,8 @@ function Home() {
         </div>
 
         <section className="section-band">
+          <h1>Por que usar o PetNear?</h1>
+
           <div className="grid">
             {beneficios.map((beneficio) => (
               <BenefitCard key={beneficio.titulo} titulo={beneficio.titulo} texto={beneficio.texto} />

@@ -57,11 +57,11 @@ function Banner() {
   return (
     <section className="banner">
       <div className="banner__content">
-        <p className="banner__eyebrow">Cuidado perto de voce</p>
-        <h1>Encontre cuidado perto de quem voce ama.</h1>
+        <p className="banner__eyebrow">BANHO E TOSA PERTO DE VOCÊ</p>
+        <h1>Encontre o pet shop ideal para o seu pet</h1>
         <p>
-          O PetNear ajuda tutores a encontrar Pet Shops proximos e organizar
-          servicos de banho e tosa.
+          O PetNear facilita sua busca por serviços de banho e tosa 
+          próximos à sua localização.
         </p>
         <div className="button-row">
           <Link className="button" to="/cadastros">

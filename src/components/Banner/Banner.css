@@ -4,9 +4,10 @@
   align-items: center;
   background:
     linear-gradient(rgba(0, 72, 65, 0.74), rgba(0, 72, 65, 0.58)),
-    url('/images/petnear-banner.svg');
+    url('/images/6ed8fd14-3afc-4173-aa12-0e3937a572a8.jpe');
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   color: #ffffff;
 }
 
@@ -34,3 +35,4 @@
   font-size: 1.18rem;
   line-height: 1.55;
 }
+
