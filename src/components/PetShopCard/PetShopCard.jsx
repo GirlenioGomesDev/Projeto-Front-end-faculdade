@@ -64,6 +64,11 @@ NAO ESCREVA A SOLUCAO.
 */
 
 function PetShopCard({ petShop, onSelecionar }) {
+
+function selecionarPetShop(){
+  onSelecionar(petShop)
+}
+
   return (
     <article className="card">
       <h2>{petShop.nome}</h2>
@@ -82,9 +87,7 @@ function PetShopCard({ petShop, onSelecionar }) {
       <p>
         <strong>Servicos:</strong> {petShop.servicos.join(', ')}
       </p>
-      <button className="button"
-        type="button"
-        onClick={() => onSelecionar(petShop)}>
+      <button className="button" type="button" onClick={selecionarPetShop}>
         Agendar banho e tosa
       </button>
 
