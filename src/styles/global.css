@@ -116,9 +116,14 @@ textarea {
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  background: #007f73;
-  color: #ffffff;
+  background: #e7f3f0;
+  color: #005c52;
   font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
 }
 
 .button.secondary {
@@ -192,3 +197,6 @@ textarea {
     font-size: 1.55rem;
   }
 }
+ .home-subtitle {
+  font-style: italic;
+ }

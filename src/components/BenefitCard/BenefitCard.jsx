@@ -43,9 +43,10 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function BenefitCard({ titulo, texto }) {
+function BenefitCard({ titulo, texto, icone}) {
   return (
     <article className="card">
+      {icone}
       <h2>{titulo}</h2>
       <p>{texto}</p>
     </article>
