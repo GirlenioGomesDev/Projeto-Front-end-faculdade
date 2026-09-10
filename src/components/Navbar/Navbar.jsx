@@ -54,10 +54,10 @@ NAO ESCREVA A SOLUCAO.
 function Navbar() {
   return (
     <nav className="navbar" aria-label="Navegacao principal">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/cadastros">Cadastros</NavLink>
-      <NavLink to="/mapa">Mapa</NavLink>
-      <NavLink to="/agendamento">Agendamento</NavLink>
+    <NavLink to="/">Home</NavLink>
+    <NavLink to="/mapa">Mapa</NavLink>
+    <NavLink to="/agendamento">Agendamento</NavLink>
+    <NavLink to="/cadastros">Cadastro</NavLink>
     </nav>
   );
 }

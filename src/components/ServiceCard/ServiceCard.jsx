@@ -44,11 +44,11 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function ServiceCard({ titulo, descricao }) {
+function ServiceCard({ titulo, icone }) {
   return (
     <article className="card">
+      {icone}
       <h2>{titulo}</h2>
-      <p>{descricao}</p>
     </article>
   );
 }

@@ -65,7 +65,7 @@ function Banner() {
         </p>
         <div className="button-row">
           <Link className="button" to="/cadastros">
-            Encontrar um Pet Shop
+            Encontrar Pet Shops
           </Link>
           <Link className="button secondary" to="/agendamento">
             Agendar agora

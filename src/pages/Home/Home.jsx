@@ -1,7 +1,7 @@
 import Banner from '../../components/Banner/Banner.jsx';
 import ServiceCard from '../../components/ServiceCard/ServiceCard.jsx';
 import BenefitCard from '../../components/BenefitCard/BenefitCard.jsx';
-
+import { Bath, Scissors, PawPrint, Sparkles, MapPin, Calendar, Star, CircleDollarSign } from 'lucide-react';
 /*
 =================================================
 PAGINA: Home
@@ -64,80 +64,89 @@ NAO ESCREVA A SOLUCAO.
 */
 
 const servicos = [
-  { titulo: 'Banho e Secagem' },
-  { titulo: 'Tosa Higiênica' },
-  { titulo: 'Cortes de Unhas', },
-  { titulo: 'Limpeza de Ouvidos', },
+{ titulo: 'Banho e Secagem', icone: Bath },
+{ titulo: 'Tosa Higiênica', icone: Scissors },
+{ titulo: 'Cortes de Unhas', icone: PawPrint },
+{ titulo: 'Limpeza de Ouvidos', icone: Sparkles },
 ];
 
 const beneficios = [
-  { titulo: 'Praticidade', texto: 'Encontre serviços para seu pet de forma rápida e fácil.' },
-  { titulo: 'Localização', texto: 'Encontre opções de banho e tosa próximas de você.' },
-  { titulo: 'Facilidade', texto: 'Organize os cuidados do seu pet em um só lugar.' },
-  { titulo: 'Comodidade', texto: 'Encontre serviços sem perder tempo.' },
-];
+{ titulo: 'Encontre perto de você', texto: 'Veja pet shops próximos da sua localização.', icone: MapPin},
+{ titulo: 'Agende sem complicação', texto: 'Escolha o serviço, data e horário.', icone: Calendar },
+{ titulo: 'Compare avaliações', texto: 'Veja o que outros tutores estão dizendo.', icone: Star },
+{ titulo: 'Compare serviços', texto: 'Encontre a melhor opção para o seu pet.', icone: CircleDollarSign },
+]
 
 function Home() {
-  return (
-    <>
-      <Banner />
+return (
+  <>
+    <Banner />
 
-      <section className="page">
-        <header className="page-header">
-          <h1 className="page-title">CUIDADOS PARA SEU PET</h1>
-          <p className="page-description">
-            Conheça os serviços que seu pet pode encontrar 
-         </p>
-        </header>
+    <section className="page">
+      <header className="page-header">
+        <h1 className="page-title">SERVIÇOS PARA SEU PET</h1>
+        <p className="home-subtitle">
+          Conheça os serviços que seu pet pode encontrar 
+        </p>
+      </header>
+
+      <div className="grid">
+        {servicos.map((servico) => (
+          <ServiceCard key={servico.titulo} titulo={servico.titulo} icone={<servico.icone />} /> 
+        ))}
+      </div>
+
+      <section className="section-band">
+        <h1>Por que usar o PetNear?</h1>
 
         <div className="grid">
-          {servicos.map((servico) => (
-            <ServiceCard key={servico.titulo} titulo={servico.titulo} descricao={servico.descricao} />
-          ))}
+          {beneficios.map((beneficio) => {
+            const Icone = beneficio.icone;
+
+            return (
+              <BenefitCard
+                key={beneficio.titulo}
+                titulo={beneficio.titulo}
+                texto={beneficio.texto}
+                icone={<Icone />}
+              />
+            );
+          })}
         </div>
-
-        <section className="section-band">
-          <h1>Por que usar o PetNear?</h1>
-
-          <div className="grid">
-            {beneficios.map((beneficio) => (
-              <BenefitCard key={beneficio.titulo} titulo={beneficio.titulo} texto={beneficio.texto} />
-            ))}
-          </div>
-        </section>
-
-        {/* =================================================
-        TODO AV1
-        NIVEL: LEVE
-        RESPONSAVEL SUGERIDO: PESSOA 3
-
-        OBJETIVO:
-        Melhorar a Home como apresentacao do produto, sem finalizar o sistema.
-
-        O QUE VOCE DEVE FAZER:
-        1. Revisar textos do banner.
-        2. Escolher onde inserir imagens.
-        3. Usar Link para navegar sem recarregar a pagina.
-        4. Criar cards apenas quando eles ajudarem a reutilizar codigo.
-
-        CONCEITOS:
-        Link
-        NavLink
-        componentes reutilizaveis
-        props
-        CSS
-
-        COMO TESTAR:
-        Clique em "Encontrar um Pet Shop" e "Agendar agora".
-
-        RESULTADO ESPERADO:
-        O usuario deve conseguir iniciar o fluxo sem digitar URL.
-
-        NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
-        ================================================= */}
       </section>
-    </>
-  );
+
+      {/* =================================================
+      TODO AV1
+      NIVEL: LEVE
+    RESPONSAVEL SUGERIDO: PESSOA 3F
+
+      OBJETIVO:
+      Melhorar a Home como apresentacao do produto, sem finalizar o sistema.
+
+      O QUE VOCE DEVE FAZER:
+      1. Revisar textos do banner.
+      2. Escolher onde inserir imagens.
+      3. Usar Link para navegar sem recarregar a pagina.
+      4. Criar cards apenas quando eles ajudarem a reutilizar codigo.
+
+      CONCEITOS:
+      Link
+      NavLink
+      componentes reutilizaveis
+      props
+      CSS
+
+      COMO TESTAR:
+      Clique em "Encontrar um Pet Shop" e "Agendar agora".
+
+      RESULTADO ESPERADO:
+      O usuario deve conseguir iniciar o fluxo sem digitar URL.
+
+      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
+      ================================================= */}
+    </section>
+  </>
+);
 }
 
 export default Home;
