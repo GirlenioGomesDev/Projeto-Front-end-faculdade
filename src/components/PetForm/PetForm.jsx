@@ -99,7 +99,6 @@ function PetForm() {
   return (
 
 
-
     <form className="form-grid" onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="nomePet">Nome do pet</label>
