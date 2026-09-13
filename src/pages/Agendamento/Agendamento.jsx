@@ -119,7 +119,7 @@ function Agendamento() {
 
         <article className="card">
           <h2>Escolha o servico</h2>
-          <ScheduleForm petShopSelecionado={petShopSelecionado} />
+          <ScheduleForm petShopSelecionado={petShopSelecionado} petCadastrado={petCadastrado} />
         </article>
       </div>
 
