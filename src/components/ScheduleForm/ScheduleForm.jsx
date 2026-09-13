@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 import horarios from '../../data/horarios.json';
 import servicos from '../../data/servicos.json';
@@ -72,14 +72,14 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function ScheduleForm({ petShopSelecionado }) { 
+function ScheduleForm({ petShopSelecionado, petCadastrado }) {
   const [servico, setServico] = useState('');
   const [data, setData] = useState('');
   const [horario, setHorario] = useState('');
-  const [sucesso, setSucesso] = useState(false); 
+  const [sucesso, setSucesso] = useState(false);
   const [agendamentoConfirmado, setAgendamentoConfirmado] = useState(null);
   const dataHoje = new Date().toISOString().split('T')[0];
-
+  const servicosDisponiveis = servicos.filter((item) => petShopSelecionado?.servicos.includes(item.nome));
   function handleSubmit(event) {
     event.preventDefault();
     setSucesso(false); // Resetar o estado de sucesso antes de validar
@@ -87,7 +87,7 @@ function ScheduleForm({ petShopSelecionado }) {
     if (!servico || !data || !horario) {
       alert('Por favor, preencha todos os campos.');
       return;
-    
+
     }
 
     if (data < dataHoje) {
@@ -97,6 +97,11 @@ function ScheduleForm({ petShopSelecionado }) {
 
     if (!petShopSelecionado) {
       alert('selecione um Pet Shop antes de realizar o agendamento.');
+      return;
+    }
+
+    if (!petCadastrado) {
+      alert('Cadastre um pet antes de realizar o agendamento.');
       return;
     }
 
@@ -111,12 +116,12 @@ function ScheduleForm({ petShopSelecionado }) {
 
     console.log('Agendamento realizado:', agendamento);
     localStorage.setItem('agendamento', JSON.stringify(agendamento));
-       setSucesso(true);
-       setServico('');
-       setData('');
-       setHorario('');
+    setSucesso(true);
+    setServico('');
+    setData('');
+    setHorario('');
   }
-  
+
 
   return (
     <form className="form-grid" onSubmit={handleSubmit}>
@@ -124,7 +129,7 @@ function ScheduleForm({ petShopSelecionado }) {
         <label htmlFor="servico">Servico</label>
         <select id="servico" name="servico" value={servico} onChange={(event) => setServico(event.target.value)}>
           <option value="">Escolha um servico</option>
-          {servicos.map((servico) => (
+          {servicosDisponiveis.map((servico) => (
             <option key={servico.id} value={servico.nome}>
               {servico.nome}
             </option>
