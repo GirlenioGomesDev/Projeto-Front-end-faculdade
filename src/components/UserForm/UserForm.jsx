@@ -63,38 +63,149 @@ interface responde de forma compreensivel.
 NAO ESCREVA A SOLUCAO.
 =================================================
 */
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function UserForm() {
+  const navigate = useNavigate();
+
+  const [nomeTutor, setnomeTutor] = useState("");
+  const [emailTutor, setemailTutor] = useState("");
+  const [senhaTutor, setsenhaTutor] = useState("");
+  const [telefoneTutor, settelefoneTutor] = useState("");
+  const [bairroTutor, setbairroTutor] = useState("");
+  const [cidadeTutor, setCidadeTutor] = useState("");
+  const [erronomeTutor, setErronometutor] = useState("");
+  const [erroemailTutor, setErroemailtutor] = useState("");
+  const [errocidadeTutor, setErrocidadetutor] = useState("");
+
   return (
-    <form className="form-grid">
+    <form className="form-grid"
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        if (nomeTutor === "") {
+
+          setErronometutor("Informe seu NOME.");
+        }
+        else {
+          setErronometutor("");
+        }
+
+
+        if (emailTutor === "") {
+
+          setErroemailtutor("Informe seu EMAIL.");
+        }
+        else {
+          setErroemailtutor("");
+        }
+
+
+        if (cidadeTutor === "") {
+
+          setErrocidadetutor("Informe sua CIDADE.");
+        }
+        else {
+          setErrocidadetutor("");
+        }
+        if (
+          nomeTutor !== "" &&
+          emailTutor !== "" &&
+          cidadeTutor !== ""
+        ) {
+          navigate("/cadastros");
+        }
+      }}
+
+    >
       <div className="field">
         <label htmlFor="nomeTutor">Nome</label>
-        <input id="nomeTutor" name="nomeTutor" type="text" placeholder="Seu nome" />
+        <input
+          id="nomeTutor"
+          name="nomeTutor"
+          type="text"
+          placeholder="Seu nome"
+          value={nomeTutor}
+          onChange={(e) => {
+            setnomeTutor(e.target.value);
+          }}
+        />
+        {erronomeTutor && <span>{erronomeTutor}</span>}
       </div>
 
       <div className="field">
         <label htmlFor="emailTutor">E-mail</label>
-        <input id="emailTutor" name="emailTutor" type="email" placeholder="email@exemplo.com" />
+        <input
+          id="emailTutor"
+          name="emailTutor"
+          type="email"
+          placeholder="email@exemplo.com"
+          value={emailTutor}
+          onChange={(e) => {
+            setemailTutor(e.target.value);
+          }}
+        />
+        {erroemailTutor && <span>{erroemailTutor}</span>}
       </div>
 
       <div className="field">
         <label htmlFor="senhaTutor">Senha</label>
-        <input id="senhaTutor" name="senhaTutor" type="password" placeholder="Senha inicial" />
+        <input
+          id="senhaTutor"
+          name="senhaTutor"
+          type="password"
+          placeholder="Senha inicial"
+          value={senhaTutor}
+          onChange={(e) => {
+            setsenhaTutor(e.target.value);
+          }}
+        />
       </div>
 
       <div className="field">
         <label htmlFor="telefoneTutor">Telefone</label>
-        <input id="telefoneTutor" name="telefoneTutor" type="tel" placeholder="(00) 00000-0000" />
+        <input
+          id="telefoneTutor"
+          name="telefoneTutor"
+          type="tel"
+          placeholder="(00) 00000-0000"
+          value={telefoneTutor}
+          onChange={(e) => {
+            settelefoneTutor(e.target.value);
+          }}
+        />
       </div>
 
       <div className="field">
         <label htmlFor="bairroTutor">Bairro</label>
-        <input id="bairroTutor" name="bairroTutor" type="text" placeholder="Seu bairro" />
+        <input
+          id="bairroTutor"
+          name="bairroTutor"
+          type="text"
+          placeholder="Seu bairro"
+          value={bairroTutor}
+          onChange={(e) => {
+            setbairroTutor(e.target.value);
+          }}
+
+        />
       </div>
 
       <div className="field">
         <label htmlFor="cidadeTutor">Cidade</label>
-        <input id="cidadeTutor" name="cidadeTutor" type="text" placeholder="Sua cidade" />
+        <input
+          id="cidadeTutor"
+          name="cidadeTutor"
+          type="text"
+          placeholder="Sua cidade"
+          value={cidadeTutor}
+          onChange={(e) => {
+            setCidadeTutor(e.target.value);
+          }}
+        />
+
+        {errocidadeTutor && <span>{errocidadeTutor}</span>}
       </div>
 
       <button className="button" type="submit">
