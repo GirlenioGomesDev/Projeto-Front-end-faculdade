@@ -41,9 +41,9 @@ Nao invente contribuicoes. Registre apenas o que cada integrante
 realmente implementou, testou ou documentou.
 -->
 
-- Integrante 1 - preencher
-- Integrante 2 - preencher
-- Integrante 3 - preencher
+- Integrante Girlenio Gomes da Silva - Filtro e seleção de pet shop, lógica e validações do agendamento, testes e integração das branches.
+- Integrante Anita Gallindo - Formulários de localização e tutor, controle dos campos e validações.
+- Integrante Bianka Moura - Visual da Home, banner, cards, ícones e estilos.
 
 ## Funcionalidades
 
@@ -59,7 +59,7 @@ concluido sem testar.
 -->
 
 - Apresentacao da finalidade do produto.
-- Cadastro inicial do tutor.
+- Formulário do tutor com validação de nome, e-mail e cidade, sem persistência e sem autenticação.
 - Cadastro do pet.
 - Localizacao manual.
 - Mapa simulado com Pet Shops ficticios.
@@ -67,9 +67,10 @@ concluido sem testar.
 - Escolha de Pet Shop.
 - Agendamento de servico.
 - Mensagens condicionais.
-- Persistencia local futura com `localStorage`.
+- Persistência do pet, pet shop selecionado e último agendamento no `localStorage`.
+- Bloqueio de agendamento sem pet cadastrado.
+- Exibição somente dos serviços oferecidos pelo pet shop selecionado.
 
-As funcionalidades principais estao marcadas com TODOs e devem ser implementadas manualmente pela equipe.
 
 ## Rotas
 
@@ -128,14 +129,11 @@ Teste atualizando a pagina para verificar se o dado continua
 disponivel.
 -->
 
-A persistencia principal sugerida para a AV1 e o pet cadastrado, usando `localStorage`.
+O projeto usa localStorage para salvar no navegador os dados do pet, o pet shop escolhido e o último agendamento.
 
-Conceitos que a equipe devera estudar:
+Esses dados permanecem salvos ao atualizar a página. Um novo agendamento substitui o anterior.
 
-- `localStorage.setItem()`
-- `localStorage.getItem()`
-- `JSON.stringify()`
-- `JSON.parse()`
+A página recupera o pet e o pet shop salvos, mas a mensagem de confirmação do agendamento desaparece ao atualizar.
 
 ## Divisao da equipe
 
@@ -146,9 +144,11 @@ Consulte `TAREFAS.md` para a divisao entre Pessoa 1, Pessoa 2 e Pessoa 3.
 - Nao existe API real.
 - Nao existe autenticacao real.
 - Nao existe mapa real.
-- O agendamento ainda nao funciona completamente.
-- Os formularios ainda nao estao controlados.
-- As mensagens condicionais ainda precisam ser implementadas.
+- Os dados do tutor não são salvos.
+- Apenas o último agendamento é armazenado, sem histórico.
+- Os agendamentos são simulados e não são enviados aos pet shops.
+- Os dados locais dependem do navegador e podem ser perdidos se o armazenamento for limpo.
+
 
 ## Uso de Inteligencia Artificial
 
@@ -162,7 +162,7 @@ organizacao, mas a equipe precisa desenvolver, testar e entender
 as funcionalidades que serao avaliadas.
 -->
 
-Foi utilizada inteligencia artificial como apoio para criacao do esqueleto inicial, organizacao da arquitetura e comentarios didaticos. As funcionalidades avaliativas serao implementadas, testadas, revisadas e compreendidas pela equipe.
+Foi utilizada inteligência artificial como apoio na criação do esqueleto inicial do projeto e dos comentários didáticos. Durante o desenvolvimento, também ajudou com explicações de conceitos, revisão de código e orientações para testes e comandos Git. A equipe implementou as funcionalidades e realizou os testes no navegador, incluindo cadastro do pet, filtros, validações do agendamento e persistência local.
 
 ## Evolucao planejada para AV2
 
