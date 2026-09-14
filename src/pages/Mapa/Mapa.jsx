@@ -79,13 +79,20 @@ NAO ESCREVA A SOLUCAO.
 function Mapa() {
 
   const [filtroServico, setFiltroServico] = useState('');
+  const [buscaNome, setBuscaNome] = useState('');
   const navigate = useNavigate();
 
   const petshopsVisiveis = petshops.filter((petShop) => {
-    if (filtroServico === '') {
-      return true;
-    }
-    return petShop.servicos.includes(filtroServico);
+    const correspondeNome = petShop.nome
+    .toLowerCase()
+    .includes(buscaNome.trim().toLowerCase());
+    
+    
+   const correspondeServico = 
+   filtroServico === '' ||
+   petShop.servicos.includes(filtroServico);
+
+    return correspondeNome && correspondeServico;
 
   });
 
@@ -120,6 +127,16 @@ function Mapa() {
 
       <section className="section-band">
         <div className="toolbar">
+          <label htmlFor="buscaNome">Buscar pet shop pelo nome</label>
+          <input
+            id="buscaNome"
+            type="text"
+            placeholder="Digite o nome do pet shop"
+            value={buscaNome}
+            onChange={(event) => setBuscaNome(event.target.value)}
+          />
+        
+
           <select aria-label="Filtrar por servico" value={filtroServico} onChange={(event) => setFiltroServico(event.target.value)}>
             <option value="">Todos</option>
             <option value="Banho">Banho</option>
@@ -169,8 +186,8 @@ function Mapa() {
           </div>
         ) : (
           <EmptyState
-            titulo="Nenhum Pet Shop encontrado para esse servico"
-            mensagem="Depois, esta mensagem devera aparecer apenas quando o filtro nao tiver resultados."
+            titulo="Nenhum Pet Shop encontrado"
+            mensagem="Tente outro nome ou escolha outro serviço."
           />
         )}
       </section>
