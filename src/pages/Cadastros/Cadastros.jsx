@@ -71,8 +71,12 @@ e confira se a interface orienta o usuario.
 NAO ESCREVA A SOLUCAO.
 =================================================
 */
+import { useState } from 'react';
 
 function Cadastros() {
+
+  const [etapaAtual, setEtapaAtual] = useState(1);
+
   return (
     <section className="page">
       <header className="page-header">
