@@ -94,14 +94,14 @@ function LocationForm() {
             setErrobairro("");
 
 
-          if (cidade === "") {
-            setErrocidade("Informe sua CIDADE.");
-          }
-          else {
-            setErrocidade("");
+            if (cidade === "") {
+              setErrocidade("Informe sua CIDADE.");
+            }
+            else {
+              setErrocidade("");
 
-            navigate("/mapa")
-          }
+              navigate("/mapa")
+            }
 
           }
         }
