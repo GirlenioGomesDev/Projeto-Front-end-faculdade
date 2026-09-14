@@ -83,7 +83,12 @@ function ScheduleForm({ petShopSelecionado, petCadastrado }) {
   function handleSubmit(event) {
     event.preventDefault();
     setSucesso(false); // Resetar o estado de sucesso antes de validar
-
+    
+    if (!petShopSelecionado) {
+      alert('selecione um Pet Shop antes de realizar o agendamento.');
+      return;
+    }
+    
     if (!servico || !data || !horario) {
       alert('Por favor, preencha todos os campos.');
       return;
@@ -93,12 +98,7 @@ function ScheduleForm({ petShopSelecionado, petCadastrado }) {
     if (data < dataHoje) {
       alert('Escolha uma data válida. Não é possível agendar em uma data passada.');
       return;
-    }
-
-    if (!petShopSelecionado) {
-      alert('selecione um Pet Shop antes de realizar o agendamento.');
-      return;
-    }
+    }    
 
     if (!petCadastrado) {
       alert('Cadastre um pet antes de realizar o agendamento.');
