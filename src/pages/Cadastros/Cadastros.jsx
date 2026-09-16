@@ -88,20 +88,30 @@ function Cadastros() {
       </header>
 
       <div className="grid">
+        {etapaAtual === 1 && (
         <article className="card">
           <h2>Etapa 1 - Cadastro do tutor</h2>
-          <UserForm />
+          <UserForm onContinuar={() => setEtapaAtual(2)} />
         </article>
 
+        )}
+
+        {etapaAtual === 2 &&(
         <article className="card">
           <h2>Etapa 2 - Cadastro do pet</h2>
           <PetForm />
         </article>
 
+        )}
+
+        {etapaAtual === 3 && (
         <article className="card">
           <h2>Etapa 3 - Localizacao</h2>
           <LocationForm />
         </article>
+
+        )}
+
       </div>
 
       {/* =================================================

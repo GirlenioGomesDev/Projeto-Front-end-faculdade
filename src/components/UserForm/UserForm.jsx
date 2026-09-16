@@ -66,7 +66,7 @@ NAO ESCREVA A SOLUCAO.
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function UserForm() {
+function UserForm ({ onContinuar}) {
   const navigate = useNavigate();
 
   const [nomeTutor, setnomeTutor] = useState("");
@@ -114,7 +114,7 @@ function UserForm() {
           emailTutor !== "" &&
           cidadeTutor !== ""
         ) {
-          navigate("/cadastros");
+          onContinuar();
         }
       }}
 
