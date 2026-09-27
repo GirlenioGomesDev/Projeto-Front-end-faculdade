@@ -18,11 +18,11 @@ Antes de documentar uma funcionalidade, confirme:
 Nao descreva como pronto algo que ainda esta apenas planejado.
 -->
 
-Projeto academico de Front-end Frameworks criado como esqueleto inicial para a AV1.
+Projeto acadêmico de Front-end Frameworks desenvolvido para a AV1, com o objetivo de facilitar a localização de serviços para cuidados de pets.
 
 ## Problema e publico
 
-O PetNear auxilia tutores de animais a localizar Pet Shops proximos e organizar servicos para seus pets, como banho, tosa, higiene e corte de unhas.
+O PetNear auxilia tutores de animais a localizar Pet Shops próximos e organizar serviços para seus pets, como banho, tosa, higiene e corte de unhas.
 
 ## Integrantes
 
@@ -41,9 +41,9 @@ Nao invente contribuicoes. Registre apenas o que cada integrante
 realmente implementou, testou ou documentou.
 -->
 
-- Integrante 1 - preencher
-- Integrante 2 - preencher
-- Integrante 3 - preencher
+- Bianka - Home, Header, Navbar, Footer, Banner, ServiceCard, BenefitCard, NotFound, responsividade, visual do Agendamento e documentação.
+- Anita - Cadastros, validação dos formulários e persistência com localStorage.
+- Leno - Mapa, dados dos Pet Shops, listagem e filtros.
 
 ## Funcionalidades
 
@@ -58,26 +58,25 @@ requisitos da AV1 foram trabalhados, mas nao marque nada como
 concluido sem testar.
 -->
 
-- Apresentacao da finalidade do produto.
+- Apresentação da finalidade do produto.
 - Cadastro inicial do tutor.
 - Cadastro do pet.
-- Localizacao manual.
+- Localização manual.
 - Mapa simulado com Pet Shops ficticios.
-- Filtro de Pet Shops por servico.
+- Filtro de Pet Shops por serviço.
 - Escolha de Pet Shop.
 - Agendamento de servico.
 - Mensagens condicionais.
-- Persistencia local futura com `localStorage`.
+- Persistência local futura com `localStorage`.
 
-As funcionalidades principais estao marcadas com TODOs e devem ser implementadas manualmente pela equipe.
 
 ## Rotas
 
 - `/` - Home
-- `/cadastros` - Cadastro do tutor, pet e localizacao
-- `/mapa` - Mapa simulado e Pet Shops proximos
-- `/agendamento` - Formulario de agendamento
-- `*` - Pagina nao encontrada
+- `/cadastros` - Cadastro do tutor, pet e localização
+- `/mapa` - Mapa simulado e Pet Shops próximos
+- `/agendamento` - Formulário de agendamento
+- `*` - Página não encontrada
 
 ## Tecnologias
 
@@ -141,12 +140,12 @@ Conceitos que a equipe devera estudar:
 
 Consulte `TAREFAS.md` para a divisao entre Pessoa 1, Pessoa 2 e Pessoa 3.
 
-## Limitacoes
+## Limitações
 
-- Nao existe API real.
-- Nao existe autenticacao real.
-- Nao existe mapa real.
-- O agendamento ainda nao funciona completamente.
+- Não existe API real.
+- Não existe autenticação real.
+- Não existe mapa real.
+- O agendamento possui a estrutura visual da pagina, enquanto as funcionalidades de cadastro e persistencia sao desenvolvidas pela equipe.
 - Os formularios ainda nao estao controlados.
 - As mensagens condicionais ainda precisam ser implementadas.
 

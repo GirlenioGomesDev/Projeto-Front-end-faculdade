@@ -51,9 +51,9 @@ NAO ESCREVA A SOLUCAO.
 function NotFound() {
   return (
     <section className="page">
-      <h1 className="page-title">Pagina nao encontrada</h1>
+      <h1 className="page-title">Página não encontrada</h1>
       <p className="page-description">
-        A rota acessada nao existe no PetNear.
+        A página que você tentou acessar não existe no PetNear.
       </p>
       <div className="button-row">
         <Link className="button" to="/">

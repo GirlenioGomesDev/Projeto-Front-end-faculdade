@@ -188,6 +188,7 @@ textarea {
 }
 
 @media (max-width: 720px) {
+
   .page {
     width: min(100% - 24px, 1120px);
     padding-top: 24px;
@@ -196,7 +197,79 @@ textarea {
   .page-title {
     font-size: 1.55rem;
   }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner {
+    min-height: 520px;
+  }
+
+  .banner h1 {
+    font-size: 2.3rem;
+  }
+
+  .banner__content > p:last-of-type {
+    font-size: 1rem;
+  }
+
 }
+
  .home-subtitle {
   font-style: italic;
  }
+
+ .service-card {
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.service-card__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #007f73;
+}
+
+.service-card h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.benefit-card {
+  text-align: center;
+}
+
+.benefit-card__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #007f73;
+}
+
+.benefit-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.benefit-card p {
+  margin: 0;
+  color: #52616b;
+  line-height: 1.5;
+}

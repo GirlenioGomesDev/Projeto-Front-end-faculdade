@@ -43,14 +43,17 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function BenefitCard({ titulo, texto, icone}) {
+function BenefitCard({ titulo, texto, icone }) {
   return (
-    <article className="card">
-      {icone}
+    <article className="card benefit-card">
+      <div className="benefit-card__icon">
+        {icone}
+      </div>
+
       <h2>{titulo}</h2>
+
       <p>{texto}</p>
     </article>
   );
 }
-
 export default BenefitCard;
