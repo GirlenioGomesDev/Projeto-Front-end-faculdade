@@ -76,6 +76,9 @@ import { useState } from 'react';
 function Cadastros() {
 
   const [etapaAtual, setEtapaAtual] = useState(1);
+  const [dadosTutor, setDadosTutor] = useState ({});
+  const [dadosPet, setDadosPet] = useState({});
+  
 
   return (
     <section className="page">
@@ -91,7 +94,8 @@ function Cadastros() {
         {etapaAtual === 1 && (
         <article className="card">
           <h2>Etapa 1 - Cadastro do tutor</h2>
-          <UserForm onContinuar={() => setEtapaAtual(2)} />
+          <UserForm onContinuar={(dados) => {setDadosTutor(dados); setEtapaAtual(2)}} />
+
         </article>
 
         )}
@@ -99,7 +103,12 @@ function Cadastros() {
         {etapaAtual === 2 &&(
         <article className="card">
           <h2>Etapa 2 - Cadastro do pet</h2>
-          <PetForm />
+          <PetForm onContinuar={(dados) => {
+            setDadosPet(dados);
+            setEtapaAtual(3);  
+          
+         }} />
+
         </article>
 
         )}

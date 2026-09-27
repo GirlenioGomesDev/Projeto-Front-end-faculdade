@@ -65,7 +65,7 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function PetForm() {
+function PetForm({ onContinuar}) {
   const [nomePet, setNomePet] = useState('');
   const [especiePet, setEspeciePet] = useState('');
   const [racaPet, setRacaPet] = useState('');
@@ -90,14 +90,14 @@ function PetForm() {
       porte: portePet,
       observacoes: observacoesPet
     };
+    
+      onContinuar(pet);
 
     localStorage.setItem('petCadastrado', JSON.stringify(pet));
-
     setSucesso(true);
   }
 
   return (
-
 
     <form className="form-grid" onSubmit={handleSubmit}>
       <div className="field">

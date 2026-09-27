@@ -114,7 +114,15 @@ function UserForm ({ onContinuar}) {
           emailTutor !== "" &&
           cidadeTutor !== ""
         ) {
-          onContinuar();
+          const dadosTutor = {
+           nome: nomeTutor,
+           email: emailTutor,
+           senha: senhaTutor,
+           telefone: telefoneTutor,
+           bairro: bairroTutor,
+           cidade: cidadeTutor
+          };
+          onContinuar(dadosTutor);
         }
       }}
 
