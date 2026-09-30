@@ -18,11 +18,11 @@ Antes de documentar uma funcionalidade, confirme:
 Nao descreva como pronto algo que ainda esta apenas planejado.
 -->
 
-Projeto academico de Front-end Frameworks criado como esqueleto inicial para a AV1.
+Projeto acadêmico de Front-end Frameworks desenvolvido para a AV1, com o objetivo de facilitar a localização de serviços para cuidados de pets.
 
 ## Problema e publico
 
-O PetNear auxilia tutores de animais a localizar Pet Shops proximos e organizar servicos para seus pets, como banho, tosa, higiene e corte de unhas.
+O PetNear auxilia tutores de animais a localizar Pet Shops próximos e organizar serviços para seus pets, como banho, tosa, higiene e corte de unhas.
 
 ## Integrantes
 
@@ -41,9 +41,9 @@ Nao invente contribuicoes. Registre apenas o que cada integrante
 realmente implementou, testou ou documentou.
 -->
 
-- Integrante Girlenio Gomes da Silva - Filtro e seleção de pet shop, lógica e validações do agendamento, testes e integração das branches.
-- Integrante Anita Gallindo - Formulários de localização e tutor, controle dos campos e validações.
-- Integrante Bianka Moura - Visual da Home, banner, cards, ícones e estilos.
+- Integrante Girlenio Gomes da Silva - Mapa, dados dos Pet Shops, listagem, filtros, escolha de pet shop, validações do agendamento, testes e integração das branches.
+- Integrante Anita Gallindo - Cadastros, formulários de localização e tutor, controle dos campos, validações e persistência com localStorage.
+- Integrante Bianka Moura - Home, Header, Navbar, Footer, Banner, ServiceCard, BenefitCard, NotFound, responsividade, visual do Agendamento e documentação.
 
 ## Funcionalidades
 
@@ -58,12 +58,12 @@ requisitos da AV1 foram trabalhados, mas nao marque nada como
 concluido sem testar.
 -->
 
-- Apresentacao da finalidade do produto.
-- Formulário do tutor com validação de nome, e-mail e cidade, sem persistência e sem autenticação.
+- Apresentação da finalidade do produto.
+- Cadastro inicial do tutor com validação de nome, e-mail e cidade, sem persistência e sem autenticação.
 - Cadastro do pet.
-- Localizacao manual.
+- Localização manual.
 - Mapa simulado com Pet Shops ficticios.
-- Filtro de Pet Shops por servico.
+- Filtro de Pet Shops por serviço.
 - Escolha de Pet Shop.
 - Agendamento de servico.
 - Mensagens condicionais.
@@ -75,10 +75,10 @@ concluido sem testar.
 ## Rotas
 
 - `/` - Home
-- `/cadastros` - Cadastro do tutor, pet e localizacao
-- `/mapa` - Mapa simulado e Pet Shops proximos
-- `/agendamento` - Formulario de agendamento
-- `*` - Pagina nao encontrada
+- `/cadastros` - Cadastro do tutor, pet e localização
+- `/mapa` - Mapa simulado e Pet Shops próximos
+- `/agendamento` - Formulário de agendamento
+- `*` - Página não encontrada
 
 ## Tecnologias
 
@@ -139,16 +139,15 @@ A página recupera o pet e o pet shop salvos, mas a mensagem de confirmação do
 
 Consulte `TAREFAS.md` para a divisao entre Pessoa 1, Pessoa 2 e Pessoa 3.
 
-## Limitacoes
+## Limitações
 
-- Nao existe API real.
-- Nao existe autenticacao real.
-- Nao existe mapa real.
-- Os dados do tutor não são salvos.
+- Não existe API real.
+- Não existe autenticação real.
+- Não existe mapa real.
+- Os dados do tutor não são salvos no `localStorage`.
 - Apenas o último agendamento é armazenado, sem histórico.
 - Os agendamentos são simulados e não são enviados aos pet shops.
 - Os dados locais dependem do navegador e podem ser perdidos se o armazenamento for limpo.
-
 
 ## Uso de Inteligencia Artificial
 

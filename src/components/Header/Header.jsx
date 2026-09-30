@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar.jsx';
 import './Header.css';
 
@@ -51,9 +52,9 @@ function Header() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <a className="site-header__brand" href="/">
+        <Link className="site-header__brand" to="/">
           PetNear
-        </a>
+        </Link>
         <Navbar />
       </div>
     </header>

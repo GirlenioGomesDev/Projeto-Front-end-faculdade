@@ -49,7 +49,7 @@ NAO ESCREVA A SOLUCAO.
 function Footer() {
   return (
     <footer className="site-footer">
-      <p>PetNear - Projeto academico de Front-end Frameworks.</p>
+      <p>PetNear — conectando você aos cuidados que seu pet precisa. 🐾</p>
     </footer>
   );
 }

@@ -46,8 +46,11 @@ NAO ESCREVA A SOLUCAO.
 
 function ServiceCard({ titulo, icone }) {
   return (
-    <article className="card">
-      {icone}
+    <article className="card service-card">
+      <div className="service-card__icon">
+        {icone}
+      </div>
+
       <h2>{titulo}</h2>
     </article>
   );
