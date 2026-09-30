@@ -1,38 +1,144 @@
 .banner {
-  min-height: 430px;
+  min-height: 520px;
+
   display: flex;
   align-items: center;
+
+  position: relative;
+  overflow: hidden;
+
   background:
-    linear-gradient(rgba(0, 72, 65, 0.74), rgba(0, 72, 65, 0.58)),
+    linear-gradient(
+      90deg,
+      rgba(0, 58, 53, 0.92) 0%,
+      rgba(0, 72, 65, 0.72) 45%,
+      rgba(0, 72, 65, 0.22) 100%
+    ),
     url('/images/6ed8fd14-3afc-4173-aa12-0e3937a572a8.jpe');
+
   background-position: center 70%;
   background-size: cover;
   background-repeat: no-repeat;
+
   color: #ffffff;
 }
 
+/* Faz uma transição suave entre a imagem e a próxima seção */
+.banner::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 90px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      var(--color-background)
+    );
+
+  pointer-events: none;
+}
+
 .banner__content {
-  width: min(1120px, calc(100% - 32px));
+  position: relative;
+  z-index: 2;
+
+  width: min(1120px, calc(100% - 40px));
+
   margin: 0 auto;
+
+  padding: 60px 0 90px;
 }
 
 .banner__eyebrow {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
+
+  color: #a7e8df;
+
+  font-size: 0.9rem;
   font-weight: 800;
+
   text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .banner h1 {
-  max-width: 760px;
+  max-width: 700px;
+
   margin: 0;
-  font-size: clamp(2.3rem, 6vw, 4.6rem);
-  letter-spacing: 0;
+
+  font-size: clamp(2.8rem, 6vw, 5rem);
+
+  line-height: 1.03;
+
+  font-weight: 900;
+
+  letter-spacing: -2px;
+
+  text-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 .banner__content > p:last-of-type {
   max-width: 620px;
-  margin: 14px 0 0;
-  font-size: 1.18rem;
-  line-height: 1.55;
+
+  margin: 22px 0 0;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 1.15rem;
+
+  line-height: 1.7;
 }
 
+@media (max-width: 720px) {
+  .banner {
+    min-height: 480px;
+
+    background:
+      linear-gradient(
+        rgba(0, 58, 53, 0.82),
+        rgba(0, 72, 65, 0.62)
+      ),
+      url('/images/6ed8fd14-3afc-4173-aa12-0e3937a572a8.jpe');
+
+    background-position: center;
+    background-size: cover;
+  }
+
+  .banner__content {
+    width: min(100% - 24px, 1120px);
+
+    padding: 56px 0 80px;
+  }
+
+  .banner__eyebrow {
+    font-size: 0.8rem;
+  }
+
+  .banner h1 {
+    max-width: 100%;
+
+    font-size: clamp(2.35rem, 11vw, 3.3rem);
+
+    letter-spacing: -1.5px;
+  }
+
+  .banner__content > p:last-of-type {
+    max-width: 100%;
+
+    font-size: 1rem;
+
+    line-height: 1.6;
+  }
+
+  .banner::after {
+    height: 70px;
+  }
+}

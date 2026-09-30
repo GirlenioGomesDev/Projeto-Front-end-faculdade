@@ -1,159 +1,198 @@
+import {
+  CalendarDays,
+  MapPin,
+  PawPrint,
+  Store,
+  Info,
+} from 'lucide-react';
+
 import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.jsx';
 
 /*
 =================================================
 PAGINA: Agendamento
 NIVEL: DIFICIL
-RESPONSAVEL SUGERIDO: PESSOA 3 NA PARTE VISUAL, PESSOA 1 OU 2 NA LOGICA
-
-FUNCAO:
-Preparar a tela onde o usuario escolhera servico, data e horario.
-
-O QUE JA ESTA PRONTO:
-Estrutura visual com exemplo de pet, Pet Shop selecionado e formulario.
-
-O QUE FALTA:
-Ler dados reais do pet/Pet Shop, validar e confirmar o agendamento.
-
-CONCEITOS:
-useState, localStorage, validacao, renderizacao condicional e eventos.
-=================================================
-*/
-
-/*
-=================================================
-GUIA PETNEAR - AGENDAMENTO
 
 RESPONSAVEIS:
-BIANKA - LEVE, estrutura visual
-LENO - DIFICIL, logica principal
-ANITA - MEDIO, validacoes e persistencia quando necessario
+BIANKA - estrutura visual
+LENO - logica principal
+ANITA - validacoes e persistencia
 
-REQUISITO DA AV1:
-Esta pagina ajuda a cumprir a operacao de agendamento, mensagem
-de resultado de acao e alteracao de estado.
-
-ANTES DE COMEÇAR:
-Confirme se o fluxo anterior ja permite chegar ate aqui pela
-navegacao. O usuario nao deve depender de digitar a rota.
-
-COMECE POR:
-Bianka deve organizar a leitura visual: Seu pet, Pet Shop
-selecionado, servico, data, horario e confirmacao.
-
-DEPOIS:
-Leno deve trabalhar por partes: primeiro servico, depois data,
-depois horario. Cada pequena parte precisa ser testada antes da
-proxima.
-
-QUANDO ISSO FUNCIONAR:
-Anita e Leno podem pensar nas validacoes e nas mensagens que
-aparecem somente quando fazem sentido.
-
-DICA:
-Nao tente resolver agendamento inteiro de uma vez. Separe a
-tela em pequenas perguntas: o que o usuario escolheu, o que
-falta preencher e qual retorno a interface deve mostrar.
-
-CONCEITOS PARA ESTUDAR:
-- estado
-- eventos
-- validacao
-- renderizacao condicional
-- persistencia local
-
-COMO TESTAR:
-Tente confirmar incompleto, depois preencha servico, data e
-horario e observe se a resposta da tela faz sentido.
-
-NAO ESCREVA A SOLUCAO.
+FUNCAO:
+Permitir que o usuario escolha servico,
+data e horario para o pet selecionado.
 =================================================
 */
 
 function Agendamento() {
-   const petShopSelecionado = JSON.parse(
+  const petShopSelecionado = JSON.parse(
     localStorage.getItem('petShopSelecionado')
-   );
+  );
 
-   const petCadastrado = JSON.parse(
+  const petCadastrado = JSON.parse(
     localStorage.getItem('petCadastrado')
   );
 
   return (
-    <section className="page">
-      <header className="page-header">
-        <h1 className="page-title">Agendamento</h1>
+    <section className="page agendamento-page">
+
+      {/* CABECALHO */}
+      <header className="page-header agendamento-header">
+        <span className="section-eyebrow">
+          Atendimento
+        </span>
+
+        <h1 className="page-title">
+          Agende um serviço
+        </h1>
+
         <p className="page-description">
-          Tela preparada para confirmar servico, data e horario. A logica sera
-          implementada pela equipe durante a AV1.
+          Confira os dados do seu pet e do Pet Shop escolhido.
+          Depois selecione o serviço, a data e o horário desejado.
         </p>
       </header>
 
-      <div className="grid">
-        <article className="card">
-          <h2>Seu pet</h2>
-          {petCadastrado ? (
-            <>
-          <p>{petCadastrado.nome}</p>
-          <p>{petCadastrado.raca}</p>
-          <p>{petCadastrado.porte}</p>
-          </>
-          ) : (
-            <p>Nenhum pet cadastrado.</p>
-          )}
+      {/* CONTEUDO PRINCIPAL */}
+      <div className="agendamento-layout">
+
+        {/* COLUNA DE RESUMO */}
+        <aside className="agendamento-summary">
+
+          {/* PET */}
+          <article className="card agendamento-info-card">
+
+            <div className="agendamento-info-card__header">
+              <div className="agendamento-info-card__icon">
+                <PawPrint size={22} />
+              </div>
+
+              <div>
+                <span>Seu pet</span>
+                <h2>
+                  {petCadastrado
+                    ? petCadastrado.nome
+                    : 'Pet não cadastrado'}
+                </h2>
+              </div>
+            </div>
+
+            {petCadastrado ? (
+              <div className="agendamento-info-list">
+
+                <div className="agendamento-info-row">
+                  <span>Raça</span>
+
+                  <strong>
+                    {petCadastrado.raca || 'Não informada'}
+                  </strong>
+                </div>
+
+                <div className="agendamento-info-row">
+                  <span>Porte</span>
+
+                  <strong>
+                    {petCadastrado.porte || 'Não informado'}
+                  </strong>
+                </div>
+
+              </div>
+            ) : (
+              <div className="agendamento-warning">
+                <Info size={18} />
+
+                <p>
+                  Nenhum pet foi cadastrado.
+                </p>
+              </div>
+            )}
+
+          </article>
+
+
+          {/* PET SHOP */}
+          <article className="card agendamento-info-card">
+
+            <div className="agendamento-info-card__header">
+              <div className="agendamento-info-card__icon">
+                <Store size={22} />
+              </div>
+
+              <div>
+                <span>Pet Shop</span>
+
+                <h2>
+                  {petShopSelecionado
+                    ? petShopSelecionado.nome
+                    : 'Nenhum selecionado'}
+                </h2>
+              </div>
+            </div>
+
+            {petShopSelecionado ? (
+              <div className="agendamento-shop-address">
+                <MapPin size={18} />
+
+                <p>
+                  {petShopSelecionado.endereco}
+                  {' - '}
+                  {petShopSelecionado.bairro},
+                  {' '}
+                  {petShopSelecionado.cidade}
+                </p>
+              </div>
+            ) : (
+              <div className="agendamento-warning">
+                <Info size={18} />
+
+                <p>
+                  Selecione um Pet Shop no mapa antes de realizar
+                  o agendamento.
+                </p>
+              </div>
+            )}
+
+          </article>
+
+        </aside>
+
+
+        {/* FORMULARIO */}
+        <article className="card agendamento-form-card">
+
+          <div className="agendamento-form-card__header">
+
+            <div className="agendamento-form-card__icon">
+              <CalendarDays size={24} />
+            </div>
+
+            <div>
+              <span className="agendamento-form-card__eyebrow">
+                Novo agendamento
+              </span>
+
+              <h2>
+                Escolha o serviço
+              </h2>
+
+              <p>
+                Informe o serviço, a data e o horário desejado
+                para concluir.
+              </p>
+            </div>
+
+          </div>
+
+          <div className="agendamento-form-card__content">
+            <ScheduleForm
+              petShopSelecionado={petShopSelecionado}
+              petCadastrado={petCadastrado}
+            />
+          </div>
+
         </article>
 
-        <article className="card">
-          <h2>Pet Shop selecionado</h2>
-           {petShopSelecionado ? ( 
-            <>
-          <p>{petShopSelecionado.nome}</p>
-          <p>
-            {petShopSelecionado.endereco} - {petShopSelecionado.bairro}, {petShopSelecionado.cidade}
-          </p>
-          </>
-           ) : (
-            <p>Nenhum Pet Shop selecionado.</p>
-           )} 
-        </article>
-
-        <article className="card">
-          <h2>Escolha o servico</h2>
-          <ScheduleForm petShopSelecionado={petShopSelecionado} petCadastrado={petCadastrado} />
-        </article>
       </div>
 
-      
-
-      {/* =================================================
-      TODO AV1
-      NIVEL: DIFICIL
-      RESPONSAVEL SUGERIDO: PESSOA 1 OU PESSOA 2
-
-      OBJETIVO:
-      Exibir confirmacao somente depois de um agendamento valido.
-
-      O QUE VOCE DEVE FAZER:
-      1. Criar estado para controlar sucesso.
-      2. Validar servico, data e horario.
-      3. Montar o objeto de agendamento.
-      4. Exibir dados como pet, servico, Pet Shop, data e horario.
-      5. Persistir o agendamento se a equipe escolher esta estrategia.
-
-      CONCEITOS:
-      renderizacao condicional
-      estado de sucesso
-      validacao
-      persistencia
-
-      COMO TESTAR:
-      Confirme sem preencher dados e depois preencha todos os campos.
-
-      RESULTADO ESPERADO:
-      A mensagem de sucesso deve aparecer apenas com dados validos.
-
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
-      ================================================= */}
     </section>
   );
 }

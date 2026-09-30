@@ -9,40 +9,46 @@ REQUISITO DA AV1:
 A interface precisa ser consistente, legivel e minimamente
 responsiva.
 
-ANTES DE COMEÇAR:
-Execute o projeto e observe a aparencia atual antes de alterar
-qualquer estilo.
-
-COMECE POR:
-Verifique estrutura, espacamento e leitura dos textos. Nao tente
-deixar tudo perfeito na primeira passada.
-
-DEPOIS:
-Revise botoes, cards, formularios e comportamento em telas
-menores.
-
-QUANDO ISSO FUNCIONAR:
-Faca pequenos ajustes visuais e teste cada pagina depois de
-alterar o CSS.
-
-DICA:
-CSS global afeta muitas telas. Uma mudanca pequena aqui pode
-aparecer em varias partes do projeto.
-
 COMO TESTAR:
 Abra Home, Cadastros, Mapa, Agendamento e NotFound em largura
 grande e em largura parecida com celular.
-
-NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
+
+/* =================================================
+   CONFIGURACOES GERAIS
+================================================= */
+
 :root {
   font-family: Arial, Helvetica, sans-serif;
-  color: #263238;
-  background: #f6f8f7;
+
+  --color-primary: #007f73;
+  --color-primary-dark: #005c52;
+  --color-primary-light: #e4f4f1;
+
+  --color-text: #243633;
+  --color-text-light: #667773;
+
+  --color-background: #f5f8f7;
+  --color-surface: #ffffff;
+
+  --color-border: #dce7e4;
+
+  --shadow-sm: 0 4px 12px rgba(20, 70, 64, 0.06);
+  --shadow-md: 0 10px 30px rgba(20, 70, 64, 0.1);
+  --shadow-lg: 0 18px 45px rgba(20, 70, 64, 0.14);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  color: var(--color-text);
+  background: var(--color-background);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -51,8 +57,20 @@ NAO ESCREVA A SOLUCAO.
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+
+  background:
+    radial-gradient(circle at top left,
+      rgba(0, 127, 115, 0.07),
+      transparent 35%),
+    var(--color-background);
+
+  color: var(--color-text);
 }
 
 a {
@@ -67,8 +85,23 @@ textarea {
   font: inherit;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* =================================================
+   ESTRUTURA PRINCIPAL
+================================================= */
+
 .app {
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
 }
@@ -78,124 +111,2204 @@ textarea {
 }
 
 .page {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1120px, calc(100% - 40px));
+
   margin: 0 auto;
-  padding: 32px 0 48px;
+
+  padding: 56px 0 72px;
 }
 
 .page-header {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .page-title {
-  margin: 0 0 8px;
-  font-size: 2rem;
+  margin: 0 0 10px;
+
+  color: var(--color-text);
+
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -1px;
 }
 
 .page-description {
+  max-width: 720px;
+
   margin: 0;
-  max-width: 760px;
-  color: #52616b;
-  line-height: 1.6;
+
+  color: var(--color-text-light);
+
+  font-size: 1.05rem;
+
+  line-height: 1.7;
 }
+
+
+/* =================================================
+   TITULOS DE SECAO
+================================================= */
+
+.section-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  color: var(--color-primary);
+
+  font-size: 0.82rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.4px;
+}
+
+.section-title {
+  margin: 0 0 12px;
+
+  color: var(--color-text);
+
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 800;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.8px;
+}
+
+.section-description {
+  max-width: 650px;
+
+  margin: 0 0 30px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.7;
+}
+
+.section-band {
+  margin-top: 64px;
+
+  padding-top: 48px;
+
+  border-top: 1px solid var(--color-border);
+}
+
+
+/* =================================================
+   BOTOES
+================================================= */
 
 .button-row {
   display: flex;
   flex-wrap: wrap;
+
   gap: 12px;
+
   margin-top: 20px;
 }
 
 .button {
-  min-height: 44px;
-  border: 0;
-  border-radius: 6px;
-  padding: 0 18px;
+  min-height: 46px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   gap: 8px;
-  cursor: pointer;
-  background: #e7f3f0;
-  color: #005c52;
+
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: var(--color-primary);
+
+  color: #ffffff;
+
   font-weight: 700;
-  transition: transform 0.2s ease;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 15px rgba(0, 127, 115, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+
+  background: var(--color-primary-dark);
+
+  box-shadow:
+    0 8px 20px rgba(0, 127, 115, 0.28);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus-visible {
+  outline: 3px solid rgba(0, 127, 115, 0.2);
+  outline-offset: 3px;
 }
 
 .button.secondary {
-  background: #e7f3f0;
-  color: #005c52;
+  background: var(--color-primary-light);
+
+  color: var(--color-primary-dark);
+
+  box-shadow: none;
 }
+
+.button.secondary:hover {
+  background: #d5eeea;
+
+  box-shadow: none;
+}
+
+
+/* =================================================
+   GRID
+================================================= */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 16px;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 24px;
 }
 
+
+/* =================================================
+   CARD GLOBAL
+================================================= */
+
 .card {
-  border: 1px solid #d9e4e1;
-  border-radius: 8px;
-  background: #ffffff;
-  padding: 16px;
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 24px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
+
+.card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(0, 127, 115, 0.3);
+
+  box-shadow: var(--shadow-md);
+}
+
+
+/* =================================================
+   FORMULARIOS
+================================================= */
 
 .form-grid {
   display: grid;
-  gap: 14px;
+
+  gap: 20px;
 }
 
 .field {
   display: grid;
-  gap: 6px;
+
+  gap: 7px;
 }
 
 .field label {
+  color: #354743;
+
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
 .field input,
 .field select,
 .field textarea,
+.toolbar input,
 .toolbar select {
-  border: 1px solid #b7c7c4;
-  border-radius: 6px;
-  padding: 11px 12px;
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 1px solid #cbd9d6;
+  border-radius: 12px;
+
   background: #ffffff;
-  color: #263238;
+
+  color: var(--color-text);
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.section-band {
-  border-top: 1px solid #d9e4e1;
-  margin-top: 28px;
-  padding-top: 28px;
+.field input:hover,
+.field select:hover,
+.field textarea:hover,
+.toolbar input:hover,
+.toolbar select:hover {
+  border-color: #aebfbb;
 }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.toolbar input:focus,
+.toolbar select:focus {
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(0, 127, 115, 0.1);
+}
+
+.field textarea {
+  min-height: 110px;
+
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #99a6a3;
+}
+
+
+/* =================================================
+   PLACEHOLDER
+================================================= */
 
 .placeholder-box {
   min-height: 220px;
-  border: 1px dashed #91aaa5;
-  border-radius: 8px;
-  background: #edf6f3;
-  color: #52616b;
+
   display: grid;
   place-items: center;
-  text-align: center;
+
   padding: 18px;
+
+  border: 1px dashed #91aaa5;
+  border-radius: 12px;
+
+  background: #edf6f3;
+
+  color: #52616b;
+
+  text-align: center;
 }
 
-@media (max-width: 720px) {
 
+/* =================================================
+   HOME
+================================================= */
+
+.home-subtitle {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 1.05rem;
+  font-style: italic;
+
+  line-height: 1.7;
+}
+
+
+/* =================================================
+   CARDS DE SERVICOS
+================================================= */
+
+.service-card {
+  position: relative;
+
+  min-height: 210px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 28px;
+
+  text-align: left;
+
+  border: 1px solid var(--color-border);
+
+  background:
+    linear-gradient(180deg,
+      #ffffff 0%,
+      #f8fcfb 100%);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(0, 127, 115, 0.32);
+
+  box-shadow: var(--shadow-md);
+}
+
+.service-card__icon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  border-radius: 16px;
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary);
+}
+
+.service-card__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.service-card h2 {
+  margin: 0 0 10px;
+
+  color: var(--color-text);
+
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.service-card p {
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.96rem;
+
+  line-height: 1.6;
+}
+
+
+/* =================================================
+   CARDS DE BENEFICIOS
+================================================= */
+
+.benefit-card {
+  padding: 26px 20px;
+
+  text-align: left;
+
+  border: none;
+
+  background: transparent;
+
+  box-shadow: none;
+}
+
+.benefit-card:hover {
+  transform: none;
+
+  border-color: transparent;
+
+  box-shadow: none;
+}
+
+.benefit-card__icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 16px;
+
+  border-radius: 50%;
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary);
+}
+
+.benefit-card__icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.benefit-card h2 {
+  margin: 0 0 8px;
+
+  color: var(--color-text);
+
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.benefit-card p {
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  line-height: 1.6;
+}
+
+
+/* =================================================
+   PAGINA CADASTROS
+================================================= */
+
+.cadastro-page {
+  max-width: 980px;
+}
+
+.cadastro-header {
+  max-width: 720px;
+
+  margin-bottom: 38px;
+}
+
+.cadastro-step.current {
+  color: var(--color-primary-dark);
+}
+
+.cadastro-step.current .cadastro-step__icon {
+  background: var(--color-primary);
+
+  color: #ffffff;
+
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 5px 16px rgba(0, 127, 115, 0.22);
+}
+
+.cadastro-card__top {
+  display: flex;
+  justify-content: flex-start;
+
+  margin-bottom: 16px;
+}
+
+.cadastro-back {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 8px 10px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: var(--color-primary);
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.cadastro-back:hover {
+  background: var(--color-primary-light);
+
+  color: var(--color-primary-dark);
+}
+
+
+/* =================================================
+   INDICADOR DAS ETAPAS
+================================================= */
+
+.cadastro-steps {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 34px;
+
+  padding: 22px 26px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background: rgba(255, 255, 255, 0.82);
+
+  box-shadow: var(--shadow-sm);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cadastro-step {
+  min-width: 150px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  color: #8a9996;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.cadastro-step__icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d7e2df;
+  border-radius: 50%;
+
+  background: #f3f7f6;
+
+  color: #81918e;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.cadastro-step__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-step strong {
+  margin-bottom: 2px;
+
+  font-size: 0.95rem;
+}
+
+.cadastro-step span {
+  font-size: 0.78rem;
+}
+
+.cadastro-step.active {
+  color: var(--color-primary-dark);
+}
+
+.cadastro-step.active .cadastro-step__icon {
+  border-color: rgba(0, 127, 115, 0.25);
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary);
+
+  box-shadow:
+    0 4px 12px rgba(0, 127, 115, 0.12);
+}
+
+.cadastro-step__line {
+  height: 2px;
+
+  flex: 1;
+
+  margin: 0 16px;
+
+  border-radius: 999px;
+
+  background: #dce7e4;
+
+  transition:
+    background 0.25s ease;
+}
+
+.cadastro-step__line.active {
+  background: var(--color-primary);
+}
+
+
+/* =================================================
+   CONTEUDO DO CADASTRO
+================================================= */
+
+.cadastro-content {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.cadastro-card {
+  width: min(100%, 760px);
+
+  padding: 34px;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-md);
+}
+
+.cadastro-card:hover {
+  transform: none;
+
+  border-color: var(--color-border);
+}
+
+.cadastro-card__header {
+  margin-bottom: 28px;
+
+  padding-bottom: 22px;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cadastro-card__step {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  color: var(--color-primary);
+
+  font-size: 0.78rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+.cadastro-card__header h2 {
+  margin: 0 0 8px;
+
+  color: var(--color-text);
+
+  font-size: 1.6rem;
+  font-weight: 800;
+
+  letter-spacing: -0.4px;
+}
+
+.cadastro-card__header p {
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  line-height: 1.6;
+}
+
+
+/* =================================================
+   PAGINA MAPA
+================================================= */
+
+.mapa-page {
+  max-width: 1120px;
+}
+
+.mapa-header {
+  max-width: 760px;
+
+  margin-bottom: 36px;
+}
+
+
+/* =================================================
+   MAPA SIMULADO
+================================================= */
+
+.mapa-preview {
+  position: relative;
+
+  min-height: 340px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background:
+    linear-gradient(rgba(236, 246, 243, 0.82),
+      rgba(224, 241, 237, 0.88)),
+    repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent 62px,
+      rgba(0, 127, 115, 0.08) 63px,
+      rgba(0, 127, 115, 0.08) 65px),
+    repeating-linear-gradient(0deg,
+      transparent 0,
+      transparent 62px,
+      rgba(0, 127, 115, 0.08) 63px,
+      rgba(0, 127, 115, 0.08) 65px);
+
+  box-shadow: var(--shadow-md);
+}
+
+.mapa-preview::before {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 120px;
+
+  left: -60px;
+  top: 130px;
+
+  border-radius: 50%;
+
+  border-top:
+    18px solid rgba(255, 255, 255, 0.8);
+
+  transform: rotate(-12deg);
+}
+
+.mapa-preview::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 130px;
+
+  right: -100px;
+  top: 80px;
+
+  border-radius: 50%;
+
+  border-top:
+    22px solid rgba(255, 255, 255, 0.72);
+
+  transform: rotate(18deg);
+}
+
+.mapa-preview__overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 26px;
+}
+
+.mapa-preview__badge {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 9px 13px;
+
+  border:
+    1px solid rgba(0, 127, 115, 0.15);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  color: var(--color-primary-dark);
+
+  font-size: 0.84rem;
+  font-weight: 800;
+
+  box-shadow: var(--shadow-sm);
+
+  backdrop-filter: blur(8px);
+}
+
+.mapa-preview__info {
+  max-width: 430px;
+
+  padding: 20px 22px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.7);
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow: var(--shadow-sm);
+
+  backdrop-filter: blur(10px);
+}
+
+.mapa-preview__info h2 {
+  margin: 0 0 6px;
+
+  color: var(--color-text);
+
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.mapa-preview__info p {
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.92rem;
+
+  line-height: 1.55;
+}
+
+
+/* =================================================
+   MARCADORES DO MAPA
+================================================= */
+
+.mapa-preview__marker {
+  position: absolute;
+
+  z-index: 3;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+
+  background: var(--color-primary);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 20px rgba(0, 92, 82, 0.24);
+}
+
+.mapa-preview__marker--1 {
+  top: 27%;
+  left: 29%;
+}
+
+.mapa-preview__marker--2 {
+  top: 20%;
+  right: 24%;
+}
+
+.mapa-preview__marker--3 {
+  bottom: 24%;
+  left: 48%;
+}
+
+.mapa-preview__marker--4 {
+  bottom: 17%;
+  right: 12%;
+}
+
+
+/* =================================================
+   RESULTADOS DO MAPA
+================================================= */
+
+.mapa-results {
+  margin-top: 40px;
+}
+
+
+/* =================================================
+   TOOLBAR DO MAPA
+================================================= */
+
+.mapa-toolbar {
+  margin-bottom: 28px;
+
+  padding: 26px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background: #ffffff;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.mapa-toolbar__title {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 24px;
+}
+
+.mapa-toolbar__icon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary);
+}
+
+.mapa-toolbar__title h2 {
+  margin: 0 0 4px;
+
+  color: var(--color-text);
+
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.mapa-toolbar__title p {
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.92rem;
+}
+
+.mapa-toolbar__fields {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.6fr) minmax(220px, 0.7fr);
+
+  gap: 18px;
+}
+
+.mapa-search,
+.mapa-filter {
+  display: grid;
+
+  gap: 7px;
+}
+
+.mapa-search label,
+.mapa-filter label {
+  color: #354743;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+
+/* =================================================
+   BUSCA DO MAPA
+================================================= */
+
+.mapa-search__input,
+.mapa-filter__select {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 14px;
+
+  border: 1px solid #cbd9d6;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #73817e;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mapa-search__input:focus-within,
+.mapa-filter__select:focus-within {
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(0, 127, 115, 0.1);
+}
+
+.mapa-search__input input {
+  width: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--color-text);
+
+  outline: none;
+}
+
+.mapa-search__input input::placeholder {
+  color: #98a5a2;
+}
+
+.mapa-filter__select select {
+  width: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--color-text);
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+
+/* =================================================
+   PET SHOP CARD
+================================================= */
+
+.petshop-card {
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+
+  border-radius: var(--radius-lg);
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+.petshop-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(0, 127, 115, 0.28);
+
+  box-shadow: var(--shadow-lg);
+}
+
+
+/* =================================================
+   CABECALHO DO PET SHOP CARD
+================================================= */
+
+.petshop-card__header {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 22px 22px 18px;
+
+  border-bottom: 1px solid var(--color-border);
+
+  background:
+    linear-gradient(135deg,
+      #ffffff 0%,
+      #f3faf8 100%);
+}
+
+.petshop-card__logo {
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary);
+}
+
+.petshop-card__heading {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.petshop-card__heading h2 {
+  margin: 0 0 6px;
+
+  color: var(--color-text);
+
+  font-size: 1.2rem;
+  font-weight: 800;
+
+  line-height: 1.25;
+}
+
+.petshop-card__rating {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  color: #d89400;
+
+  font-size: 0.9rem;
+}
+
+
+/* =================================================
+   INFORMACOES DO PET SHOP
+================================================= */
+
+.petshop-card__info {
+  display: grid;
+
+  gap: 16px;
+
+  padding: 22px;
+}
+
+.petshop-card__info-item {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 11px;
+
+  color: var(--color-primary);
+}
+
+.petshop-card__info-item svg {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+}
+
+.petshop-card__info-item div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.petshop-card__info-item span {
+  color: #899793;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.petshop-card__info-item strong {
+  color: var(--color-text);
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  line-height: 1.45;
+}
+
+
+/* =================================================
+   SERVICOS DO PET SHOP
+================================================= */
+
+.petshop-card__services {
+  padding: 0 22px 22px;
+}
+
+.petshop-card__services-title {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--color-text-light);
+
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.petshop-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+.petshop-card__chip {
+  min-height: 30px;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border: 1px solid rgba(0, 127, 115, 0.12);
+  border-radius: 999px;
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary-dark);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+
+/* =================================================
+   RODAPE DO PET SHOP CARD
+================================================= */
+
+.petshop-card__footer {
+  margin-top: auto;
+
+  padding: 18px 22px 22px;
+
+  border-top: 1px solid var(--color-border);
+
+  background: #fbfdfc;
+}
+
+.petshop-card__button {
+  width: 100%;
+
+  justify-content: space-between;
+}
+
+
+/* =================================================
+   CABECALHO DOS RESULTADOS
+================================================= */
+
+.mapa-results__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 20px;
+
+  color: var(--color-text-light);
+
+  font-size: 0.95rem;
+}
+
+.mapa-results__count {
+  color: var(--color-primary-dark);
+
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.mapa-clear {
+  padding: 8px 12px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: var(--color-primary);
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.mapa-clear:hover {
+  background: var(--color-primary-light);
+
+  color: var(--color-primary-dark);
+}
+
+
+/* =================================================
+   GRID DOS PET SHOPS
+================================================= */
+
+.mapa-grid {
+  align-items: stretch;
+}
+
+
+/* =================================================
+   LISTA VAZIA
+================================================= */
+
+.mapa-empty {
+  padding: 32px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background: #ffffff;
+
+  text-align: center;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.mapa-empty .button {
+  width: auto;
+
+  margin-top: 20px;
+}
+
+/* =================================================
+   PAGINA AGENDAMENTO
+================================================= */
+
+.agendamento-page {
+  max-width: 1120px;
+}
+
+.agendamento-header {
+  max-width: 760px;
+
+  margin-bottom: 38px;
+}
+
+/* =================================================
+   SCHEDULE FORM
+================================================= */
+
+.schedule-form {
+  gap: 22px;
+}
+
+.schedule-field {
+  gap: 8px;
+}
+
+.schedule-field label {
+  color: var(--color-text);
+
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+
+/* =================================================
+   CAMPOS COM ICONES
+================================================= */
+
+.schedule-input {
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 0 14px;
+
+  border: 1px solid #cbd9d6;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: var(--color-primary);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.schedule-input:hover {
+  border-color: #aebfbb;
+}
+
+.schedule-input:focus-within {
+  border-color: var(--color-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(0, 127, 115, 0.1);
+}
+
+.schedule-input svg {
+  flex-shrink: 0;
+}
+
+.schedule-input input,
+.schedule-input select {
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 13px 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--color-text);
+
+  outline: none;
+}
+
+.schedule-input select {
+  cursor: pointer;
+}
+
+
+/* =================================================
+   DATA E HORARIO
+================================================= */
+
+.schedule-row {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+
+/* =================================================
+   RESUMO DA ESCOLHA
+================================================= */
+
+.schedule-preview {
+  padding: 18px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+
+  background: #f8fbfa;
+}
+
+.schedule-preview__title {
+  display: block;
+
+  margin-bottom: 13px;
+
+  color: var(--color-text);
+
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.schedule-preview__items {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.schedule-preview__items>div {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 8px 10px;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: var(--color-primary);
+
+  font-size: 0.82rem;
+
+  box-shadow:
+    0 2px 7px rgba(20, 70, 64, 0.05);
+}
+
+.schedule-preview__items span {
+  color: var(--color-text-light);
+}
+
+
+/* =================================================
+   BOTAO DO AGENDAMENTO
+================================================= */
+
+.schedule-submit {
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 2px;
+}
+
+
+/* =================================================
+   SUCESSO
+================================================= */
+
+.schedule-success {
+  overflow: hidden;
+
+  margin-top: 6px;
+
+  border: 1px solid rgba(0, 127, 115, 0.2);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(135deg,
+      #f1faf7 0%,
+      #ffffff 100%);
+}
+
+.schedule-success__header {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 18px;
+
+  border-bottom:
+    1px solid rgba(0, 127, 115, 0.12);
+}
+
+.schedule-success__icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--color-primary);
+
+  color: #ffffff;
+}
+
+.schedule-success__header span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--color-primary);
+
+  font-size: 0.74rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.8px;
+}
+
+.schedule-success__header h3 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+
+/* =================================================
+   DETALHES DA CONFIRMACAO
+================================================= */
+
+.schedule-success__details {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 0;
+
+  padding: 8px 18px 18px;
+}
+
+.schedule-success__item {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding: 13px 8px;
+
+  color: var(--color-primary);
+}
+
+.schedule-success__item div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.schedule-success__item span {
+  color: var(--color-text-light);
+
+  font-size: 0.74rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.schedule-success__item strong {
+  color: var(--color-text);
+
+  font-size: 0.88rem;
+
+  line-height: 1.4;
+}
+
+
+/* =================================================
+   LAYOUT DO AGENDAMENTO
+================================================= */
+
+.agendamento-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, 0.75fr) minmax(0, 1.6fr);
+
+  align-items: start;
+
+  gap: 26px;
+}
+
+
+/* =================================================
+   RESUMO LATERAL
+================================================= */
+
+.agendamento-summary {
+  display: grid;
+
+  gap: 20px;
+}
+
+.agendamento-info-card {
+  padding: 24px;
+
+  border-radius: var(--radius-lg);
+}
+
+.agendamento-info-card:hover {
+  transform: none;
+
+  border-color: var(--color-border);
+}
+
+.agendamento-info-card__header {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 20px;
+}
+
+.agendamento-info-card__icon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary);
+}
+
+.agendamento-info-card__header>div:last-child {
+  min-width: 0;
+}
+
+.agendamento-info-card__header span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--color-text-light);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+}
+
+.agendamento-info-card__header h2 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 1.15rem;
+  font-weight: 800;
+
+  line-height: 1.3;
+}
+
+
+/* =================================================
+   INFORMACOES DO PET
+================================================= */
+
+.agendamento-info-list {
+  display: grid;
+
+  gap: 0;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.agendamento-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.agendamento-info-row:last-child {
+  border-bottom: none;
+
+  padding-bottom: 0;
+}
+
+.agendamento-info-row span {
+  color: var(--color-text-light);
+
+  font-size: 0.88rem;
+}
+
+.agendamento-info-row strong {
+  color: var(--color-text);
+
+  font-size: 0.9rem;
+
+  text-align: right;
+}
+
+
+/* =================================================
+   ENDERECO PET SHOP
+================================================= */
+
+.agendamento-shop-address {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  padding-top: 17px;
+
+  border-top: 1px solid var(--color-border);
+
+  color: var(--color-primary);
+}
+
+.agendamento-shop-address svg {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+}
+
+.agendamento-shop-address p {
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+
+  line-height: 1.55;
+}
+
+
+/* =================================================
+   AVISOS
+================================================= */
+
+.agendamento-warning {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding: 13px;
+
+  border: 1px solid #d9e9e6;
+  border-radius: 12px;
+
+  background: #f3f9f7;
+
+  color: var(--color-primary-dark);
+}
+
+.agendamento-warning svg {
+  flex-shrink: 0;
+
+  margin-top: 1px;
+}
+
+.agendamento-warning p {
+  margin: 0;
+
+  font-size: 0.87rem;
+
+  line-height: 1.5;
+}
+
+
+/* =================================================
+   CARD DO FORMULARIO
+================================================= */
+
+.agendamento-form-card {
+  padding: 0;
+
+  border-radius: var(--radius-lg);
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow-md);
+}
+
+.agendamento-form-card:hover {
+  transform: none;
+
+  border-color: var(--color-border);
+}
+
+.agendamento-form-card__header {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 15px;
+
+  padding: 28px;
+
+  border-bottom: 1px solid var(--color-border);
+
+  background:
+    linear-gradient(135deg,
+      #ffffff 0%,
+      #f0f9f7 100%);
+}
+
+.agendamento-form-card__icon {
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background: var(--color-primary);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 7px 18px rgba(0, 127, 115, 0.2);
+}
+
+.agendamento-form-card__eyebrow {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--color-primary);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+.agendamento-form-card__header h2 {
+  margin: 0 0 7px;
+
+  color: var(--color-text);
+
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.agendamento-form-card__header p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.93rem;
+
+  line-height: 1.55;
+}
+
+.agendamento-form-card__content {
+  padding: 30px;
+}
+
+/* =================================================
+   PAGINA NOT FOUND
+================================================= */
+
+.notfound-page {
+  min-height: 70vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notfound-card {
+  position: relative;
+
+  width: min(100%, 700px);
+
+  overflow: hidden;
+
+  padding: 54px 42px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background:
+    linear-gradient(145deg,
+      #ffffff 0%,
+      #f1f9f7 100%);
+
+  text-align: center;
+
+  box-shadow: var(--shadow-lg);
+}
+
+.notfound-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  top: -110px;
+  right: -90px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 127, 115, 0.06);
+}
+
+.notfound-icon {
+  width: 76px;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 22px;
+
+  border-radius: 22px;
+
+  background: var(--color-primary-light);
+
+  color: var(--color-primary);
+
+  box-shadow:
+    0 8px 24px rgba(0, 127, 115, 0.1);
+}
+
+.notfound-title {
+  margin: 4px 0 14px;
+
+  color: var(--color-text);
+
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+
+  letter-spacing: -1px;
+}
+
+.notfound-description {
+  max-width: 540px;
+
+  margin: 0 auto;
+
+  color: var(--color-text-light);
+
+  font-size: 1rem;
+
+  line-height: 1.7;
+}
+
+.notfound-code {
+  margin: 28px 0 24px;
+
+  color: rgba(0, 127, 115, 0.1);
+
+  font-size: clamp(5rem, 16vw, 8rem);
+  font-weight: 900;
+
+  line-height: 0.85;
+
+  letter-spacing: -5px;
+
+  user-select: none;
+}
+
+.notfound-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.notfound-actions .button {
+  min-width: 180px;
+}
+
+
+/* =================================================
+   RESPONSIVIDADE - TABLET
+================================================= */
+
+@media (max-width: 900px) {
+  .page {
+    width: min(100% - 32px, 1120px);
+  }
+
+  .cadastro-step {
+    min-width: 125px;
+  }
+
+  .cadastro-step__line {
+    margin: 0 10px;
+  }
+
+  .mapa-toolbar__fields {
+    grid-template-columns: 1fr 240px;
+  }
+
+  .agendamento-layout {
+    grid-template-columns:
+      minmax(230px, 0.7fr) minmax(0, 1.3fr);
+
+    gap: 20px;
+  }
+}
+
+
+/* =================================================
+   RESPONSIVIDADE - CELULAR
+================================================= */
+
+@media (max-width: 720px) {
   .page {
     width: min(100% - 24px, 1120px);
-    padding-top: 24px;
+
+    padding: 32px 0 56px;
+  }
+
+  .page-header {
+    margin-bottom: 26px;
   }
 
   .page-title {
-    font-size: 1.55rem;
+    font-size: 1.8rem;
+
+    letter-spacing: -0.5px;
+  }
+
+  .page-description {
+    font-size: 0.98rem;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .section-band {
+    margin-top: 48px;
+
+    padding-top: 38px;
   }
 
   .button-row {
@@ -208,68 +2321,434 @@ textarea {
 
   .grid {
     grid-template-columns: 1fr;
+
+    gap: 18px;
   }
 
-  .banner {
-    min-height: 520px;
+
+  /* HOME */
+
+  .service-card {
+    min-height: auto;
+
+    padding: 24px;
   }
 
-  .banner h1 {
-    font-size: 2.3rem;
+  .benefit-card {
+    padding: 20px 10px;
   }
 
-  .banner__content > p:last-of-type {
-    font-size: 1rem;
+
+  /* CADASTROS */
+
+  .cadastro-header {
+    margin-bottom: 26px;
   }
 
+  .cadastro-steps {
+    padding: 18px 16px;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+  }
+
+  .cadastro-step {
+    min-width: 110px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .cadastro-step__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cadastro-step__line {
+    min-width: 28px;
+
+    margin: 20px 8px 0;
+  }
+
+  .cadastro-card {
+    padding: 24px 18px;
+  }
+
+  .cadastro-card__header {
+    margin-bottom: 22px;
+
+    padding-bottom: 18px;
+  }
+
+  .cadastro-card__header h2 {
+    font-size: 1.4rem;
+  }
+
+
+  /* MAPA */
+
+  .mapa-header {
+    margin-bottom: 28px;
+  }
+
+  .mapa-preview {
+    min-height: 300px;
+  }
+
+  .mapa-preview__overlay {
+    padding: 18px;
+  }
+
+  .mapa-preview__badge {
+    padding: 8px 11px;
+
+    font-size: 0.78rem;
+  }
+
+  .mapa-preview__info {
+    max-width: 100%;
+
+    padding: 16px;
+  }
+
+  .mapa-preview__info h2 {
+    font-size: 1.15rem;
+  }
+
+  .mapa-preview__info p {
+    font-size: 0.86rem;
+  }
+
+  .mapa-preview__marker {
+    width: 36px;
+    height: 36px;
+
+    border-width: 3px;
+  }
+
+  .mapa-preview__marker svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mapa-preview__marker--1 {
+    top: 30%;
+    left: 18%;
+  }
+
+  .mapa-preview__marker--2 {
+    top: 22%;
+    right: 16%;
+  }
+
+  .mapa-preview__marker--3 {
+    bottom: 30%;
+    left: 54%;
+  }
+
+  .mapa-preview__marker--4 {
+    display: none;
+  }
+
+  .mapa-results {
+    margin-top: 30px;
+  }
+
+  .mapa-toolbar {
+    padding: 20px 16px;
+
+    border-radius: 18px;
+  }
+
+  .mapa-toolbar__title {
+    align-items: flex-start;
+  }
+
+  .mapa-toolbar__fields {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .mapa-results__header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .mapa-clear {
+    padding-left: 0;
+  }
+
+  .mapa-empty {
+    padding: 24px 16px;
+  }
+
+  .mapa-empty .button {
+    width: 100%;
+  }
+
+  /* AGENDAMENTO */
+
+  .agendamento-header {
+    margin-bottom: 28px;
+  }
+
+  .agendamento-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .agendamento-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .agendamento-form-card {
+    grid-column: 1 / -1;
+  }
+
+  .agendamento-form-card__header {
+    padding: 22px;
+  }
+
+  .agendamento-form-card__content {
+    padding: 22px;
+  }
+
+  /* SCHEDULE FORM */
+
+  .schedule-row {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-success__details {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .schedule-preview__items {
+    flex-direction: column;
+  }
+
+  .schedule-preview__items>div {
+    width: 100%;
+  }
 }
 
- .home-subtitle {
-  font-style: italic;
- }
 
- .service-card {
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+/* =================================================
+   TELAS MUITO PEQUENAS
+================================================= */
 
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
+@media (max-width: 420px) {
+  .page {
+    width: calc(100% - 20px);
+  }
 
-.service-card__icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 12px;
-  color: #007f73;
-}
+  .card {
+    padding: 20px;
+  }
 
-.service-card h2 {
-  margin: 0;
-  font-size: 1.1rem;
-}
+  .service-card {
+    padding: 22px;
+  }
 
-.benefit-card {
-  text-align: center;
-}
 
-.benefit-card__icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 12px;
-  color: #007f73;
-}
+  /* CADASTRO */
 
-.benefit-card h2 {
-  margin: 0 0 8px;
-  font-size: 1.1rem;
-}
+  .cadastro-steps {
+    border-radius: 16px;
+  }
 
-.benefit-card p {
-  margin: 0;
-  color: #52616b;
-  line-height: 1.5;
+  .cadastro-card {
+    padding: 22px 16px;
+  }
+
+
+  /* MAPA */
+
+  .mapa-preview {
+    min-height: 280px;
+
+    border-radius: 16px;
+  }
+
+  .mapa-preview__overlay {
+    padding: 14px;
+  }
+
+  .mapa-preview__info {
+    padding: 14px;
+  }
+
+  .mapa-toolbar {
+    padding: 18px 14px;
+  }
+
+  .mapa-toolbar__icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mapa-toolbar__title h2 {
+    font-size: 1.15rem;
+  }
+
+
+  /* PET SHOP CARD */
+
+  .petshop-card {
+    padding: 0;
+  }
+
+  .petshop-card__header {
+    padding: 18px;
+  }
+
+  .petshop-card__logo {
+    width: 46px;
+    height: 46px;
+  }
+
+  .petshop-card__heading h2 {
+    font-size: 1.1rem;
+  }
+
+  .petshop-card__info {
+    padding: 18px;
+
+    gap: 14px;
+  }
+
+  .petshop-card__services {
+    padding: 0 18px 18px;
+  }
+
+  .petshop-card__footer {
+    padding: 16px 18px 18px;
+  }
+
+  .petshop-card__button {
+    width: 100%;
+  }
+
+  .petshop-card__chip {
+    font-size: 0.75rem;
+  }
+
+  /* AGENDAMENTO */
+
+  .agendamento-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .agendamento-info-card {
+    padding: 18px;
+  }
+
+  .agendamento-info-card__icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .agendamento-form-card {
+    padding: 0;
+  }
+
+  .agendamento-form-card__header {
+    padding: 18px;
+
+    gap: 12px;
+  }
+
+  .agendamento-form-card__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .agendamento-form-card__header h2 {
+    font-size: 1.25rem;
+  }
+
+  .agendamento-form-card__content {
+    padding: 18px;
+  }
+
+  /* SCHEDULE FORM */
+
+  .schedule-form {
+    gap: 18px;
+  }
+
+  .schedule-input {
+    min-height: 48px;
+
+    padding: 0 12px;
+  }
+
+  .schedule-preview {
+    padding: 14px;
+  }
+
+  .schedule-success__header {
+    padding: 15px;
+  }
+
+  .schedule-success__details {
+    grid-template-columns: 1fr;
+
+    padding: 6px 14px 14px;
+  }
+
+  .schedule-success__item {
+    padding: 10px 4px;
+  }
+
+  .schedule-submit {
+    min-height: 48px;
+  }
+
+  /* NOT FOUND */
+
+  .notfound-page {
+    min-height: 65vh;
+  }
+
+  .notfound-card {
+    padding: 38px 18px;
+
+    border-radius: 18px;
+  }
+
+  .notfound-icon {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 18px;
+  }
+
+  .notfound-title {
+    font-size: 1.8rem;
+  }
+
+  .notfound-description {
+    font-size: 0.94rem;
+  }
+
+  .notfound-code {
+    margin: 24px 0;
+
+    font-size: 5rem;
+  }
+
+  .notfound-actions {
+    flex-direction: column;
+  }
+
+  .notfound-actions .button {
+    width: 100%;
+  }
 }

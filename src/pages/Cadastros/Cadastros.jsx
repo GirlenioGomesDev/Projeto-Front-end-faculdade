@@ -1,3 +1,11 @@
+import { useState } from 'react';
+import {
+  User,
+  PawPrint,
+  MapPin,
+  ArrowLeft,
+} from 'lucide-react';
+
 import UserForm from '../../components/UserForm/UserForm.jsx';
 import PetForm from '../../components/PetForm/PetForm.jsx';
 import LocationForm from '../../components/LocationForm/LocationForm.jsx';
@@ -9,149 +17,214 @@ NIVEL: MEDIO
 RESPONSAVEL SUGERIDO: PESSOA 2
 
 FUNCAO:
-Agrupar as etapas de cadastro do tutor, cadastro do pet e localizacao.
-
-O QUE JA ESTA PRONTO:
-Estrutura visual das tres etapas.
-
-O QUE FALTA:
-Controlar o fluxo entre etapas usando estado e validacoes.
+Agrupar as etapas de cadastro do tutor,
+cadastro do pet e localizacao.
 
 CONCEITOS:
-useState, formularios controlados, eventos, validacao e localStorage.
+useState, formularios controlados,
+eventos, validacao e localStorage.
 =================================================
 */
-
-/*
-=================================================
-GUIA PETNEAR - CADASTROS
-
-RESPONSAVEL: ANITA
-NIVEL: MEDIO
-
-REQUISITO DA AV1:
-Esta pagina ajuda a cumprir a rota de cadastro, o formulario
-controlado, validacoes, mensagens condicionais e uma acao que
-altera estado.
-
-ANTES DE COMEÇAR:
-Teste visualmente os tres formularios como estao. Entenda a
-funcao de cada etapa antes de tentar conectar tudo.
-
-COMECE POR:
-Trabalhe primeiro com cada formulario isolado. O cadastro do
-tutor, o cadastro do pet e a localizacao precisam fazer sentido
-separadamente.
-
-DEPOIS:
-Quando cada parte estiver compreendida, pense no fluxo entre
-Tutor, Pet e Localizacao.
-
-QUANDO ISSO FUNCIONAR:
-Escolha qual dado relevante devera permanecer disponivel depois
-de atualizar a pagina. Para a AV1, o pet cadastrado e uma boa
-opcao pedagogica.
-
-DICA:
-Nao comece pela persistencia. Primeiro garanta que os dados
-digitados estao corretos e que as validacoes aparecem no momento
-certo.
-
-CONCEITOS PARA ESTUDAR:
-- estado
-- formularios controlados
-- eventos
-- renderizacao condicional
-- persistencia local
-
-COMO TESTAR:
-Preencha as etapas em ordem, tente continuar com campos vazios
-e confira se a interface orienta o usuario.
-
-NAO ESCREVA A SOLUCAO.
-=================================================
-*/
-import { useState } from 'react';
 
 function Cadastros() {
-
   const [etapaAtual, setEtapaAtual] = useState(1);
-  const [dadosTutor, setDadosTutor] = useState ({});
+  const [dadosTutor, setDadosTutor] = useState({});
   const [dadosPet, setDadosPet] = useState({});
-  
+
+  function voltarEtapa() {
+    if (etapaAtual > 1) {
+      setEtapaAtual((etapa) => etapa - 1);
+    }
+  }
 
   return (
-    <section className="page">
-      <header className="page-header">
-        <h1 className="page-title">Cadastros</h1>
+    <section className="page cadastro-page">
+
+      {/* CABECALHO */}
+      <header className="page-header cadastro-header">
+        <span className="section-eyebrow">
+          Cadastro inicial
+        </span>
+
+        <h1 className="page-title">
+          Cadastre você e seu pet
+        </h1>
+
         <p className="page-description">
-          Fluxo inicial para cadastrar tutor, pet e localizacao. Na AV1 tudo
-          sera local e sem autenticacao real.
+          Complete as etapas abaixo para preparar seu perfil
+          e encontrar serviços próximos para o seu pet.
         </p>
       </header>
 
-      <div className="grid">
+      {/* INDICADOR DAS ETAPAS */}
+      <div className="cadastro-steps">
+
+        {/* TUTOR */}
+        <div
+          className={`cadastro-step ${
+            etapaAtual === 1 ? 'current' : ''
+          } ${
+            etapaAtual > 1 ? 'active' : ''
+          }`}
+        >
+          <div className="cadastro-step__icon">
+            <User size={20} />
+          </div>
+
+          <div className="cadastro-step__text">
+            <strong>Tutor</strong>
+            <span>Seus dados</span>
+          </div>
+        </div>
+
+        <div
+          className={`cadastro-step__line ${
+            etapaAtual >= 2 ? 'active' : ''
+          }`}
+        />
+
+        {/* PET */}
+        <div
+          className={`cadastro-step ${
+            etapaAtual === 2 ? 'current' : ''
+          } ${
+            etapaAtual > 2 ? 'active' : ''
+          }`}
+        >
+          <div className="cadastro-step__icon">
+            <PawPrint size={20} />
+          </div>
+
+          <div className="cadastro-step__text">
+            <strong>Pet</strong>
+            <span>Dados do animal</span>
+          </div>
+        </div>
+
+        <div
+          className={`cadastro-step__line ${
+            etapaAtual >= 3 ? 'active' : ''
+          }`}
+        />
+
+        {/* LOCALIZACAO */}
+        <div
+          className={`cadastro-step ${
+            etapaAtual === 3 ? 'current' : ''
+          }`}
+        >
+          <div className="cadastro-step__icon">
+            <MapPin size={20} />
+          </div>
+
+          <div className="cadastro-step__text">
+            <strong>Localização</strong>
+            <span>Onde você está</span>
+          </div>
+        </div>
+      </div>
+
+      {/* CONTEUDO */}
+      <div className="cadastro-content">
+
+        {/* ETAPA 1 */}
         {etapaAtual === 1 && (
-        <article className="card">
-          <h2>Etapa 1 - Cadastro do tutor</h2>
-          <UserForm onContinuar={(dados) => {setDadosTutor(dados); setEtapaAtual(2)}} />
+          <article className="card cadastro-card">
 
-        </article>
+            <div className="cadastro-card__header">
+              <span className="cadastro-card__step">
+                Etapa 1 de 3
+              </span>
 
+              <h2>Cadastro do tutor</h2>
+
+              <p>
+                Informe seus dados principais para continuar.
+              </p>
+            </div>
+
+            <UserForm
+              onContinuar={(dados) => {
+                setDadosTutor(dados);
+                setEtapaAtual(2);
+              }}
+            />
+
+          </article>
         )}
 
-        {etapaAtual === 2 &&(
-        <article className="card">
-          <h2>Etapa 2 - Cadastro do pet</h2>
-          <PetForm onContinuar={(dados) => {
-            setDadosPet(dados);
-            setEtapaAtual(3);  
-          
-         }} />
+        {/* ETAPA 2 */}
+        {etapaAtual === 2 && (
+          <article className="card cadastro-card">
 
-        </article>
+            <div className="cadastro-card__top">
+              <button
+                type="button"
+                className="cadastro-back"
+                onClick={voltarEtapa}
+              >
+                <ArrowLeft size={17} />
+                Voltar
+              </button>
+            </div>
 
+            <div className="cadastro-card__header">
+              <span className="cadastro-card__step">
+                Etapa 2 de 3
+              </span>
+
+              <h2>Cadastro do pet</h2>
+
+              <p>
+                Agora informe os principais dados do seu pet.
+              </p>
+            </div>
+
+            <PetForm
+              onContinuar={(dados) => {
+                setDadosPet(dados);
+                setEtapaAtual(3);
+              }}
+            />
+
+          </article>
         )}
 
+        {/* ETAPA 3 */}
         {etapaAtual === 3 && (
-        <article className="card">
-          <h2>Etapa 3 - Localizacao</h2>
-          <LocationForm />
-        </article>
+          <article className="card cadastro-card">
 
+            <div className="cadastro-card__top">
+              <button
+                type="button"
+                className="cadastro-back"
+                onClick={voltarEtapa}
+              >
+                <ArrowLeft size={17} />
+                Voltar
+              </button>
+            </div>
+
+            <div className="cadastro-card__header">
+              <span className="cadastro-card__step">
+                Etapa 3 de 3
+              </span>
+
+              <h2>Localização</h2>
+
+              <p>
+                Informe sua localização para encontrar opções
+                próximas de você.
+              </p>
+            </div>
+
+            <LocationForm />
+
+          </article>
         )}
 
       </div>
 
-      {/* =================================================
-      TODO AV1
-      NIVEL: MEDIO
-      RESPONSAVEL SUGERIDO: PESSOA 2
-
-      OBJETIVO:
-      Transformar as tres etapas em um fluxo guiado.
-
-      O QUE VOCE DEVE FAZER:
-      1. Criar um estado etapaAtual.
-      2. Mostrar apenas a etapa correspondente.
-      3. Validar os campos antes de avancar.
-      4. Guardar o pet cadastrado em estado.
-      5. Estudar localStorage para persistir o pet.
-
-      CONCEITOS:
-      useState
-      renderizacao condicional
-      formulario controlado
-      localStorage
-
-      COMO TESTAR:
-      Preencha tutor, pet e localizacao seguindo a ordem.
-
-      RESULTADO ESPERADO:
-      O cadastro do pet deve ser uma das acoes que alteram estado.
-
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
-      ================================================= */}
     </section>
   );
 }

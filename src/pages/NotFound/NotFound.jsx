@@ -1,4 +1,9 @@
 import { Link } from 'react-router-dom';
+import {
+  ArrowLeft,
+  Home,
+  MapPinOff,
+} from 'lucide-react';
 
 /*
 =================================================
@@ -7,59 +12,64 @@ NIVEL: LEVE
 RESPONSAVEL SUGERIDO: PESSOA 3
 
 FUNCAO:
-Mostrar uma tela simples quando a rota nao existir.
-
-O QUE JA ESTA PRONTO:
-Mensagem e link para voltar para Home.
-
-O QUE FALTA:
-Melhorar texto e estilo caso a equipe queira.
+Mostrar uma tela quando a rota nao existir.
 
 CONCEITOS:
 rota coringa, Link e navegacao.
 =================================================
 */
 
-/*
-=================================================
-GUIA PETNEAR - NOTFOUND
-
-RESPONSAVEL: BIANKA
-NIVEL: LEVE
-
-REQUISITO DA AV1:
-A navegacao precisa ser completa e clara. Uma rota inexistente
-nao deve deixar o usuario perdido em uma tela vazia.
-
-COMECE POR:
-Teste um endereco que nao existe e veja se esta pagina aparece.
-
-DEPOIS:
-Confirme se existe um caminho claro para voltar ao inicio.
-
-DICA:
-Esta e uma tarefa boa para revisar texto, acessibilidade basica
-e consistencia visual sem mexer na logica principal do projeto.
-
-COMO TESTAR:
-Digite uma rota inexistente no navegador e use o botao de retorno.
-
-NAO ESCREVA A SOLUCAO.
-=================================================
-*/
-
 function NotFound() {
   return (
-    <section className="page">
-      <h1 className="page-title">Página não encontrada</h1>
-      <p className="page-description">
-        A página que você tentou acessar não existe no PetNear.
-      </p>
-      <div className="button-row">
-        <Link className="button" to="/">
-          Voltar para Home
-        </Link>
+    <section className="page notfound-page">
+
+      <div className="notfound-card">
+
+        <div className="notfound-icon">
+          <MapPinOff size={38} />
+        </div>
+
+        <span className="section-eyebrow">
+          Erro 404
+        </span>
+
+        <h1 className="notfound-title">
+          Página não encontrada
+        </h1>
+
+        <p className="notfound-description">
+          Parece que você chegou a um endereço que não existe
+          no PetNear. Verifique o caminho ou volte para a página inicial.
+        </p>
+
+        <div className="notfound-code">
+          404
+        </div>
+
+        <div className="notfound-actions">
+
+          <Link
+            className="button"
+            to="/"
+          >
+            <Home size={18} />
+
+            Voltar para Home
+          </Link>
+
+          <Link
+            className="button secondary"
+            to="/mapa"
+          >
+            <ArrowLeft size={18} />
+
+            Ver Pet Shops
+          </Link>
+
+        </div>
+
       </div>
+
     </section>
   );
 }

@@ -1,5 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  Search,
+  SlidersHorizontal,
+  MapPin,
+  MapPinned,
+  Store,
+} from 'lucide-react';
 
 import EmptyState from '../../components/EmptyState/EmptyState.jsx';
 import PetShopCard from '../../components/PetShopCard/PetShopCard.jsx';
@@ -14,213 +21,248 @@ RESPONSAVEL SUGERIDO: PESSOA 1
 FUNCAO:
 Simular um mapa e listar Pet Shops ficticios proximos.
 
-O QUE JA ESTA PRONTO:
-Area visual de mapa simulado, filtro visual e listagem inicial.
-
-O QUE FALTA:
-Filtro por servico, selecao do Pet Shop e navegacao para agendamento.
-
-CONCEITOS:
-useState, map, filter, includes, props, key e useNavigate.
-=================================================
-*/
-
-/*
-=================================================
-GUIA PETNEAR - MAPA E PET SHOPS
-
-RESPONSAVEL: LENO
-NIVEL: DIFICIL
-
-REQUISITO DA AV1:
-Esta pagina concentra a listagem de dados locais, o filtro
-controlado por estado, a mensagem de lista vazia e a selecao
-do Pet Shop.
-
-ANTES DE COMEÇAR:
-Abra o arquivo de dados dos Pet Shops e observe quais campos
-existem, quais servicos cada estabelecimento oferece e qual
-informacao identifica cada item.
-
-COMECE POR:
-Antes de pensar em filtro, confirme que todos os Pet Shops dos
-dados locais aparecem corretamente na tela.
-
-DEPOIS:
-Escolha apenas uma opcao de filtro para estudar o comportamento.
-Quando essa opcao funcionar, avance para as demais.
-
-QUANDO ISSO FUNCIONAR:
-Provoque uma situacao sem resultado e planeje a mensagem de
-lista vazia. Esse ponto ajuda diretamente em um requisito da AV1.
-
-DICA:
-Pergunte sempre: qual informacao muda quando o usuario escolhe
-um servico? A resposta indica o que precisa ser acompanhado pela
-tela.
-
-CONCEITOS PARA ESTUDAR:
-- arrays
-- listagem
-- props
-- estado
-- eventos
-- filtros
+REQUISITOS TRABALHADOS:
+- dados locais
+- busca controlada por estado
+- filtro por servico
+- lista vazia
+- selecao de Pet Shop
+- localStorage
 - navegacao
-
-COMO TESTAR:
-Compare a tela com os dados locais, altere o filtro e observe
-se a lista muda de forma previsivel.
-
-NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
 function Mapa() {
-
   const [filtroServico, setFiltroServico] = useState('');
   const [buscaNome, setBuscaNome] = useState('');
+
   const navigate = useNavigate();
 
   const petshopsVisiveis = petshops.filter((petShop) => {
     const correspondeNome = petShop.nome
-    .toLowerCase()
-    .includes(buscaNome.trim().toLowerCase());
-    
-    
-   const correspondeServico = 
-   filtroServico === '' ||
-   petShop.servicos.includes(filtroServico);
+      .toLowerCase()
+      .includes(buscaNome.trim().toLowerCase());
+
+    const correspondeServico =
+      filtroServico === '' ||
+      petShop.servicos.includes(filtroServico);
 
     return correspondeNome && correspondeServico;
-
   });
 
   function selecionarPetShop(petShop) {
     console.log('Pet Shop selecionado:', petShop);
+
     localStorage.setItem(
       'petShopSelecionado',
       JSON.stringify(petShop)
     );
 
     navigate('/agendamento');
-
   }
 
+  function limparFiltros() {
+    setBuscaNome('');
+    setFiltroServico('');
+  }
+
+  const filtrosAtivos =
+    buscaNome.trim() !== '' || filtroServico !== '';
 
   return (
-    <section className="page">
-      <header className="page-header">
-        <h1 className="page-title">Mapa simulado</h1>
+    <section className="page mapa-page">
+
+      {/* CABECALHO */}
+      <header className="page-header mapa-header">
+        <span className="section-eyebrow">
+          Encontre perto de você
+        </span>
+
+        <h1 className="page-title">
+          Pet Shops próximos
+        </h1>
+
         <p className="page-description">
-          Na AV1 esta tela usa dados locais. A integracao real com mapa fica
-          preparada apenas como ideia para a AV2.
+          Pesquise estabelecimentos, filtre pelos serviços disponíveis
+          e escolha onde deseja realizar o atendimento do seu pet.
         </p>
       </header>
 
-      <div className="placeholder-box">
-        <div>
-          <h2>MAPA SIMULADO</h2>
-          <p>Integracao real ficara para AV2.</p>
+      {/* MAPA SIMULADO */}
+      <div className="mapa-preview">
+        <div className="mapa-preview__overlay">
+          <div className="mapa-preview__badge">
+            <MapPinned size={18} />
+
+            <span>Mapa demonstrativo</span>
+          </div>
+
+          <div className="mapa-preview__info">
+            <h2>
+              Veja opções próximas
+            </h2>
+
+            <p>
+              Nesta etapa da AV1 os estabelecimentos são carregados
+              a partir dos dados locais do projeto.
+            </p>
+          </div>
+        </div>
+
+        <div className="mapa-preview__marker mapa-preview__marker--1">
+          <MapPin size={20} />
+        </div>
+
+        <div className="mapa-preview__marker mapa-preview__marker--2">
+          <MapPin size={20} />
+        </div>
+
+        <div className="mapa-preview__marker mapa-preview__marker--3">
+          <MapPin size={20} />
+        </div>
+
+        <div className="mapa-preview__marker mapa-preview__marker--4">
+          <MapPin size={20} />
         </div>
       </div>
 
-      <section className="section-band">
-        <div className="toolbar">
-          <label htmlFor="buscaNome">Buscar pet shop pelo nome</label>
-          <input
-            id="buscaNome"
-            type="text"
-            placeholder="Digite o nome do pet shop"
-            value={buscaNome}
-            onChange={(event) => setBuscaNome(event.target.value)}
-          />
-        
+      {/* BUSCA E FILTROS */}
+      <section className="mapa-results">
 
-          <select aria-label="Filtrar por servico" value={filtroServico} onChange={(event) => setFiltroServico(event.target.value)}>
-            <option value="">Todos</option>
-            <option value="Banho">Banho</option>
-            <option value="Tosa">Tosa</option>
-            <option value="Banho + Tosa">Banho + Tosa</option>
-            <option value="Higiene">Higiene</option>
-          </select>
+        <div className="mapa-toolbar">
+          <div className="mapa-toolbar__title">
+            <div className="mapa-toolbar__icon">
+              <Store size={21} />
+            </div>
+
+            <div>
+              <h2>Encontre um Pet Shop</h2>
+
+              <p>
+                Use a busca ou filtre pelo serviço desejado.
+              </p>
+            </div>
+          </div>
+
+          <div className="mapa-toolbar__fields">
+
+            {/* BUSCA */}
+            <div className="mapa-search">
+              <label htmlFor="buscaNome">
+                Buscar pelo nome
+              </label>
+
+              <div className="mapa-search__input">
+                <Search size={19} />
+
+                <input
+                  id="buscaNome"
+                  type="text"
+                  placeholder="Digite o nome do Pet Shop"
+                  value={buscaNome}
+                  onChange={(event) =>
+                    setBuscaNome(event.target.value)
+                  }
+                />
+              </div>
+            </div>
+
+            {/* FILTRO */}
+            <div className="mapa-filter">
+              <label htmlFor="filtroServico">
+                Serviço
+              </label>
+
+              <div className="mapa-filter__select">
+                <SlidersHorizontal size={18} />
+
+                <select
+                  id="filtroServico"
+                  aria-label="Filtrar por serviço"
+                  value={filtroServico}
+                  onChange={(event) =>
+                    setFiltroServico(event.target.value)
+                  }
+                >
+                  <option value="">
+                    Todos os serviços
+                  </option>
+
+                  <option value="Banho">
+                    Banho
+                  </option>
+
+                  <option value="Tosa">
+                    Tosa
+                  </option>
+
+                  <option value="Banho + Tosa">
+                    Banho + Tosa
+                  </option>
+
+                  <option value="Higiene">
+                    Higiene
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* =================================================
-        TODO AV1
-        NIVEL: DIFICIL
-        RESPONSAVEL SUGERIDO: PESSOA 1
+        {/* INFORMACAO DOS RESULTADOS */}
+        <div className="mapa-results__header">
+          <div>
+            <span className="mapa-results__count">
+              {petshopsVisiveis.length}
+            </span>
 
-        OBJETIVO:
-        Filtrar Pet Shops pelo servico selecionado.
+            <span>
+              {petshopsVisiveis.length === 1
+                ? ' Pet Shop encontrado'
+                : ' Pet Shops encontrados'}
+            </span>
+          </div>
 
-        O QUE VOCE DEVE FAZER:
-        1. Importar useState.
-        2. Criar estado filtroServico.
-        3. Ligar o select ao estado com value e onChange.
-        4. Usar filter() no array de Pet Shops.
-        5. Usar includes() no array servicos de cada Pet Shop.
-        6. Mostrar EmptyState quando a lista ficar vazia.
+          {filtrosAtivos && (
+            <button
+              type="button"
+              className="mapa-clear"
+              onClick={limparFiltros}
+            >
+              Limpar filtros
+            </button>
+          )}
+        </div>
 
-        CONCEITOS:
-        useState
-        filter
-        includes
-        renderizacao condicional
-        eventos
-
-        COMO TESTAR:
-        Escolha um servico e veja se apenas Pet Shops compativeis aparecem.
-
-        RESULTADO ESPERADO:
-        A lista deve mudar conforme o filtro.
-
-        NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
-        ================================================= */}
-
+        {/* LISTAGEM */}
         {petshopsVisiveis.length > 0 ? (
-          <div className="grid">
+          <div className="grid mapa-grid">
             {petshopsVisiveis.map((petShop) => (
-              <PetShopCard key={petShop.id} petShop={petShop} onSelecionar={selecionarPetShop} />
+              <PetShopCard
+                key={petShop.id}
+                petShop={petShop}
+                onSelecionar={selecionarPetShop}
+              />
             ))}
           </div>
         ) : (
-          <EmptyState
-            titulo="Nenhum Pet Shop encontrado"
-            mensagem="Tente outro nome ou escolha outro serviço."
-          />
+          <div className="mapa-empty">
+            <EmptyState
+              titulo="Nenhum Pet Shop encontrado"
+              mensagem="Tente outro nome ou escolha outro serviço."
+            />
+
+            <button
+              type="button"
+              className="button secondary"
+              onClick={limparFiltros}
+            >
+              Limpar filtros
+            </button>
+          </div>
         )}
       </section>
 
-      {/* =================================================
-      TODO AV1
-      NIVEL: DIFICIL
-      RESPONSAVEL SUGERIDO: PESSOA 1
-
-      OBJETIVO:
-      Selecionar um Pet Shop e navegar para /agendamento.
-
-      O QUE VOCE DEVE FAZER:
-      1. Criar funcao para receber o Pet Shop escolhido.
-      2. Usar find() se receber apenas o id.
-      3. Guardar o Pet Shop selecionado em estado ou localStorage.
-      4. Usar useNavigate para abrir /agendamento.
-
-      CONCEITOS:
-      useState
-      find()
-      evento de clique
-      useNavigate
-      objeto selecionado
-
-      COMO TESTAR:
-      Clique em "Agendar banho e tosa".
-
-      RESULTADO ESPERADO:
-      O fluxo deve seguir para a pagina de agendamento.
-
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
-      ================================================= */}
     </section>
   );
 }

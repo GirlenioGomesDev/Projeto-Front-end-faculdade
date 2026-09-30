@@ -1,3 +1,12 @@
+import {
+  MapPin,
+  Star,
+  Clock3,
+  Navigation,
+  PawPrint,
+  ArrowRight,
+} from 'lucide-react';
+
 /*
 =================================================
 COMPONENTE: PetShopCard
@@ -7,115 +16,118 @@ RESPONSAVEL SUGERIDO: PESSOA 1
 FUNCAO:
 Mostrar um Pet Shop ficticio vindo dos dados locais.
 
-O QUE JA ESTA PRONTO:
-Estrutura visual recebendo petShop por props.
-
-O QUE FALTA:
-Enviar funcao de clique para selecionar o Pet Shop e navegar.
-
 CONCEITOS:
 props, map, key estavel, eventos e componente reutilizavel.
 =================================================
 */
 
-/*
-=================================================
-GUIA PETNEAR - CARD DE PET SHOP
-
-RESPONSAVEL: LENO
-NIVEL: MEDIO PARA DIFICIL
-
-REQUISITO DA AV1:
-Este componente apoia a listagem de dados locais, o uso de props,
-componentes reutilizaveis e a selecao de um Pet Shop.
-
-ANTES DE COMEÇAR:
-Compare varios Pet Shops nos dados locais e perceba quais
-informacoes mudam de um estabelecimento para outro.
-
-COMECE POR:
-Entenda quais dados chegam ao card e quais partes visuais se
-repetem para todos os estabelecimentos.
-
-DEPOIS:
-Pense no clique do botao como uma pergunta: qual Pet Shop foi
-escolhido e qual tela precisara saber disso depois?
-
-QUANDO ISSO FUNCIONAR:
-Conecte a selecao ao fluxo do Mapa, mas apenas depois que a
-listagem e o filtro estiverem compreendidos.
-
-DICA:
-Props ajudam a evitar repeticao. O card deve continuar generico
-e reutilizavel.
-
-CONCEITOS PARA ESTUDAR:
-- props
-- eventos
-- componentes reutilizaveis
-- comunicacao entre componente filho e componente pai
-
-COMO TESTAR:
-Observe se cards diferentes mostram dados diferentes e se o
-clique permite identificar o item correto.
-
-NAO ESCREVA A SOLUCAO.
-=================================================
-*/
-
 function PetShopCard({ petShop, onSelecionar }) {
 
-function selecionarPetShop(){
-  onSelecionar(petShop)
-}
+  function selecionarPetShop() {
+    onSelecionar(petShop);
+  }
 
   return (
-    <article className="card">
-      <h2>{petShop.nome}</h2>
-      <p>
-        <strong>Distancia:</strong> {petShop.distancia}
-      </p>
-      <p>
-        <strong>Avaliacao:</strong> {petShop.avaliacao}
-      </p>
-      <p>
-        <strong>Endereco:</strong> {petShop.endereco} - {petShop.bairro}, {petShop.cidade}
-      </p>
-      <p>
-        <strong>Horario:</strong> {petShop.horario}
-      </p>
-      <p>
-        <strong>Servicos:</strong> {petShop.servicos.join(', ')}
-      </p>
-      <button className="button" type="button" onClick={selecionarPetShop}>
-        Agendar banho e tosa
-      </button>
+    <article className="card petshop-card">
 
-      {/* =================================================
-      TODO AV1
-      NIVEL: MEDIO
-      RESPONSAVEL SUGERIDO: PESSOA 1
+      {/* CABECALHO */}
+      <div className="petshop-card__header">
 
-      OBJETIVO:
-      Fazer o card avisar a pagina Mapa qual Pet Shop foi escolhido.
+        <div className="petshop-card__logo">
+          <PawPrint size={24} />
+        </div>
 
-      O QUE VOCE DEVE FAZER:
-      1. Receber uma prop chamada onSelecionar.
-      2. Criar uma funcao para o clique.
-      3. Enviar petShop.id ou o objeto petShop para o componente pai.
-      4. Na pagina Mapa, estudar useNavigate para abrir /agendamento.
+        <div className="petshop-card__heading">
+          <h2>{petShop.nome}</h2>
 
-      CONCEITOS:
-      props
-      eventos
-      useNavigate
-      comunicacao entre componentes
+          <div className="petshop-card__rating">
+            <Star
+              size={16}
+              fill="currentColor"
+            />
 
-      COMO TESTAR:
-      Clique em Pet Shops diferentes e confira qual foi selecionado.
+            <strong>
+              {petShop.avaliacao}
+            </strong>
+          </div>
+        </div>
 
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
-      ================================================= */}
+      </div>
+
+      {/* INFORMACOES */}
+      <div className="petshop-card__info">
+
+        <div className="petshop-card__info-item">
+          <Navigation size={17} />
+
+          <div>
+            <span>Distância</span>
+
+            <strong>
+              {petShop.distancia}
+            </strong>
+          </div>
+        </div>
+
+        <div className="petshop-card__info-item">
+          <MapPin size={17} />
+
+          <div>
+            <span>Endereço</span>
+
+            <strong>
+              {petShop.endereco} - {petShop.bairro},
+              {' '}
+              {petShop.cidade}
+            </strong>
+          </div>
+        </div>
+
+        <div className="petshop-card__info-item">
+          <Clock3 size={17} />
+
+          <div>
+            <span>Horário</span>
+
+            <strong>
+              {petShop.horario}
+            </strong>
+          </div>
+        </div>
+
+      </div>
+
+      {/* SERVICOS */}
+      <div className="petshop-card__services">
+        <span className="petshop-card__services-title">
+          Serviços disponíveis
+        </span>
+
+        <div className="petshop-card__chips">
+          {petShop.servicos.map((servico) => (
+            <span
+              className="petshop-card__chip"
+              key={servico}
+            >
+              {servico}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ACAO */}
+      <div className="petshop-card__footer">
+        <button
+          className="button petshop-card__button"
+          type="button"
+          onClick={selecionarPetShop}
+        >
+          Agendar serviço
+
+          <ArrowRight size={18} />
+        </button>
+      </div>
+
     </article>
   );
 }

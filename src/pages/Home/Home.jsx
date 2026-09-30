@@ -64,58 +64,67 @@ NAO ESCREVA A SOLUCAO.
 */
 
 const servicos = [
-{ titulo: 'Banho e Secagem', icone: Bath },
-{ titulo: 'Tosa Higiênica', icone: Scissors },
-{ titulo: 'Cortes de Unhas', icone: PawPrint },
-{ titulo: 'Limpeza de Ouvidos', icone: Sparkles },
+  { titulo: 'Banho e Secagem', icone: Bath },
+  { titulo: 'Tosa Higiênica', icone: Scissors },
+  { titulo: 'Cortes de Unhas', icone: PawPrint },
+  { titulo: 'Limpeza de Ouvidos', icone: Sparkles },
 ];
 
 const beneficios = [
-{ titulo: 'Encontre perto de você', texto: 'Veja pet shops próximos da sua localização.', icone: MapPin},
-{ titulo: 'Agende sem complicação', texto: 'Escolha o serviço, data e horário.', icone: Calendar },
-{ titulo: 'Compare avaliações', texto: 'Veja o que outros tutores estão dizendo.', icone: Star },
-{ titulo: 'Compare serviços', texto: 'Encontre a melhor opção para o seu pet.', icone: CircleDollarSign },
+  { titulo: 'Encontre perto de você', texto: 'Veja pet shops próximos da sua localização.', icone: MapPin },
+  { titulo: 'Agende sem complicação', texto: 'Escolha o serviço, data e horário.', icone: Calendar },
+  { titulo: 'Compare avaliações', texto: 'Veja o que outros tutores estão dizendo.', icone: Star },
+  { titulo: 'Compare serviços', texto: 'Encontre a melhor opção para o seu pet.', icone: CircleDollarSign },
 ]
 
 function Home() {
-return (
-  <>
-    <Banner />
+  return (
+    <>
+      <Banner />
 
-    <section className="page">
-      <header className="page-header">
-        <h1 className="page-title">SERVIÇOS PARA SEU PET</h1>
-        <p className="home-subtitle">
-          Conheça os serviços que seu pet pode encontrar 
-        </p>
-      </header>
+      <section className="page">
+        <header className="page-header">
+          <span className="section-eyebrow">Cuidados para seu pet</span>
 
-      <div className="grid">
-        {servicos.map((servico) => (
-          <ServiceCard key={servico.titulo} titulo={servico.titulo} icone={<servico.icone />} /> 
-        ))}
-      </div>
+          <h1 className="page-title">Serviços para seu pet</h1>
 
-      <section className="section-band">
-        <h1>Por que usar o PetNear?</h1>
+          <p className="home-subtitle">
+            Encontre serviços essenciais para cuidar do seu pet com mais praticidade.
+          </p>
+        </header>
 
         <div className="grid">
-          {beneficios.map((beneficio) => {
-            const Icone = beneficio.icone;
-
-            return (
-              <BenefitCard
-                key={beneficio.titulo}
-                titulo={beneficio.titulo}
-                texto={beneficio.texto}
-                icone={<Icone />}
-              />
-            );
-          })}
+          {servicos.map((servico) => (
+            <ServiceCard key={servico.titulo} titulo={servico.titulo} icone={<servico.icone />} />
+          ))}
         </div>
-      </section>
 
-      {/* =================================================
+        <section className="section-band">
+          <span className="section-eyebrow">Vantagens</span>
+
+          <h2 className="section-title">Por que usar o PetNear?</h2>
+
+          <p className="section-description">
+            O PetNear facilita a busca por serviços e ajuda você a organizar o cuidado do seu pet.
+          </p>
+
+          <div className="grid">
+            {beneficios.map((beneficio) => {
+              const Icone = beneficio.icone;
+
+              return (
+                <BenefitCard
+                  key={beneficio.titulo}
+                  titulo={beneficio.titulo}
+                  texto={beneficio.texto}
+                  icone={<Icone />}
+                />
+              );
+            })}
+          </div>
+        </section>
+
+        {/* =================================================
       TODO AV1
       NIVEL: LEVE
     RESPONSAVEL SUGERIDO: PESSOA 3F
@@ -144,9 +153,9 @@ return (
 
       NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
       ================================================= */}
-    </section>
-  </>
-);
+      </section>
+    </>
+  );
 }
 
 export default Home;
