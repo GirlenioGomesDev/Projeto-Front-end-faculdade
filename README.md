@@ -179,3 +179,115 @@ Na AV2, o projeto podera evoluir para:
 - loading;
 - erro;
 - retry.
+
+## Guia de desenvolvimento AV2
+
+<!--
+GUIA PETNEAR - DESENVOLVIMENTO AV2
+
+ARQUIVO: README.md
+
+RESPONSAVEIS:
+LENO - DIFICIL
+ANITA - MEDIO
+BIANKA - FACIL
+
+REQUISITO DA AV2:
+Atualizar a documentacao conforme as secoes 7.2, 7.5, 8, 9 e 10
+do PDF: contrato da API, evolucao da AV1 para AV2, limitacoes,
+autenticacao, rotas protegidas, sessao, fetch em services, estados
+de loading/sucesso/vazio/erro, retry e contingencia.
+
+OBJETIVO:
+Registrar o que a equipe deve documentar depois de implementar e
+testar as funcionalidades.
+
+O QUE JA ESTA PRONTO:
+O README descreve o projeto da AV1, rotas, tecnologias, dados
+locais, persistencia e limitacoes atuais.
+
+O QUE FALTA FAZER:
+1. Informar a API aprovada pelo professor.
+2. Descrever URL-base e endpoints realmente usados.
+3. Explicar como autenticar, encerrar sessao e proteger rotas.
+4. Registrar quais dados locais continuam como contingencia.
+5. Atualizar limitacoes sem marcar como pronto algo nao testado.
+
+ONDE MODIFICAR:
+Nas secoes abaixo, depois que a equipe implementar e testar cada
+parte da AV2.
+
+ANTES DE COMECAR:
+Tenha evidencias no codigo e testes no navegador. Comentario nao
+conta como funcionalidade concluida.
+
+DICA:
+Documente contrato de API com metodo, endpoint, corpo enviado,
+resposta esperada e erros conhecidos.
+
+COMO TESTAR:
+1. Execute npm run dev.
+2. Teste fluxo feliz.
+3. Teste erro de API.
+4. Atualize a pagina para conferir sessao.
+
+CUIDADOS:
+Nao documente endpoint, token ou credencial que nao exista.
+
+NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
+-->
+
+### Fonte verificada para AV2
+
+Documento consultado: `C:\Users\Leno\Desktop\Projeto-Evolutivo-AV1-AV2.pdf`.
+
+Pontos principais confirmados no PDF:
+
+- A AV2 conserva tema, repositorio e base funcional da AV1.
+- A equipe precisa escolher exatamente uma opcao de integracao: API pronta aprovada ou API do projeto de Back-end.
+- A autenticacao e obrigatoria, com login, feedback, sessao, rota protegida, restauracao apos refresh e logout.
+- O `fetch` deve ficar concentrado em `src/services`.
+- Devem existir estados visiveis de carregamento, sucesso, vazio e erro.
+- Deve haver tentativa novamente apos falha recuperavel.
+- Dados locais de contingencia sao obrigatorios, mas nao substituem a integracao.
+- O README da AV2 precisa ter contrato da API, evolucao da AV1 para AV2, limitacoes e contingencia.
+
+APIs aprovadas pelo PDF: DummyJSON, BrasilAPI, PokeAPI v2, Open Library, TVmaze e Open-Meteo. Outra API so deve ser usada se for aprovada no checkpoint.
+
+### Situacao atual para AV2
+
+| Item | Situacao | Evidencia |
+| --- | --- | --- |
+| Dados locais de Pet Shops | Parcialmente concluido | `src/data/petshops.json` e `src/pages/Mapa/Mapa.jsx` |
+| Filtro e busca no mapa | Parcialmente concluido | `Mapa.jsx` usa `filter()` e `includes()` |
+| Cadastro do pet | Parcialmente concluido | `PetForm.jsx` controla campos e salva em `localStorage` |
+| Agendamento local | Parcialmente concluido | `ScheduleForm.jsx` valida e salva ultimo agendamento |
+| PDF de requisitos | Concluido | `Projeto-Evolutivo-AV1-AV2.pdf` consultado |
+| Opcao de integracao A ou B | Pendente | PDF exige escolher exatamente uma opcao na secao 7.3 |
+| API escolhida pela equipe | Pendente | A lista aprovada existe, mas a equipe ainda precisa registrar a escolhida |
+| Fetch em services | Pendente | pasta `src/services` ainda possui apenas README |
+| Autenticacao real | Pendente | nao existe login real, token ou sessao de usuario |
+| Rota protegida | Pendente | rotas atuais estao abertas em `App.jsx` |
+| HTTP 401/403 | Pendente | ainda nao existe camada HTTP |
+| `.env.example` | Pendente | criar somente apos confirmar nome da variavel e URL-base |
+
+### Contrato da API para preencher na AV2
+
+Preencher somente depois que o professor aprovar a API.
+
+| Recurso | Metodo | Endpoint | Envio | Resposta esperada | Erros previstos |
+| --- | --- | --- | --- | --- | --- |
+| Autenticacao | A definir | A definir | A definir | A definir | 401, 403 |
+| Pet Shops | A definir | A definir | A definir | A definir | vazio, erro de rede |
+| Agendamento | A definir | A definir | A definir | A definir | 401, 403, validacao |
+| Localizacao/CEP | A definir | A definir | A definir | A definir | CEP invalido, erro de rede |
+
+### Limitacoes atuais antes da AV2
+
+- O projeto ainda nao consome API real.
+- A pasta `services` ainda nao possui implementacao de `fetch`.
+- A senha digitada no cadastro nao deve ser persistida.
+- A sessao real ainda nao existe.
+- A rota `/agendamento` ainda nao esta protegida.
+- Os dados locais continuam sendo a base do mapa e do agendamento.
+- A API final da equipe ainda nao foi registrada neste README.

@@ -10,6 +10,58 @@ import ScheduleForm from '../../components/ScheduleForm/ScheduleForm.jsx';
 
 /*
 =================================================
+GUIA PETNEAR - DESENVOLVIMENTO AV2
+
+ARQUIVO: Agendamento.jsx
+
+RESPONSAVEIS: LENO, ANITA E BIANKA
+NIVEL: DIFICIL
+
+REQUISITO DA AV2:
+Seções 7.2 e 7.4 do PDF: usar rota protegida, consumir dados pela
+camada de services, preservar sessao sem guardar senhas e tratar
+estados de erro.
+
+OBJETIVO:
+Mostrar o resumo do pet e do Pet Shop escolhido antes de enviar o
+agendamento.
+
+O QUE JA ESTA PRONTO:
+A AV1 recupera pet e Pet Shop do localStorage, mostra avisos quando
+faltam dados e renderiza o ScheduleForm.
+
+O QUE FALTA FAZER:
+1. Proteger esta pagina depois que autenticacao estiver pronta.
+2. Validar se os dados do localStorage continuam confiaveis.
+3. Buscar dados atualizados do Pet Shop pela API, se necessario.
+4. Exibir estados de loading, erro e tentar novamente.
+5. Manter a interface responsiva ao adicionar novos estados.
+
+ONDE MODIFICAR:
+Nas leituras de localStorage, na rota em App.jsx e no ScheduleForm.
+
+ANTES DE COMEÇAR:
+Estude rota protegida, sessao, JSON.parse com seguranca e estados
+condicionais.
+
+DICA:
+Antes de enviar agendamento para API, confirme se usuario, pet e
+Pet Shop existem e pertencem ao fluxo atual.
+
+COMO TESTAR:
+1. Abra /agendamento sem pet ou Pet Shop.
+2. Abra com dados salvos.
+3. Atualize a pagina e confira se o resumo permanece coerente.
+
+CUIDADOS:
+Nao transforme localStorage em banco de dados definitivo da AV2.
+
+NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
+=================================================
+*/
+
+/*
+=================================================
 PAGINA: Agendamento
 NIVEL: DIFICIL
 
@@ -25,6 +77,13 @@ data e horario para o pet selecionado.
 */
 
 function Agendamento() {
+  // AV2 - RESPONSAVEL: LENO
+  // NIVEL: DIFICIL
+  // TODO: Validar os dados lidos do localStorage e tratar JSON invalido.
+  //
+  // DICA: se a API estiver disponivel, use o id salvo para buscar dados
+  // atualizados em vez de confiar cegamente no objeto antigo.
+  // TESTE: apague ou altere valores do localStorage e recarregue a pagina.
   const petShopSelecionado = JSON.parse(
     localStorage.getItem('petShopSelecionado')
   );

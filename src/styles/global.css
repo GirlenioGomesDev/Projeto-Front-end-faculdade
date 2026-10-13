@@ -1,5 +1,59 @@
 /*
 =================================================
+GUIA PETNEAR - DESENVOLVIMENTO AV2
+
+ARQUIVO: global.css
+
+RESPONSAVEL: BIANKA
+NIVEL: FACIL
+
+REQUISITO DA AV2:
+Seção 7.2 do PDF: exibir visualmente estados de carregamento,
+sucesso, vazio, erro e tentativa novamente sem quebrar a
+responsividade.
+
+OBJETIVO:
+Orientar a criacao futura de classes reutilizaveis para feedbacks
+da API, autenticacao e formularios.
+
+O QUE JA ESTA PRONTO:
+A AV1 possui variaveis de cor, layout responsivo, cards,
+formularios, mapa simulado, agendamento e mensagens simples.
+
+O QUE FALTA FAZER:
+1. Criar estilos para loading, erro, sucesso e retry.
+2. Padronizar mensagens de formulario sem depender de alert.
+3. Revisar telas de Login, Cadastro, Mapa e Agendamento quando
+   os estados da API existirem.
+4. Testar em celular e computador.
+
+ONDE MODIFICAR:
+Nas secoes de formularios, avisos, mapa e agendamento, mantendo o
+padrao visual atual.
+
+ANTES DE COMECAR:
+Estude classes reutilizaveis, responsividade e feedback visual.
+
+DICA:
+Crie estilos genericos para estados comuns antes de repetir CSS em
+cada componente.
+
+COMO TESTAR:
+1. Simule loading.
+2. Simule erro com botao tentar novamente.
+3. Simule sucesso.
+4. Reduza a tela para largura de celular.
+
+CUIDADOS:
+Nao altere a identidade visual sem necessidade e nao esconda erros
+importantes com cores pouco visiveis.
+
+NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
+=================================================
+*/
+
+/*
+=================================================
 GUIA PETNEAR - CSS GLOBAL
 
 RESPONSAVEL: BIANKA
@@ -1994,6 +2048,17 @@ img {
 /* =================================================
    AVISOS
 ================================================= */
+
+/* AV2 - RESPONSAVEL: BIANKA
+   NIVEL: FACIL
+   TODO: Reaproveitar esta area para criar estilos de erro, loading,
+   sucesso e retry quando os componentes deixarem de usar alert().
+
+   DICA: uma classe visual padrao facilita aplicar o mesmo feedback em
+   Mapa, Cadastros e Agendamento.
+
+   TESTE: conferir contraste, leitura em celular e comportamento quando
+   a mensagem tiver duas linhas. */
 
 .agendamento-warning {
   display: flex;

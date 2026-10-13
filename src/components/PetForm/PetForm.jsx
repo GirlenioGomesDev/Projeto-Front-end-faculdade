@@ -1,18 +1,73 @@
 import { useState } from 'react';
 /*
 =================================================
+GUIA PETNEAR - DESENVOLVIMENTO AV2
+
+ARQUIVO: PetForm.jsx
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+REQUISITO DA AV2:
+Seções 7.2 e 9 do PDF: validar dados enviados e recebidos,
+integrar formularios com services e decidir o que pode ser
+persistido localmente como contingencia.
+
+OBJETIVO:
+Orientar o cadastro do pet para funcionar com API sem perder a
+contingencia local da AV1.
+
+O QUE JA ESTA PRONTO:
+Formulario controlado, validacao simples de obrigatorios, montagem
+do objeto pet, callback para a pagina e persistencia em localStorage.
+
+O QUE FALTA FAZER:
+1. Trocar alert por mensagens visuais consistentes.
+2. Integrar com petService somente depois da API aprovada.
+3. Tratar loading, sucesso, vazio e erro.
+4. Validar o retorno da API antes de avancar.
+
+ONDE MODIFICAR:
+Na funcao handleSubmit e no ponto onde o pet e salvo.
+
+ANTES DE COMECAR:
+Estude useState, validacao, JSON.stringify, services e estados de
+requisicao.
+
+DICA:
+Persistencia local pode continuar como plano B, mas a API deve ser
+a fonte principal quando a AV2 for implementada.
+
+COMO TESTAR:
+1. Envie campos vazios.
+2. Cadastre pet valido.
+3. Atualize a pagina e confirme a contingencia local.
+4. Simule erro do service.
+
+CUIDADOS:
+Nao duplique o mesmo pet em varios lugares sem necessidade.
+
+NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
+=================================================
+*/
+
+/*
+=================================================
 COMPONENTE: PetForm
 NIVEL: MEDIO
 RESPONSAVEL SUGERIDO: PESSOA 2
 
 FUNCAO:
-Preparar o cadastro visual do pet.
+Controlar o cadastro do pet e enviar os dados para a pagina
+Cadastros.
 
 O QUE JA ESTA PRONTO:
-Campos solicitados para nome, especie, raca, idade, porte e observacoes.
+Campos controlados, validacao simples, objeto do pet, callback para
+avancar etapa e persistencia local.
 
 O QUE FALTA:
-Controlar campos, validar e montar o objeto pet.
+Trocar alert por mensagem visual e revisar a persistencia quando a
+AV2 definir a API.
 
 CONCEITOS:
 useState, eventos, formulario controlado, objeto e localStorage.
@@ -77,6 +132,13 @@ function PetForm({ onContinuar}) {
   function handleSubmit(event) {
     event.preventDefault();
     setSucesso(false); // Resetar o estado de sucesso antes de validar
+
+    // AV2 - RESPONSAVEL: ANITA
+    // NIVEL: MEDIO
+    // TODO: Substituir alert por estado de erro exibido na tela.
+    //
+    // DICA: mensagens visuais ajudam Bianka a padronizar o layout.
+    // TESTE: campos vazios devem mostrar erro sem recarregar a pagina.
     if (!nomePet || !especiePet || !racaPet || !idadePet || !portePet) {
       alert('Por favor, preencha todos os campos obrigatórios.');
       return;
@@ -93,6 +155,13 @@ function PetForm({ onContinuar}) {
     
       onContinuar(pet);
 
+    // AV2 - RESPONSAVEL: ANITA
+    // NIVEL: MEDIO
+    // TODO: Quando petService existir, salvar na API antes de confirmar.
+    //
+    // DICA: use localStorage como contingencia ou cache simples, nao como
+    // substituto definitivo da API.
+    // TESTE: cadastre, atualize a pagina e confira se a recuperacao continua clara.
     localStorage.setItem('petCadastrado', JSON.stringify(pet));
     setSucesso(true);
   }
@@ -185,21 +254,21 @@ function PetForm({ onContinuar}) {
       )}
 
       {/* =================================================
-      TODO AV1
+      CHECKLIST AV1
       NIVEL: MEDIO
       RESPONSAVEL SUGERIDO: PESSOA 2
 
       OBJETIVO:
-      Cadastrar os dados do pet e preparar persistencia local.
+      Conferir se o cadastro do pet e a persistencia local funcionam.
 
-      O QUE VOCE DEVE FAZER:
-      1. Criar estado para os campos.
-      2. Ligar os inputs ao estado.
-      3. Validar os campos obrigatorios.
-      4. Criar um objeto com os dados do pet.
-      5. Atualizar o estado da pagina Cadastros.
-      6. Estudar localStorage.setItem() para salvar o pet.
-      7. Estudar localStorage.getItem() e JSON.parse() para recuperar depois.
+      O QUE VOCE DEVE CONFERIR:
+      1. Estados dos campos.
+      2. Inputs ligados ao estado.
+      3. Validacao dos campos obrigatorios.
+      4. Objeto com os dados do pet.
+      5. Atualizacao do estado da pagina Cadastros.
+      6. Salvamento com localStorage.setItem().
+      7. Recuperacao posterior com localStorage.getItem() e JSON.parse().
 
       CONCEITOS:
       useState
@@ -215,7 +284,7 @@ function PetForm({ onContinuar}) {
       RESULTADO ESPERADO:
       Os dados validos devem permitir avancar para localizacao.
 
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
+      SO MARQUE COMO CONCLUIDO APOS TESTAR NO NAVEGADOR.
       ================================================= */}
     </form>
   );

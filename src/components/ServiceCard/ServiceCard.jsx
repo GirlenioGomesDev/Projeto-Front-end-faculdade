@@ -8,7 +8,7 @@ FUNCAO:
 Mostrar um servico do PetNear em formato reutilizavel.
 
 O QUE JA ESTA PRONTO:
-Estrutura recebendo titulo e descricao por props.
+Estrutura recebendo titulo e icone por props.
 
 O QUE FALTA:
 Ajustar icones, cores e textos finais.

@@ -1,17 +1,71 @@
 /*
 =================================================
+GUIA PETNEAR - DESENVOLVIMENTO AV2
+
+ARQUIVO: UserForm.jsx
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+REQUISITO DA AV2:
+Seção 7.4 do PDF: implementar autenticacao com login, feedback,
+sessao, restauracao apos refresh e logout, sem guardar senhas.
+
+OBJETIVO:
+Orientar a evolucao do cadastro/login do tutor sem colocar regra de
+autenticacao diretamente no componente visual.
+
+O QUE JA ESTA PRONTO:
+A AV1 possui formulario controlado com campos de tutor, validacao
+simples para nome/e-mail/cidade e callback para avancar etapa.
+
+O QUE FALTA FAZER:
+1. Separar cadastro de tutor e login, se a API aprovada exigir.
+2. Chamar uma funcao de authService em vez de fetch direto.
+3. Tratar loading, sucesso e erro de autenticacao.
+4. Nunca salvar senha no localStorage.
+5. Validar os dados antes de enviar para a API.
+
+ONDE MODIFICAR:
+No onSubmit do formulario e nos estados relacionados a erro/sucesso.
+
+ANTES DE COMECAR:
+Estude formulario controlado, preventDefault, promises e tratamento
+de erros HTTP.
+
+DICA:
+Se a API devolver token ou usuario, quem deve organizar isso e o
+service/auth, nao o formulario sozinho.
+
+COMO TESTAR:
+1. Envie vazio.
+2. Envie com e-mail invalido.
+3. Simule login/cadastro com sucesso, 401 e 403.
+
+CUIDADOS:
+Nao persista senha e nao invente endpoint de autenticacao.
+
+NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
+=================================================
+*/
+
+/*
+=================================================
 COMPONENTE: UserForm
 NIVEL: MEDIO
 RESPONSAVEL SUGERIDO: PESSOA 2
 
 FUNCAO:
-Preparar o cadastro visual do tutor.
+Controlar o cadastro inicial do tutor e enviar dados validados para
+a pagina Cadastros.
 
 O QUE JA ESTA PRONTO:
-Campos iniciais do formulario.
+Campos controlados, validacao simples de nome, e-mail e cidade,
+mensagens condicionais e callback para avancar etapa.
 
 O QUE FALTA:
-Controlar campos com useState, validar obrigatorios e simular avanco.
+Revisar mensagens visuais, melhorar validacoes e separar o login
+real quando a AV2 for implementada.
 
 CONCEITOS:
 useState, value, onChange, onSubmit, preventDefault e validacao.
@@ -71,7 +125,17 @@ function UserForm ({ onContinuar}) {
 
   const [nomeTutor, setnomeTutor] = useState("");
   const [emailTutor, setemailTutor] = useState("");
+
+  // AV2 - RESPONSAVEL: ANITA COM APOIO DE LENO
+  // NIVEL: MEDIO
+  // TODO: Usar este campo apenas para envio seguro ao authService.
+  //
+  // DICA: senha nao deve ser guardada em localStorage nem reaproveitada
+  // para montar sessao manualmente.
+  // TESTE: depois do cadastro/login, atualize a pagina e confirme que
+  // a senha nao ficou salva no navegador.
   const [senhaTutor, setsenhaTutor] = useState("");
+
   const [telefoneTutor, settelefoneTutor] = useState("");
   const [bairroTutor, setbairroTutor] = useState("");
   const [cidadeTutor, setCidadeTutor] = useState("");
@@ -114,6 +178,13 @@ function UserForm ({ onContinuar}) {
           emailTutor !== "" &&
           cidadeTutor !== ""
         ) {
+          // AV2 - RESPONSAVEL: ANITA
+          // NIVEL: MEDIO
+          // TODO: Antes de avancar, chamar o service aprovado para cadastro
+          // ou login e tratar loading, erro e sucesso.
+          //
+          // DICA: deixe o service cuidar do fetch e dos codigos HTTP.
+          // TESTE: simule resposta 401/403 e confira a mensagem ao usuario.
           const dadosTutor = {
            nome: nomeTutor,
            email: emailTutor,
@@ -221,20 +292,19 @@ function UserForm ({ onContinuar}) {
       </button>
 
       {/* =================================================
-      TODO AV1
+      CHECKLIST AV1
       NIVEL: MEDIO
       RESPONSAVEL SUGERIDO: PESSOA 2
 
       OBJETIVO:
-      Criar um formulario controlado para o tutor.
+      Conferir se o formulario controlado do tutor continua claro.
 
-      O QUE VOCE DEVE FAZER:
-      1. Importar useState.
-      2. Criar estados para os campos ou um objeto de formulario.
-      3. Ligar cada input com value e onChange.
-      4. Criar onSubmit com preventDefault().
-      5. Validar nome, e-mail e cidade.
-      6. Mostrar mensagens como "Informe seu nome.".
+      O QUE VOCE DEVE CONFERIR:
+      1. Campos ligados com value e onChange.
+      2. onSubmit com preventDefault().
+      3. Validacao de nome, e-mail e cidade.
+      4. Mensagens como "Informe seu nome.".
+      5. Avanco para a etapa do pet apenas com dados validos.
 
       CONCEITOS:
       useState
@@ -249,7 +319,7 @@ function UserForm ({ onContinuar}) {
       RESULTADO ESPERADO:
       Dados validos devem permitir avancar para o cadastro do pet.
 
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
+      SO MARQUE COMO CONCLUIDO APOS TESTAR NO NAVEGADOR.
       ================================================= */}
 
       {/* AV2 - FUTURO

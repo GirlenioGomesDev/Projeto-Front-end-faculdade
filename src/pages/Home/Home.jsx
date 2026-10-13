@@ -125,14 +125,14 @@ function Home() {
         </section>
 
         {/* =================================================
-      TODO AV1
+      CHECKLIST AV1
       NIVEL: LEVE
-    RESPONSAVEL SUGERIDO: PESSOA 3F
+      RESPONSAVEL SUGERIDO: PESSOA 3
 
       OBJETIVO:
-      Melhorar a Home como apresentacao do produto, sem finalizar o sistema.
+      Conferir se a Home apresenta o produto e abre o fluxo principal.
 
-      O QUE VOCE DEVE FAZER:
+      O QUE VOCE DEVE CONFERIR:
       1. Revisar textos do banner.
       2. Escolher onde inserir imagens.
       3. Usar Link para navegar sem recarregar a pagina.
@@ -151,7 +151,7 @@ function Home() {
       RESULTADO ESPERADO:
       O usuario deve conseguir iniciar o fluxo sem digitar URL.
 
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
+      SO MARQUE COMO CONCLUIDO APOS TESTAR NO NAVEGADOR.
       ================================================= */}
       </section>
     </>

@@ -3,18 +3,71 @@ import { useNavigate } from "react-router-dom";
 
 /*
 =================================================
+GUIA PETNEAR - DESENVOLVIMENTO AV2
+
+ARQUIVO: LocationForm.jsx
+
+RESPONSAVEL: ANITA
+NIVEL: MEDIO
+
+REQUISITO DA AV2:
+Seções 7.2, 7.3 e 8 do PDF: integrar formularios com services,
+validar dados e consumir API aprovada sem inventar fornecedor ou
+endpoint.
+
+OBJETIVO:
+Preparar a localizacao para uma possivel consulta externa, mantendo
+o preenchimento manual enquanto a API nao for aprovada.
+
+O QUE JA ESTA PRONTO:
+Campos controlados de CEP, bairro e cidade, validacao simples e
+navegacao para /mapa.
+
+O QUE FALTA FAZER:
+1. Confirmar se a API de CEP/localizacao foi aprovada.
+2. Criar service especifico se houver consulta externa.
+3. Tratar loading, erro e botao tentar novamente.
+4. Permitir preenchimento manual quando a API falhar.
+
+ONDE MODIFICAR:
+No onSubmit e nos estados de erro do formulario.
+
+ANTES DE COMECAR:
+Estude useNavigate, fetch via service, tratamento de erro e
+fallback manual.
+
+DICA:
+API de CEP so entra se estiver no escopo aprovado. O usuario ainda
+deve conseguir informar bairro/cidade manualmente.
+
+COMO TESTAR:
+1. Envie vazio.
+2. Preencha manualmente e avance para /mapa.
+3. Se houver API, teste sucesso, falha e retry.
+
+CUIDADOS:
+Nao bloqueie o fluxo inteiro se a API de CEP estiver fora do ar.
+
+NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
+=================================================
+*/
+
+/*
+=================================================
 COMPONENTE: LocationForm
 NIVEL: MEDIO
 RESPONSAVEL SUGERIDO: PESSOA 2
 
 FUNCAO:
-Preparar a etapa de localizacao manual.
+Controlar a etapa de localizacao manual e encaminhar para o mapa.
 
 O QUE JA ESTA PRONTO:
-Campos CEP, bairro e cidade.
+Campos controlados de CEP, bairro e cidade, validacao simples e
+navegacao para /mapa.
 
 O QUE FALTA:
-Controlar campos, validar e navegar para /mapa.
+Melhorar mensagens visuais e planejar API de CEP somente se ela for
+aprovada para a AV2.
 
 CONCEITOS:
 useState, onChange, onSubmit, useNavigate e validacao.
@@ -80,6 +133,13 @@ function LocationForm() {
       onSubmit={(evento) => {
         evento.preventDefault();
 
+        // AV2 - RESPONSAVEL: ANITA
+        // NIVEL: MEDIO
+        // TODO: Se houver API aprovada, validar CEP via service antes
+        // de navegar para o mapa.
+        //
+        // DICA: mantenha a opcao manual para quando a consulta falhar.
+        // TESTE: CEP invalido, API indisponivel e preenchimento manual.
         if (cep === "") {
           setErrocep("Informe seu CEP.");
         }
@@ -159,18 +219,18 @@ function LocationForm() {
       </button>
 
       {/* =================================================
-      TODO AV1
+      CHECKLIST AV1
       NIVEL: MEDIO
       RESPONSAVEL SUGERIDO: PESSOA 2
 
       OBJETIVO:
-      Validar localizacao e encaminhar para o mapa simulado.
+      Conferir se a localizacao valida encaminha para o mapa simulado.
 
-      O QUE VOCE DEVE FAZER:
-      1. Criar estados para CEP, bairro e cidade.
-      2. Validar campos obrigatorios.
-      3. Mostrar "Informe seu CEP." quando necessario.
-      4. Usar useNavigate para ir para /mapa.
+      O QUE VOCE DEVE CONFERIR:
+      1. Estados para CEP, bairro e cidade.
+      2. Validacao dos campos obrigatorios.
+      3. Mensagem "Informe seu CEP." quando necessario.
+      4. useNavigate abrindo /mapa.
 
       CONCEITOS:
       useState
@@ -184,7 +244,7 @@ function LocationForm() {
       RESULTADO ESPERADO:
       Com dados validos, o fluxo deve abrir /mapa.
 
-      NAO IMPLEMENTE ESTA PARTE COMPLETAMENTE.
+      SO MARQUE COMO CONCLUIDO APOS TESTAR NO NAVEGADOR.
       ================================================= */}
 
       {/* AV2 - IMPLEMENTACAO FUTURA

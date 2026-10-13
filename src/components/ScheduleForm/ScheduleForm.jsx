@@ -13,6 +13,68 @@ import servicos from '../../data/servicos.json';
 
 /*
 =================================================
+GUIA PETNEAR - DESENVOLVIMENTO AV2
+
+ARQUIVO: ScheduleForm.jsx
+
+RESPONSAVEIS: LENO E ANITA
+NIVEL: DIFICIL
+
+REQUISITO DA AV2:
+Seções 7.2 e 7.4 do PDF: enviar agendamento pela API aprovada,
+concentrar fetch em services, tratar loading/sucesso/vazio/erro,
+permitir retry e validar HTTP 401/403 quando aplicavel.
+
+OBJETIVO:
+Controlar a escolha de servico, data e horario e orientar a futura
+integracao com a API de agendamento.
+
+O QUE JA ESTA PRONTO:
+A AV1 filtra servicos pelo Pet Shop selecionado, valida campos,
+bloqueia data passada, salva o ultimo agendamento no localStorage e
+mostra mensagem de sucesso.
+
+O QUE FALTA FAZER:
+1. Criar agendamentoService apos API aprovada.
+2. Enviar os dados pelo service, nao direto no componente.
+3. Tratar loading, erro recuperavel, sucesso e retry.
+4. Validar retorno da API antes de confirmar na tela.
+5. Tratar 401/403 chamando a logica de sessao.
+
+ONDE MODIFICAR:
+Na funcao handleSubmit e nos imports de dados locais.
+
+ANTES DE COMECAR:
+Estude promises, async/await, try/catch, codigos HTTP e estado de
+formulario.
+
+DICA:
+O formulario monta os dados. O service conversa com a API. Nao
+misture as duas responsabilidades.
+
+COMO TESTAR:
+1. Tente agendar sem pet e sem Pet Shop.
+2. Agende com dados validos.
+3. Simule API fora do ar e tente novamente.
+4. Simule sessao expirada.
+
+CUIDADOS:
+Nao confirme sucesso visual antes de saber se a API aceitou o
+agendamento, exceto se a equipe documentar modo offline.
+
+NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
+=================================================
+*/
+
+// AV2 - RESPONSAVEL: LENO
+// NIVEL: DIFICIL
+// TODO: Quando a API for aprovada, avaliar se servicos e horarios
+// virao de services. Mantenha estes JSONs como contingencia documentada.
+//
+// DICA: nao apague os dados locais antes de confirmar como testar offline.
+
+/*
+=================================================
 COMPONENTE: ScheduleForm
 NIVEL: DIFICIL
 RESPONSAVEL SUGERIDO: PESSOA 1 OU PESSOA 2
@@ -68,6 +130,14 @@ function ScheduleForm({
 
     setSucesso(false);
 
+    // AV2 - RESPONSAVEL: ANITA
+    // NIVEL: MEDIO
+    // TODO: Trocar alerts por estados visuais de erro, mantendo as
+    // validacoes antes de chamar o service.
+    //
+    // DICA: Bianka pode padronizar a aparencia desses erros no CSS.
+    // TESTE: cada erro deve aparecer no momento certo.
+
     if (!petShopSelecionado) {
       alert(
         'Selecione um Pet Shop antes de realizar o agendamento.'
@@ -100,6 +170,14 @@ function ScheduleForm({
       return;
     }
 
+    // AV2 - RESPONSAVEL: LENO
+    // NIVEL: DIFICIL
+    // TODO: Enviar este objeto por agendamentoService quando a API estiver
+    // aprovada e tratar loading, sucesso, erro e retry.
+    //
+    // DICA: se receber 401/403, acione a regra de sessao em vez de apenas
+    // mostrar um alert generico.
+    // TESTE: sucesso, erro recuperavel, 401 e 403.
     const agendamento = {
       servico,
       data,
