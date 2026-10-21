@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar.jsx';
+import { logout } from '../../services/authService.js';
+import { getSession } from "../../services/sessionService.js";
 import './Header.css';
+
 
 /*
 =================================================
@@ -49,6 +52,17 @@ NAO ESCREVA A SOLUCAO.
 */
 
 function Header() {
+  const navigate = useNavigate();
+
+
+  function handleLogout() {
+    logout();
+    navigate("/login", { replace: true });
+  }
+
+  const session = getSession();
+
+
   return (
     <header className="site-header">
       <div className="site-header__inner">
@@ -56,6 +70,15 @@ function Header() {
           PetNear
         </Link>
         <Navbar />
+        {session && (
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="site-header__logout"
+          >
+            Sair
+          </button>
+        )}
       </div>
     </header>
   );
