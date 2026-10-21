@@ -166,14 +166,20 @@ function PetShopCard({ petShop, onSelecionar }) {
           TODO: Conferir se muitos servicos vindos da API continuam
           quebrando linha de forma organizada no card.
           TESTE: usar uma lista pequena e uma lista maior de servicos. */}
-          {petShop.servicos.map((servico) => (
-            <span
-              className="petshop-card__chip"
-              key={servico}
-            >
-              {servico}
+          {petShop.servicos.length > 0 ? (
+            petShop.servicos.map((servico) => (
+              <span
+                className="petshop-card__chip"
+                key={servico}
+              >
+                {servico}
+              </span>
+            ))
+          ) : (
+            <span className="petshop-card__chip">
+              Serviços não informados
             </span>
-          ))}
+          )}
         </div>
       </div>
 

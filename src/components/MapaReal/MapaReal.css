@@ -1,0 +1,42 @@
+/* AV2 - Popup de agendamento no mapa real */
+.leaflet-popup-content {
+  min-width: 180px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text);
+}
+
+.leaflet-popup-content strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.petnear-popup__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 127, 115, 0.18);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.petnear-popup__button:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.petnear-popup__button:focus-visible {
+  outline: 3px solid rgba(0, 127, 115, 0.25);
+  outline-offset: 3px;
+}

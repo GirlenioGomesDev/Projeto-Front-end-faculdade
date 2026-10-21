@@ -1,293 +1,343 @@
-# PetNear
 
-<!--
-GUIA PETNEAR - README DA AV1
+# PetNear 🐾
 
-RESPONSAVEL: BIANKA
-NIVEL: LEVE
+Projeto acadêmico desenvolvido na disciplina de Front-end Frameworks, utilizando React, JavaScript e Vite.
 
-Este README deve ser atualizado pela equipe somente depois que
-as funcionalidades forem realmente desenvolvidas e testadas.
-
-Antes de documentar uma funcionalidade, confirme:
-1. ela existe na interface;
-2. ela foi testada no navegador;
-3. o integrante responsavel consegue explicar como funciona;
-4. ela ajuda a cumprir algum requisito da AV1.
-
-Nao descreva como pronto algo que ainda esta apenas planejado.
--->
-
-Projeto acadêmico de Front-end Frameworks desenvolvido para a AV1, com o objetivo de facilitar a localização de serviços para cuidados de pets.
-
-## Problema e publico
-
-O PetNear auxilia tutores de animais a localizar Pet Shops próximos e organizar serviços para seus pets, como banho, tosa, higiene e corte de unhas.
+O PetNear tem como objetivo facilitar a busca por estabelecimentos que oferecem produtos e serviços para animais de estimação, permitindo cadastrar informações do tutor e do pet, consultar Pet Shops e realizar agendamentos demonstrativos.
 
 ## Integrantes
 
-<!--
-GUIA PETNEAR - INTEGRANTES
+- **Girlenio Gomes da Silva (Leno):** mapa, integração com APIs, autenticação, proteção de rotas, listagem e filtros de Pet Shops, integração com agendamento e testes.
+- **Anita Gallindo:** formulários de cadastro do tutor, pet e localização, validações e persistência local.
+- **Bianka Moura:** Home, Header, Navbar, Footer, Banner, componentes visuais, responsividade e documentação.
 
-Preencha esta parte com os nomes reais da equipe e a contribuicao
-final de cada pessoa.
-
-Divisao oficial para orientar o trabalho:
-- Leno: nivel dificil.
-- Anita: nivel medio.
-- Bianka: nivel leve.
-
-Nao invente contribuicoes. Registre apenas o que cada integrante
-realmente implementou, testou ou documentou.
--->
-
-- Integrante Girlenio Gomes da Silva - Mapa, dados dos Pet Shops, listagem, filtros, escolha de pet shop, validações do agendamento, testes e integração das branches.
-- Integrante Anita Gallindo - Cadastros, formulários de localização e tutor, controle dos campos, validações e persistência com localStorage.
-- Integrante Bianka Moura - Home, Header, Navbar, Footer, Banner, ServiceCard, BenefitCard, NotFound, responsividade, visual do Agendamento e documentação.
-
-## Funcionalidades
-
-<!--
-GUIA PETNEAR - FUNCIONALIDADES
-
-Quando uma funcionalidade sair do planejamento e passar a
-funcionar, volte aqui e confira se a descricao continua correta.
-
-Use este bloco como apoio para explicar ao professor quais
-requisitos da AV1 foram trabalhados, mas nao marque nada como
-concluido sem testar.
--->
-
-- Apresentação da finalidade do produto.
-- Cadastro inicial do tutor com validação de nome, e-mail e cidade, sem persistência e sem autenticação.
-- Cadastro do pet.
-- Localização manual.
-- Mapa simulado com Pet Shops ficticios.
-- Filtro de Pet Shops por serviço.
-- Escolha de Pet Shop.
-- Agendamento de servico.
-- Mensagens condicionais.
-- Persistência do pet, pet shop selecionado e último agendamento no `localStorage`.
-- Bloqueio de agendamento sem pet cadastrado.
-- Exibição somente dos serviços oferecidos pelo pet shop selecionado.
-
-
-## Rotas
-
-- `/` - Home
-- `/cadastros` - Cadastro do tutor, pet e localização
-- `/mapa` - Mapa simulado e Pet Shops próximos
-- `/agendamento` - Formulário de agendamento
-- `*` - Página não encontrada
-
-## Tecnologias
+## Tecnologias utilizadas
 
 - React
 - JavaScript
+- HTML e CSS
 - Vite
 - React Router
-- CSS tradicional
+- Lucide React
+- Leaflet
+- OpenStreetMap
+- API Overpass
+- API DummyJSON
+- Fetch API
+- localStorage
+- Git e GitHub
 
-## Como executar
+## Funcionalidades da AV1
 
-Instale as dependencias:
+Na primeira avaliação, o PetNear foi desenvolvido utilizando dados locais e componentes React.
+
+Foram implementadas:
+
+- Página inicial de apresentação.
+- Cadastro do tutor.
+- Cadastro do pet.
+- Formulário de localização.
+- Listagem demonstrativa de Pet Shops.
+- Pesquisa de estabelecimentos por nome.
+- Filtro por tipo de serviço.
+- Seleção de Pet Shop.
+- Formulário demonstrativo de agendamento.
+- Validação de campos.
+- Mensagens condicionais.
+- Persistência de informações selecionadas no localStorage.
+- Navegação entre páginas com React Router.
+
+A AV1 foi preservada como base para a evolução do projeto.
+
+## Evolução implementada na AV2
+
+Na segunda avaliação, o PetNear passou a utilizar APIs externas e recursos de autenticação.
+
+### 1. Autenticação com DummyJSON
+
+Foi implementado um serviço de autenticação utilizando a API DummyJSON.
+
+O sistema permite:
+
+- Realizar login com credenciais demonstrativas.
+- Verificar a resposta da API.
+- Armazenar a sessão no navegador.
+- Recuperar a sessão após atualizar a página.
+- Validar o token de autenticação.
+- Realizar logout.
+- Redirecionar usuários sem autenticação para a página de login.
+- Tratar erros HTTP 401 e 403.
+
+A rota `/agendamento` é protegida pelo componente `ProtectedRoute`.
+
+### 2. Integração com a API Overpass
+
+Foi utilizada a API Overpass para consultar estabelecimentos cadastrados no OpenStreetMap.
+
+A aplicação consulta estabelecimentos identificados como lojas de animais (`shop=pet`), utilizando uma região demonstrativa centrada em Recife, Pernambuco.
+
+Os dados recebidos são normalizados no arquivo `petshopService.js` antes de serem utilizados pelos componentes React.
+
+As informações disponíveis podem incluir:
+
+- Nome do estabelecimento.
+- Endereço.
+- Bairro e cidade.
+- Latitude e longitude.
+- Horário de funcionamento, quando informado.
+
+Nem todos os registros possuem informações completas.
+
+O sistema não inventa avaliações, distâncias ou serviços que não estejam disponíveis nos dados consultados.
+
+### 3. Mapa interativo com Leaflet
+
+O mapa demonstrativo da AV1 foi substituído por um mapa interativo utilizando Leaflet e OpenStreetMap.
+
+O mapa oferece:
+
+- Visualização de ruas e bairros reais.
+- Controles de zoom.
+- Movimentação pelo mapa.
+- Marcadores dos estabelecimentos encontrados.
+- Identificação dos Pet Shops por meio de popups.
+- Botão para iniciar o agendamento a partir do marcador.
+- Integração com a seleção de estabelecimentos.
+
+A região inicial do mapa é Recife. O sistema não utiliza automaticamente a localização atual do usuário.
+
+### 4. Agendamento e proteção de acesso
+
+O usuário pode selecionar um Pet Shop pela listagem ou pelo mapa.
+
+A seleção é armazenada no localStorage e utilizada pela página de agendamento.
+
+Quando o usuário não possui uma sessão autenticada, o sistema solicita login.
+
+Após a autenticação, o usuário retorna ao agendamento, preservando o estabelecimento escolhido.
+
+**Importante:** o agendamento é demonstrativo. O sistema não realiza reservas reais nos estabelecimentos encontrados no OpenStreetMap.
+
+### 5. Tratamento de estados da interface
+
+Foram implementados estados para melhorar a experiência do usuário durante as consultas externas:
+
+- **Loading:** mensagem enquanto a consulta está sendo realizada.
+- **Sucesso:** apresentação dos dados recebidos.
+- **Vazio:** mensagem quando a pesquisa não encontra resultados.
+- **Erro:** aviso quando ocorre falha na requisição.
+- **Retry:** botão para realizar uma nova tentativa.
+- **Fallback:** utilização de estabelecimentos locais quando a API externa falha.
+
+## APIs utilizadas
+
+### DummyJSON
+
+URL-base:
+
+https://dummyjson.com
+
+| Método | Endpoint | Finalidade |
+|---|---|---|
+| POST | `/auth/login` | Autenticar usuário |
+| GET | `/auth/me` | Consultar e validar usuário autenticado |
+
+O login envia usuário e senha em formato JSON.
+
+As requisições autenticadas utilizam o token recebido da API.
+
+Possíveis falhas incluem credenciais inválidas, erros HTTP 401/403 e problemas de conexão.
+
+### Overpass API
+
+Endpoint:
+
+https://overpass-api.de/api/interpreter
+
+Método utilizado: POST.
+
+A consulta utiliza a linguagem Overpass QL para localizar estabelecimentos identificados como `shop=pet`.
+
+A resposta é recebida em JSON, e os registros são adaptados ao formato utilizado pelo PetNear.
+
+A disponibilidade dos resultados depende dos dados cadastrados no OpenStreetMap e do funcionamento do serviço Overpass.
+
+### OpenStreetMap
+
+Site:
+
+https://www.openstreetmap.org
+
+Utilizado como fonte de dados geográficos e para a visualização do mapa interativo.
+
+## Credenciais de demonstração
+
+Para testar a autenticação:
+
+**Usuário:** `emilys`
+
+**Senha:** `emilyspass`
+
+Essas credenciais são disponibilizadas publicamente pelo serviço demonstrativo DummyJSON.
+
+O cadastro local do PetNear não cria uma conta de autenticação no DummyJSON.
+
+## Rotas da aplicação
+
+| Rota | Funcionalidade |
+|---|---|
+| `/` | Página inicial |
+| `/cadastros` | Cadastro do tutor, pet e localização |
+| `/mapa` | Mapa interativo e listagem de Pet Shops |
+| `/login` | Autenticação |
+| `/agendamento` | Agendamento demonstrativo protegido |
+| `*` | Página não encontrada |
+
+## Estrutura principal
+
+```text
+src/
+├── components/
+│   ├── AuthLogin/
+│   ├── Header/
+│   ├── MapaReal/
+│   ├── Navbar/
+│   ├── PetShopCard/
+│   ├── ProtectedRoute/
+│   └── ...
+├── data/
+│   ├── petshops.json
+│   ├── servicos.json
+│   └── horarios.json
+├── pages/
+│   ├── Home/
+│   ├── Cadastros/
+│   ├── Mapa/
+│   ├── Agendamento/
+│   └── NotFound/
+├── services/
+│   ├── apiClient.js
+│   ├── apiConfig.js
+│   ├── authService.js
+│   ├── petshopService.js
+│   └── sessionService.js
+├── App.jsx
+└── main.jsx
+```
+
+## Como executar o projeto
+
+### Requisitos
+
+- Node.js e npm instalados.
+- Conexão com a internet para consultar as APIs e carregar o mapa.
+
+### 1. Instalar dependências
 
 ```bash
 npm install
 ```
 
-Execute o projeto:
+### 2. Configurar o ambiente
+
+Crie um arquivo `.env` na raiz do projeto com:
+
+```env
+VITE_API_BASE_URL=https://dummyjson.com
+```
+
+O arquivo `.env.example` apresenta essa configuração como referência.
+
+### 3. Executar o projeto
 
 ```bash
 npm run dev
 ```
 
-Abra o endereco informado pelo Vite no navegador.
+Abra o endereço informado pelo Vite no terminal.
 
-## Dados locais
+### 4. Gerar a versão de produção
 
-- `src/data/petshops.json`
-- `src/data/servicos.json`
-- `src/data/horarios.json`
+```bash
+npm run build
+```
 
-Na AV1, nao usar API real, back-end, Google Maps, Leaflet, Firebase, Supabase ou API de CEP.
+Os arquivos compilados serão gerados na pasta `dist`.
 
-## Persistencia
+## Persistência de dados
 
-<!--
-GUIA PETNEAR - PERSISTENCIA
+O projeto utiliza localStorage para manter informações necessárias ao fluxo demonstrativo, incluindo dados do pet, Pet Shop selecionado, sessão e último agendamento.
 
-RESPONSAVEL: ANITA
-NIVEL: MEDIO
+O armazenamento local permite recuperar informações após atualizar a página.
 
-Nao comece a AV1 por esta parte.
+Os dados permanecem vinculados ao navegador utilizado e podem ser removidos pelo usuário.
 
-Primeiro faca o formulario funcionar, depois valide os campos e
-somente entao pense em guardar um dado relevante no navegador.
+Não existe um banco de dados próprio para registrar contas de tutores ou agendamentos.
 
-Teste atualizando a pagina para verificar se o dado continua
-disponivel.
--->
+## Contingência local
 
-O projeto usa localStorage para salvar no navegador os dados do pet, o pet shop escolhido e o último agendamento.
+A API Overpass é um serviço externo e pode apresentar falhas de conexão, indisponibilidade ou respostas incompletas.
 
-Esses dados permanecem salvos ao atualizar a página. Um novo agendamento substitui o anterior.
+Para evitar que a listagem fique inutilizável durante essas situações, o PetNear mantém o arquivo:
 
-A página recupera o pet e o pet shop salvos, mas a mensagem de confirmação do agendamento desaparece ao atualizar.
+`src/data/petshops.json`
 
-## Divisao da equipe
+Quando a consulta remota falha, o sistema apresenta os estabelecimentos demonstrativos e informa ao usuário que está utilizando dados locais.
 
-Consulte `TAREFAS.md` para a divisao entre Pessoa 1, Pessoa 2 e Pessoa 3.
+O mapa permanece disponível, mas os estabelecimentos fictícios sem coordenadas não recebem marcadores geográficos.
+
+Essa contingência não substitui a integração com a API.
+
+## Testes realizados
+
+Durante o desenvolvimento da AV2, foram realizados testes de:
+
+- Autenticação com credenciais demonstrativas.
+- Acesso à rota protegida sem login.
+- Recuperação da sessão após atualizar a página.
+- Logout e bloqueio de novo acesso sem autenticação.
+- Consulta de Pet Shops pela API Overpass.
+- Exibição de estabelecimentos reais na listagem.
+- Visualização do mapa interativo.
+- Abertura dos popups dos marcadores.
+- Seleção de Pet Shop pelo mapa.
+- Navegação para o agendamento.
+- Preservação do estabelecimento selecionado.
+- Pesquisa sem resultados.
+- Falha simulada da API.
+- Utilização da contingência local.
+- Compilação de produção com Vite.
+- Verificação de dependências utilizando npm audit.
+
+O botão de nova tentativa foi implementado. Sua recuperação após uma falha simulada ainda deve ser confirmada em teste específico.
 
 ## Limitações
 
-- Não existe API real.
-- Não existe autenticação real.
-- Não existe mapa real.
-- Os dados do tutor não são salvos no `localStorage`.
-- Apenas o último agendamento é armazenado, sem histórico.
-- Os agendamentos são simulados e não são enviados aos pet shops.
-- Os dados locais dependem do navegador e podem ser perdidos se o armazenamento for limpo.
+- A autenticação utiliza contas demonstrativas da API DummyJSON.
+- O cadastro do PetNear não cria contas de autenticação reais.
+- Não existe back-end próprio nem banco de dados.
+- O agendamento não é enviado aos estabelecimentos.
+- As informações dos Pet Shops dependem do cadastro existente no OpenStreetMap.
+- Alguns estabelecimentos não possuem horários, endereços ou serviços informados.
+- As avaliações e distâncias não são calculadas para os registros externos.
+- O mapa utiliza uma região demonstrativa de Recife.
+- A disponibilidade das APIs depende de serviços externos.
+- O localStorage não substitui um sistema de autenticação e armazenamento seguro para produção.
 
-## Uso de Inteligencia Artificial
+## Uso de Inteligência Artificial
 
-<!--
-GUIA PETNEAR - USO DE IA
+Durante o desenvolvimento, foi utilizada inteligência artificial como ferramenta de apoio para explicações de conceitos, revisão de código, identificação de erros, organização das tarefas e orientação sobre testes.
 
-Registre o uso de IA com transparencia.
+A implementação das funcionalidades foi acompanhada de testes no ambiente local, utilizando React, Vite, APIs externas e ferramentas de desenvolvimento.
 
-A IA pode apoiar com orientacoes, explicacoes, revisao e
-organizacao, mas a equipe precisa desenvolver, testar e entender
-as funcionalidades que serao avaliadas.
--->
+## Controle de versão
 
-Foi utilizada inteligência artificial como apoio na criação do esqueleto inicial do projeto e dos comentários didáticos. Durante o desenvolvimento, também ajudou com explicações de conceitos, revisão de código e orientações para testes e comandos Git. A equipe implementou as funcionalidades e realizou os testes no navegador, incluindo cadastro do pet, filtros, validações do agendamento e persistência local.
+O projeto utiliza Git e GitHub para versionamento e colaboração.
 
-## Evolucao planejada para AV2
+As funcionalidades da AV2 foram desenvolvidas em uma branch específica, permitindo revisão por meio de Pull Request antes da integração à branch principal.
 
-Na AV2, o projeto podera evoluir para:
+O arquivo `.env` é ignorado pelo Git, enquanto `.env.example` documenta a configuração necessária para executar o projeto.
 
-- API de CEP;
-- mapa/localizacao;
-- dados remotos;
-- login real;
-- autenticacao;
-- sessao;
-- logout;
-- rota protegida;
-- `fetch`;
-- loading;
-- erro;
-- retry.
+---
 
-## Guia de desenvolvimento AV2
-
-<!--
-GUIA PETNEAR - DESENVOLVIMENTO AV2
-
-ARQUIVO: README.md
-
-RESPONSAVEIS:
-LENO - DIFICIL
-ANITA - MEDIO
-BIANKA - FACIL
-
-REQUISITO DA AV2:
-Atualizar a documentacao conforme as secoes 7.2, 7.5, 8, 9 e 10
-do PDF: contrato da API, evolucao da AV1 para AV2, limitacoes,
-autenticacao, rotas protegidas, sessao, fetch em services, estados
-de loading/sucesso/vazio/erro, retry e contingencia.
-
-OBJETIVO:
-Registrar o que a equipe deve documentar depois de implementar e
-testar as funcionalidades.
-
-O QUE JA ESTA PRONTO:
-O README descreve o projeto da AV1, rotas, tecnologias, dados
-locais, persistencia e limitacoes atuais.
-
-O QUE FALTA FAZER:
-1. Informar a API aprovada pelo professor.
-2. Descrever URL-base e endpoints realmente usados.
-3. Explicar como autenticar, encerrar sessao e proteger rotas.
-4. Registrar quais dados locais continuam como contingencia.
-5. Atualizar limitacoes sem marcar como pronto algo nao testado.
-
-ONDE MODIFICAR:
-Nas secoes abaixo, depois que a equipe implementar e testar cada
-parte da AV2.
-
-ANTES DE COMECAR:
-Tenha evidencias no codigo e testes no navegador. Comentario nao
-conta como funcionalidade concluida.
-
-DICA:
-Documente contrato de API com metodo, endpoint, corpo enviado,
-resposta esperada e erros conhecidos.
-
-COMO TESTAR:
-1. Execute npm run dev.
-2. Teste fluxo feliz.
-3. Teste erro de API.
-4. Atualize a pagina para conferir sessao.
-
-CUIDADOS:
-Nao documente endpoint, token ou credencial que nao exista.
-
-NAO ESCREVA A SOLUCAO AUTOMATICAMENTE.
--->
-
-### Fonte verificada para AV2
-
-Documento consultado: `C:\Users\Leno\Desktop\Projeto-Evolutivo-AV1-AV2.pdf`.
-
-Pontos principais confirmados no PDF:
-
-- A AV2 conserva tema, repositorio e base funcional da AV1.
-- A equipe precisa escolher exatamente uma opcao de integracao: API pronta aprovada ou API do projeto de Back-end.
-- A autenticacao e obrigatoria, com login, feedback, sessao, rota protegida, restauracao apos refresh e logout.
-- O `fetch` deve ficar concentrado em `src/services`.
-- Devem existir estados visiveis de carregamento, sucesso, vazio e erro.
-- Deve haver tentativa novamente apos falha recuperavel.
-- Dados locais de contingencia sao obrigatorios, mas nao substituem a integracao.
-- O README da AV2 precisa ter contrato da API, evolucao da AV1 para AV2, limitacoes e contingencia.
-
-APIs aprovadas pelo PDF: DummyJSON, BrasilAPI, PokeAPI v2, Open Library, TVmaze e Open-Meteo. Outra API so deve ser usada se for aprovada no checkpoint.
-
-### Situacao atual para AV2
-
-| Item | Situacao | Evidencia |
-| --- | --- | --- |
-| Dados locais de Pet Shops | Parcialmente concluido | `src/data/petshops.json` e `src/pages/Mapa/Mapa.jsx` |
-| Filtro e busca no mapa | Parcialmente concluido | `Mapa.jsx` usa `filter()` e `includes()` |
-| Cadastro do pet | Parcialmente concluido | `PetForm.jsx` controla campos e salva em `localStorage` |
-| Agendamento local | Parcialmente concluido | `ScheduleForm.jsx` valida e salva ultimo agendamento |
-| PDF de requisitos | Concluido | `Projeto-Evolutivo-AV1-AV2.pdf` consultado |
-| Opcao de integracao A ou B | Pendente | PDF exige escolher exatamente uma opcao na secao 7.3 |
-| API escolhida pela equipe | Pendente | A lista aprovada existe, mas a equipe ainda precisa registrar a escolhida |
-| Fetch em services | Pendente | pasta `src/services` ainda possui apenas README |
-| Autenticacao real | Pendente | nao existe login real, token ou sessao de usuario |
-| Rota protegida | Pendente | rotas atuais estao abertas em `App.jsx` |
-| HTTP 401/403 | Pendente | ainda nao existe camada HTTP |
-| `.env.example` | Pendente | criar somente apos confirmar nome da variavel e URL-base |
-
-### Contrato da API para preencher na AV2
-
-Preencher somente depois que o professor aprovar a API.
-
-| Recurso | Metodo | Endpoint | Envio | Resposta esperada | Erros previstos |
-| --- | --- | --- | --- | --- | --- |
-| Autenticacao | A definir | A definir | A definir | A definir | 401, 403 |
-| Pet Shops | A definir | A definir | A definir | A definir | vazio, erro de rede |
-| Agendamento | A definir | A definir | A definir | A definir | 401, 403, validacao |
-| Localizacao/CEP | A definir | A definir | A definir | A definir | CEP invalido, erro de rede |
-
-### Limitacoes atuais antes da AV2
-
-- O projeto ainda nao consome API real.
-- A pasta `services` ainda nao possui implementacao de `fetch`.
-- A senha digitada no cadastro nao deve ser persistida.
-- A sessao real ainda nao existe.
-- A rota `/agendamento` ainda nao esta protegida.
-- Os dados locais continuam sendo a base do mapa e do agendamento.
-- A API final da equipe ainda nao foi registrada neste README.
+**PetNear — conectando você aos cuidados que seu pet precisa. 🐾**

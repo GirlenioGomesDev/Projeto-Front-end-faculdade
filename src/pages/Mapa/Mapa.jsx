@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Search,
@@ -11,6 +11,10 @@ import {
 import EmptyState from '../../components/EmptyState/EmptyState.jsx';
 import PetShopCard from '../../components/PetShopCard/PetShopCard.jsx';
 import petshops from '../../data/petshops.json';
+import { buscarPetShops } from '../../services/petshopService.js';
+import MapaReal from '../../components/MapaReal/MapaReal.jsx';
+
+
 
 /*
 =================================================
@@ -99,6 +103,49 @@ REQUISITOS TRABALHADOS:
 function Mapa() {
   const [filtroServico, setFiltroServico] = useState('');
   const [buscaNome, setBuscaNome] = useState('');
+  const [listaPetshops, setListaPetshops] = useState(petshops);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [retry, setRetry] = useState(0);
+  const [usandoFallback, setUsandoFallback] = useState(false);
+
+
+
+  useEffect(() => {
+    let ativo = true;
+
+    async function carregarPetShops() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const dados = await buscarPetShops();
+
+        if (!ativo) return;
+
+        setListaPetshops(dados);
+        setUsandoFallback(false);
+      } catch (erro) {
+        if (!ativo) return;
+
+        console.error("Erro ao buscar Pet Shops:", erro);
+
+        setError("Não foi possível consultar os Pet Shops online.");
+        setListaPetshops(petshops);
+        setUsandoFallback(true);
+      } finally {
+        if (ativo) {
+          setLoading(false);
+        }
+      }
+    }
+
+    carregarPetShops();
+
+    return () => {
+      ativo = false;
+    };
+  }, [retry]);
 
   // AV2 - RESPONSAVEL: LENO
   // NIVEL: DIFICIL
@@ -110,7 +157,7 @@ function Mapa() {
 
   const navigate = useNavigate();
 
-  const petshopsVisiveis = petshops.filter((petShop) => {
+  const petshopsVisiveis = listaPetshops.filter((petShop) => {
     const correspondeNome = petShop.nome
       .toLowerCase()
       .includes(buscaNome.trim().toLowerCase());
@@ -167,43 +214,12 @@ function Mapa() {
         </p>
       </header>
 
-      {/* MAPA SIMULADO */}
-      <div className="mapa-preview">
-        <div className="mapa-preview__overlay">
-          <div className="mapa-preview__badge">
-            <MapPinned size={18} />
 
-            <span>Mapa demonstrativo</span>
-          </div>
-
-          <div className="mapa-preview__info">
-            <h2>
-              Veja opções próximas
-            </h2>
-
-            <p>
-              Nesta etapa da AV1 os estabelecimentos são carregados
-              a partir dos dados locais do projeto.
-            </p>
-          </div>
-        </div>
-
-        <div className="mapa-preview__marker mapa-preview__marker--1">
-          <MapPin size={20} />
-        </div>
-
-        <div className="mapa-preview__marker mapa-preview__marker--2">
-          <MapPin size={20} />
-        </div>
-
-        <div className="mapa-preview__marker mapa-preview__marker--3">
-          <MapPin size={20} />
-        </div>
-
-        <div className="mapa-preview__marker mapa-preview__marker--4">
-          <MapPin size={20} />
-        </div>
-      </div>
+      {/* MAPA REAL - AV2 */}
+      <MapaReal
+        petshops={petshopsVisiveis}
+        onSelecionar={selecionarPetShop}
+      />
 
       {/* BUSCA E FILTROS */}
       <section className="mapa-results">
@@ -288,6 +304,30 @@ function Mapa() {
           </div>
         </div>
 
+        {loading && (
+          <p role="status">Carregando Pet Shops...</p>
+        )}
+
+        {error && (
+          <div role="alert">
+            <p>{error}</p>
+
+            {usandoFallback && (
+              <p>Exibindo estabelecimentos demonstrativos.</p>
+            )}
+
+            <button
+              type="button"
+              className="button secondary"
+              onClick={() => setRetry((valor) => valor + 1)}
+              disabled={loading}
+            >
+              Tentar novamente
+            </button>
+          </div>
+        )}
+
+
         {/* INFORMACAO DOS RESULTADOS */}
         <div className="mapa-results__header">
           <div>
@@ -302,7 +342,7 @@ function Mapa() {
             </span>
           </div>
 
-          {filtrosAtivos && (
+          {filtrosAtivos && petshopsVisiveis.length > 0 && (
             <button
               type="button"
               className="mapa-clear"

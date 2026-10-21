@@ -6,6 +6,11 @@ import Cadastros from './pages/Cadastros/Cadastros.jsx';
 import Mapa from './pages/Mapa/Mapa.jsx';
 import Agendamento from './pages/Agendamento/Agendamento.jsx';
 import NotFound from './pages/NotFound/NotFound.jsx';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
+import AuthLogin from "./components/AuthLogin/AuthLogin.jsx";
+
+
+
 
 /*
 =================================================
@@ -115,7 +120,10 @@ function App() {
           pet cadastrado e Pet Shop selecionado.
 
           TESTE: sem login deve redirecionar; com login deve abrir. */}
-          <Route path="/agendamento" element={<Agendamento />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/agendamento" element={<Agendamento />} />
+          </Route>
+          <Route path="/login" element={<AuthLogin />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
