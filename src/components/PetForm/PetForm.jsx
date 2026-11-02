@@ -78,9 +78,6 @@ useState, eventos, formulario controlado, objeto e localStorage.
 =================================================
 GUIA PETNEAR - FORMULARIO DO PET
 
-RESPONSAVEL: ANITA
-NIVEL: MEDIO
-
 REQUISITO DA AV1:
 O cadastro do pet pode ser uma das acoes que alteram estado e
 tambem pode ser o dado relevante persistido localmente.
@@ -128,10 +125,14 @@ function PetForm({ onContinuar}) {
   const [portePet, setPortePet] = useState('');
   const [observacoesPet, setObservacoesPet] = useState('');
   const [sucesso, setSucesso] = useState(false);
+  const [erro, setErro] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    setSucesso(false); // Resetar o estado de sucesso antes de validar
+    setSucesso(false); 
+    setErro("");
+
+    // Resetar o estado de sucesso antes de validar
 
     // AV2 - RESPONSAVEL: ANITA
     // NIVEL: MEDIO
@@ -140,7 +141,7 @@ function PetForm({ onContinuar}) {
     // DICA: mensagens visuais ajudam Bianka a padronizar o layout.
     // TESTE: campos vazios devem mostrar erro sem recarregar a pagina.
     if (!nomePet || !especiePet || !racaPet || !idadePet || !portePet) {
-      alert('Por favor, preencha todos os campos obrigatórios.');
+      setErro('Por favor, preencha todos os campos obrigatórios.');
       return;
     }
 
@@ -251,7 +252,14 @@ function PetForm({ onContinuar}) {
 
       {sucesso && (
         <p>Pet cadastrado com sucesso!</p>
+      
       )}
+
+      {erro && (
+        <p>{erro}</p>
+
+      )}
+    
 
       {/* =================================================
       CHECKLIST AV1

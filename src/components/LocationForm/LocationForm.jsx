@@ -140,7 +140,7 @@ function LocationForm() {
         //
         // DICA: mantenha a opcao manual para quando a consulta falhar.
         // TESTE: CEP invalido, API indisponivel e preenchimento manual.
-        if (cep === "") {
+        if (cep.trim() === "") {
           setErrocep("Informe seu CEP.");
         }
         else {

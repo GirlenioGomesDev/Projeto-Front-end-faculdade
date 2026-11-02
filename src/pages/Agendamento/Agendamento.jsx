@@ -116,7 +116,6 @@ function Agendamento() {
 
         {/* COLUNA DE RESUMO */}
         <aside className="agendamento-summary">
-
           {/* PET */}
           <article className="card agendamento-info-card">
 
