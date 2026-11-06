@@ -1,5 +1,5 @@
-const OVERPASS_URL =
-    "https://overpass-api.de/api/interpreter";
+import { OVERPASS_URL } from "./apiConfig.js";
+
 
 export async function buscarPetShops() {
     const consulta = `

@@ -107,12 +107,15 @@ function ScheduleForm({
     .toISOString()
     .split('T')[0];
 
-  const servicosDisponiveis = servicos.filter(
-    (item) =>
-      petShopSelecionado?.servicos.includes(
-        item.nome
-      )
-  );
+  const petShopDaOverpass = String(
+    petShopSelecionado?.id ?? ''
+  ).startsWith('osm-');
+
+  const servicosDisponiveis = petShopDaOverpass
+    ? servicos
+    : servicos.filter((item) =>
+      petShopSelecionado?.servicos?.includes(item.nome)
+    );
 
   function formatarData(dataSelecionada) {
     if (!dataSelecionada) {
@@ -214,7 +217,7 @@ function ScheduleForm({
       {/* SERVICO */}
       <div className="field schedule-field">
         <label htmlFor="servico">
-          Serviço
+          {petShopDaOverpass ? 'Serviço desejado (simulação)' : 'Serviço'}
         </label>
 
         <div className="schedule-input">
@@ -374,12 +377,10 @@ function ScheduleForm({
 
               <div>
                 <span>
-                  Agendamento confirmado
+                  Agendamento demonstrativo
                 </span>
-
                 <h3>
-                  Agendamento realizado com
-                  sucesso!
+                  Simulação salva neste navegador
                 </h3>
               </div>
 

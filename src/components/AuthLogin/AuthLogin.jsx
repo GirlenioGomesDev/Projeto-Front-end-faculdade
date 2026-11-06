@@ -37,6 +37,11 @@ function AuthLogin() {
                 Entre para continuar seu agendamento.
             </p>
 
+            <p className="auth-login__description">
+                Conta de teste do DummyJSON. Use <code>emilys</code> como usuário e{' '}
+                <code>emilyspass</code> como senha.
+            </p>
+
             <form onSubmit={handleLogin}>
                 <label htmlFor="username">Usuário</label>
                 <input
