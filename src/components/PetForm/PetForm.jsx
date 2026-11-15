@@ -154,7 +154,7 @@ function PetForm({ onContinuar}) {
       observacoes: observacoesPet
     };
     
-      onContinuar(pet);
+     
 
     // AV2 - RESPONSAVEL: ANITA
     // NIVEL: MEDIO
@@ -163,8 +163,10 @@ function PetForm({ onContinuar}) {
     // DICA: use localStorage como contingencia ou cache simples, nao como
     // substituto definitivo da API.
     // TESTE: cadastre, atualize a pagina e confira se a recuperacao continua clara.
-    localStorage.setItem('petCadastrado', JSON.stringify(pet));
-    setSucesso(true);
+   localStorage.setItem('petCadastrado', JSON.stringify(pet));
+setSucesso(true);
+
+onContinuar(pet);
   }
 
   return (
