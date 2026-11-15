@@ -132,17 +132,13 @@ function UserForm({ onContinuar }) {
   // para montar sessao manualmente.
   // TESTE: depois do cadastro/login, atualize a pagina e confirme que
   // a senha nao ficou salva no navegador.
-  const [senhaTutor, setsenhaTutor] = useState("");
+  
   const [telefoneTutor, settelefoneTutor] = useState("");
   const [bairroTutor, setbairroTutor] = useState("");
   const [cidadeTutor, setCidadeTutor] = useState("");
   const [erronomeTutor, setErronometutor] = useState("");
   const [erroemailTutor, setErroemailtutor] = useState("");
   const [errocidadeTutor, setErrocidadetutor] = useState("");
-  // AV2 - Estados de autenticação
-  const [erroSenha, setErroSenha] = useState("");
-
-  
 
 
 function handleSubmit(e) {
@@ -151,7 +147,7 @@ function handleSubmit(e) {
     setErronometutor("");
     setErroemailtutor("");
     setErrocidadetutor("");
-    setErroSenha("");
+    
 
     const nome = nomeTutor.trim();
     const email = emailTutor.trim();
@@ -179,10 +175,7 @@ function handleSubmit(e) {
         valido = false;
     }
 
-    if (!senhaTutor.trim()) {
-        setErroSenha("Informe sua senha.");
-        valido = false;
-    }
+    
 
     if (!valido) return;
 
@@ -243,23 +236,7 @@ function handleSubmit(e) {
         {erroemailTutor && <span>{erroemailTutor}</span>}
       </div>
 
-      <div className="field">
-        <label htmlFor="senhaTutor">Senha</label>
-        <input
-          id="senhaTutor"
-          name="senhaTutor"
-          type="password"
-          placeholder="Senha inicial"
-          value={senhaTutor}
-          onChange={(e) => {
-            setsenhaTutor(e.target.value);
-          }}
-        />
-
-
-        {erroSenha && <span>{erroSenha}</span>}
-      </div>
-
+     
       <div className="field">
         <label htmlFor="telefoneTutor">Telefone</label>
         <input
