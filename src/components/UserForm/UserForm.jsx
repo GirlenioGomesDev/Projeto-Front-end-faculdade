@@ -118,10 +118,8 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function UserForm ({ onContinuar}) {
-  const navigate = useNavigate();
+function UserForm({ onContinuar }) {
 
   const [nomeTutor, setnomeTutor] = useState("");
   const [emailTutor, setemailTutor] = useState("");
@@ -135,49 +133,76 @@ function UserForm ({ onContinuar}) {
   // TESTE: depois do cadastro/login, atualize a pagina e confirme que
   // a senha nao ficou salva no navegador.
   const [senhaTutor, setsenhaTutor] = useState("");
-
   const [telefoneTutor, settelefoneTutor] = useState("");
   const [bairroTutor, setbairroTutor] = useState("");
   const [cidadeTutor, setCidadeTutor] = useState("");
   const [erronomeTutor, setErronometutor] = useState("");
   const [erroemailTutor, setErroemailtutor] = useState("");
   const [errocidadeTutor, setErrocidadetutor] = useState("");
+  // AV2 - Estados de autenticação
+  const [erroSenha, setErroSenha] = useState("");
+
+  
+
+
+function handleSubmit(e) {
+    e.preventDefault();
+
+    setErronometutor("");
+    setErroemailtutor("");
+    setErrocidadetutor("");
+    setErroSenha("");
+
+    const nome = nomeTutor.trim();
+    const email = emailTutor.trim();
+    const cidade = cidadeTutor.trim();
+
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    let valido = true;
+
+    if (!nome) {
+        setErronometutor("Informe seu nome.");
+        valido = false;
+    }
+
+    if (!email) {
+        setErroemailtutor("Informe seu e-mail.");
+        valido = false;
+    } else if (!emailValido) {
+        setErroemailtutor("Informe um e-mail válido.");
+        valido = false;
+    }
+
+    if (!cidade) {
+        setErrocidadetutor("Informe sua cidade.");
+        valido = false;
+    }
+
+    if (!senhaTutor.trim()) {
+        setErroSenha("Informe sua senha.");
+        valido = false;
+    }
+
+    if (!valido) return;
+
+    const dadosTutor = {
+        nome,
+        email,
+        telefone: telefoneTutor,
+        bairro: bairroTutor,
+        cidade
+    };
+
+    onContinuar(dadosTutor);
+}
+
 
   return (
-    <form className="form-grid"
-      onSubmit={(e) => {
-        e.preventDefault();
-
-        if (nomeTutor === "") {
-
-          setErronometutor("Informe seu NOME.");
-        }
-        else {
-          setErronometutor("");
-        }
+    
+   <form className="form-grid" onSubmit={handleSubmit}>
 
 
-        if (emailTutor === "") {
-
-          setErroemailtutor("Informe seu EMAIL.");
-        }
-        else {
-          setErroemailtutor("");
-        }
-
-
-        if (cidadeTutor === "") {
-
-          setErrocidadetutor("Informe sua CIDADE.");
-        }
-        else {
-          setErrocidadetutor("");
-        }
-        if (
-          nomeTutor !== "" &&
-          emailTutor !== "" &&
-          cidadeTutor !== ""
-        ) {
           // AV2 - RESPONSAVEL: ANITA
           // NIVEL: MEDIO
           // TODO: Antes de avancar, chamar o service aprovado para cadastro
@@ -185,19 +210,9 @@ function UserForm ({ onContinuar}) {
           //
           // DICA: deixe o service cuidar do fetch e dos codigos HTTP.
           // TESTE: simule resposta 401/403 e confira a mensagem ao usuario.
-          const dadosTutor = {
-           nome: nomeTutor,
-           email: emailTutor,
-           senha: senhaTutor,
-           telefone: telefoneTutor,
-           bairro: bairroTutor,
-           cidade: cidadeTutor
-          };
-          onContinuar(dadosTutor);
-        }
-      }}
+        
 
-    >
+
       <div className="field">
         <label htmlFor="nomeTutor">Nome</label>
         <input
@@ -229,7 +244,7 @@ function UserForm ({ onContinuar}) {
       </div>
 
       <div className="field">
-        <label ht mlFor="senhaTutor">Senha</label>
+        <label htmlFor="senhaTutor">Senha</label>
         <input
           id="senhaTutor"
           name="senhaTutor"
@@ -240,6 +255,9 @@ function UserForm ({ onContinuar}) {
             setsenhaTutor(e.target.value);
           }}
         />
+
+
+        {erroSenha && <span>{erroSenha}</span>}
       </div>
 
       <div className="field">
