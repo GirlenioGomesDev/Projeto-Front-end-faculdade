@@ -117,11 +117,19 @@ Tente continuar sem preencher e depois com os dados manuais.
 NAO ESCREVA A SOLUCAO.
 =================================================
 */
+function lerLocalizacaoSalva() {
+  const dadosSalvos = localStorage.getItem('localizacaoCadastrada');
 
-function LocationForm() {
-  const [cep, setCep] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
+  return dadosSalvos ? JSON.parse(dadosSalvos) : {};
+}
+
+function LocationForm() { 
+
+const dadosIniciais = lerLocalizacaoSalva();
+
+  const [cep, setCep] = useState(dadosIniciais.cep || "");
+  const [bairro, setBairro] = useState(dadosIniciais.bairro || "");
+  const [cidade, setCidade] = useState(dadosIniciais.cidade || "");
   const [errocep, setErrocep] = useState("");
   const [errobairro, setErrobairro] = useState("");
   const [errocidade, setErrocidade] = useState("");
@@ -161,6 +169,8 @@ setErrocidade(
 if (cepInvalido || bairroInvalido || cidadeInvalida) {
   return;
 }
+
+localStorage.setItem('localizacaoCadastrada', JSON.stringify({ cep, bairro, cidade }));
 
 navigate("/mapa");
       }}
