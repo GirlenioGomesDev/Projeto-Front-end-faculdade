@@ -140,37 +140,33 @@ function LocationForm() {
         //
         // DICA: mantenha a opcao manual para quando a consulta falhar.
         // TESTE: CEP invalido, API indisponivel e preenchimento manual.
-        if (cep.trim() === "") {
-          setErrocep("Informe seu CEP.");
-        }
-        else {
-          setErrocep("");
+      const cepLimpo = cep.replace(/\D/g, "");
 
+const cepInvalido = cepLimpo.length !== 8;
+const bairroInvalido = bairro.trim() === "";
+const cidadeInvalida = cidade.trim() === "";
 
-          if (bairro === "") {
-            setErrobairro("Informe seu BAIRRO.");
-          }
-          else {
-            setErrobairro("");
+setErrocep(
+  cepInvalido ? "Informe um CEP válido com 8 números." : ""
+);
 
+setErrobairro(
+  bairroInvalido ? "Informe seu BAIRRO." : ""
+);
 
-            if (cidade === "") {
-              setErrocidade("Informe sua CIDADE.");
-            }
-            else {
-              setErrocidade("");
+setErrocidade(
+  cidadeInvalida ? "Informe sua CIDADE." : ""
+);
 
-              navigate("/mapa")
-            }
+if (cepInvalido || bairroInvalido || cidadeInvalida) {
+  return;
+}
 
-          }
-        }
-
+navigate("/mapa");
       }}
     >
-      {errocep && (errocep)}
-      {errobairro && (errobairro)}
-      {errocidade && (errocidade)}
+
+    
       <div className="field">
         <label htmlFor="cep">CEP</label>
         <input
@@ -183,6 +179,7 @@ function LocationForm() {
           }}
           value={cep}
         />
+        {errocep && <p>{errocep}</p>}
 
       </div>
 
@@ -198,6 +195,8 @@ function LocationForm() {
           }}
           value={bairro}
         />
+       {errobairro && <p>{errobairro}</p>}
+
       </div>
 
       <div className="field">
@@ -212,6 +211,8 @@ function LocationForm() {
           }}
           value={cidade}
         />
+        {errocidade && <p>{errocidade}</p>}
+
       </div>
 
       <button className="button" type="submit">

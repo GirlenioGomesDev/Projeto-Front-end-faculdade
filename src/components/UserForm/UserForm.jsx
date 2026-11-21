@@ -124,14 +124,15 @@ function UserForm({ onContinuar }) {
   const [nomeTutor, setnomeTutor] = useState("");
   const [emailTutor, setemailTutor] = useState("");
 
-  // AV2 - RESPONSAVEL: ANITA COM APOIO DE LENO
+  {/* 
+  // AV2 - RESPONSAVEL: ANITA
   // NIVEL: MEDIO
-  // TODO: Usar este campo apenas para envio seguro ao authService.
+  // TODO: Antes de avancar, chamar o service aprovado para cadastro
+  // ou login e tratar loading, erro e sucesso.
   //
-  // DICA: senha nao deve ser guardada em localStorage nem reaproveitada
-  // para montar sessao manualmente.
-  // TESTE: depois do cadastro/login, atualize a pagina e confirme que
-  // a senha nao ficou salva no navegador.
+  // DICA: deixe o service cuidar do fetch e dos codigos HTTP.
+  // TESTE: simule resposta 401/403 e confira a mensagem ao usuario.
+*/}
   
   const [telefoneTutor, settelefoneTutor] = useState("");
   const [bairroTutor, setbairroTutor] = useState("");
@@ -196,14 +197,15 @@ function handleSubmit(e) {
    <form className="form-grid" onSubmit={handleSubmit}>
 
 
-          // AV2 - RESPONSAVEL: ANITA
-          // NIVEL: MEDIO
-          // TODO: Antes de avancar, chamar o service aprovado para cadastro
-          // ou login e tratar loading, erro e sucesso.
-          //
-          // DICA: deixe o service cuidar do fetch e dos codigos HTTP.
-          // TESTE: simule resposta 401/403 e confira a mensagem ao usuario.
-        
+          {/* 
+  // AV2 - RESPONSAVEL: ANITA
+  // NIVEL: MEDIO
+  // TODO: Antes de avancar, chamar o service aprovado para cadastro
+  // ou login e tratar loading, erro e sucesso.
+  //
+  // DICA: deixe o service cuidar do fetch e dos codigos HTTP.
+  // TESTE: simule resposta 401/403 e confira a mensagem ao usuario.
+*/}
 
 
       <div className="field">
