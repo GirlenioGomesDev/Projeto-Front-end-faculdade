@@ -87,21 +87,35 @@ useState, eventos, validacao, localStorage
 e renderizacao condicional.
 =================================================
 */
+function lerAgendamentoSalvo() {
+  try {
+    const dadosSalvos = localStorage.getItem('agendamento');
+
+    return dadosSalvos ? JSON.parse(dadosSalvos) : null;
+  } catch (erro) {
+    console.error('Erro ao recuperar agendamento:', erro);
+    return null;
+  }
+}
 
 function ScheduleForm({
   petShopSelecionado,
   petCadastrado,
 }) {
+  const dadosIniciais = lerAgendamentoSalvo();
   const [servico, setServico] = useState('');
   const [data, setData] = useState('');
   const [horario, setHorario] = useState('');
+  const [sucesso, setSucesso] = useState(
+  Boolean(dadosIniciais)
+);
 
-  const [sucesso, setSucesso] = useState(false);
+const [
+  agendamentoConfirmado,
+  setAgendamentoConfirmado,
+] = useState(dadosIniciais);
 
-  const [
-    agendamentoConfirmado,
-    setAgendamentoConfirmado,
-  ] = useState(null);
+
 
   const dataHoje = new Date()
     .toISOString()
