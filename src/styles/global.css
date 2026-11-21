@@ -2060,6 +2060,23 @@ img {
    TESTE: conferir contraste, leitura em celular e comportamento quando
    a mensagem tiver duas linhas. */
 
+
+/* ERRO DO FORMULARIO DE AGENDAMENTO */
+.schedule-error {
+  width: 100%;
+  margin: 0;
+  padding: 13px 15px;
+
+  border: 1px solid #e8c4c4;
+  border-radius: 12px;
+
+  background: #fff5f5;
+  color: #a33a3a;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 .agendamento-warning {
   display: flex;
   align-items: flex-start;

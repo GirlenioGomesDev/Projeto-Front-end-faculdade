@@ -110,6 +110,8 @@ function ScheduleForm({
   Boolean(dadosIniciais)
 );
 
+const [erro, setErro] = useState('');
+
 const [
   agendamentoConfirmado,
   setAgendamentoConfirmado,
@@ -147,6 +149,8 @@ const [
 
     setSucesso(false);
 
+    setErro('');
+
     // AV2 - RESPONSAVEL: ANITA
     // NIVEL: MEDIO
     // TODO: Trocar alerts por estados visuais de erro, mantendo as
@@ -155,37 +159,28 @@ const [
     // DICA: Bianka pode padronizar a aparencia desses erros no CSS.
     // TESTE: cada erro deve aparecer no momento certo.
 
-    if (!petShopSelecionado) {
-      alert(
-        'Selecione um Pet Shop antes de realizar o agendamento.'
-      );
-
+      if (!petCadastrado) {
+      setErro('Cadastre um pet antes de realizar o agendamento.');
       return;
     }
 
-    if (!petCadastrado) {
-      alert(
-        'Cadastre um pet antes de realizar o agendamento.'
-      );
+   if (!petCadastrado) {
+  setErro('Cadastre um pet antes de realizar o agendamento.');
 
-      return;
-    }
+  return;
+}
 
-    if (!servico || !data || !horario) {
-      alert(
-        'Por favor, preencha todos os campos.'
-      );
+   if (!servico || !data || !horario) {
+  setErro('Por favor, preencha todos os campos.');
 
-      return;
-    }
+  return;
+}
 
     if (data < dataHoje) {
-      alert(
-        'Escolha uma data válida. Não é possível agendar em uma data passada.'
-      );
+  setErro('Escolha uma data válida. Não é possível agendar em uma data passada.');
 
-      return;
-    }
+  return;
+}
 
     // AV2 - RESPONSAVEL: LENO
     // NIVEL: DIFICIL
@@ -226,7 +221,11 @@ const [
     <form
       className="form-grid schedule-form"
       onSubmit={handleSubmit}
-    >
+    >{erro && (
+  <p className="schedule-error" role="alert">
+    {erro}
+  </p>
+)}
 
       {/* SERVICO */}
       <div className="field schedule-field">
