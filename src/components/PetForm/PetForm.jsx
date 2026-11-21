@@ -117,15 +117,18 @@ NAO ESCREVA A SOLUCAO.
 =================================================
 */
 
-function PetForm({ onContinuar}) {
-  const [nomePet, setNomePet] = useState('');
-  const [especiePet, setEspeciePet] = useState('');
-  const [racaPet, setRacaPet] = useState('');
-  const [idadePet, setIdadePet] = useState('');
-  const [portePet, setPortePet] = useState('');
-  const [observacoesPet, setObservacoesPet] = useState('');
-  const [sucesso, setSucesso] = useState(false);
-  const [erro, setErro] = useState("");
+function PetForm({ onContinuar, dadosIniciais = {} }) {
+const [nomePet, setNomePet] = useState(dadosIniciais.nome || '');
+const [especiePet, setEspeciePet] = useState(dadosIniciais.especie || '');
+const [racaPet, setRacaPet] = useState(dadosIniciais.raca || '');
+const [idadePet, setIdadePet] = useState(dadosIniciais.idade || '');
+const [portePet, setPortePet] = useState(dadosIniciais.porte || '');
+const [observacoesPet, setObservacoesPet] = useState(dadosIniciais.observacoes || '');
+
+
+const [sucesso, setSucesso] = useState(false);
+const [erro, setErro] = useState("");
+
 
   function handleSubmit(event) {
     event.preventDefault();

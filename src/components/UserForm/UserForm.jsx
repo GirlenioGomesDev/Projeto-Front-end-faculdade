@@ -119,10 +119,16 @@ NAO ESCREVA A SOLUCAO.
 */
 import { useState } from "react";
 
-function UserForm({ onContinuar }) {
+function UserForm({ onContinuar, dadosIniciais = {} }) {
 
-  const [nomeTutor, setnomeTutor] = useState("");
-  const [emailTutor, setemailTutor] = useState("");
+  const [nomeTutor, setnomeTutor] = useState(dadosIniciais.nome || "");
+const [emailTutor, setemailTutor] = useState(dadosIniciais.email || "");
+const [telefoneTutor, settelefoneTutor] = useState(dadosIniciais.telefone || "");
+const [bairroTutor, setbairroTutor] = useState(dadosIniciais.bairro || "");
+const [cidadeTutor, setCidadeTutor] = useState(dadosIniciais.cidade || "");
+const [erronomeTutor, setErronomeTutor] = useState("");
+const [erroemailTutor, setErroemailTutor] = useState("");
+const [errocidadeTutor, setErrocidadeTutor] = useState("");
 
   {/* 
   // AV2 - RESPONSAVEL: ANITA
@@ -134,20 +140,13 @@ function UserForm({ onContinuar }) {
   // TESTE: simule resposta 401/403 e confira a mensagem ao usuario.
 */}
   
-  const [telefoneTutor, settelefoneTutor] = useState("");
-  const [bairroTutor, setbairroTutor] = useState("");
-  const [cidadeTutor, setCidadeTutor] = useState("");
-  const [erronomeTutor, setErronometutor] = useState("");
-  const [erroemailTutor, setErroemailtutor] = useState("");
-  const [errocidadeTutor, setErrocidadetutor] = useState("");
-
-
-function handleSubmit(e) {
+ 
+    function handleSubmit(e) {
     e.preventDefault();
 
-    setErronometutor("");
-    setErroemailtutor("");
-    setErrocidadetutor("");
+    setErronomeTutor("");
+    setErroemailTutor("");
+   setErrocidadeTutor("");
     
 
     const nome = nomeTutor.trim();
@@ -159,20 +158,20 @@ function handleSubmit(e) {
     let valido = true;
 
     if (!nome) {
-        setErronometutor("Informe seu nome.");
+        setErronomeTutor("Informe seu nome.");
         valido = false;
     }
 
     if (!email) {
-        setErroemailtutor("Informe seu e-mail.");
+        setErroemailTutor("Informe seu e-mail.");
         valido = false;
     } else if (!emailValido) {
-        setErroemailtutor("Informe um e-mail válido.");
+        setErroemailTutor("Informe um e-mail válido.");
         valido = false;
     }
 
     if (!cidade) {
-        setErrocidadetutor("Informe sua cidade.");
+        setErrocidadeTutor("Informe sua cidade.");
         valido = false;
     }
 

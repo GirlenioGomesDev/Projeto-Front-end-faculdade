@@ -75,11 +75,23 @@ useState, formularios controlados,
 eventos, validacao e localStorage.
 =================================================
 */
+function lerDadosSalvos(chave) {
+  const dadosSalvos = localStorage.getItem(chave);
+
+  return dadosSalvos ? JSON.parse(dadosSalvos) : {};
+}
+
 
 function Cadastros() {
   const [etapaAtual, setEtapaAtual] = useState(1);
-  const [dadosTutor, setDadosTutor] = useState({});
-  const [dadosPet, setDadosPet] = useState({});
+  const [dadosTutor, setDadosTutor] = useState(() =>
+  lerDadosSalvos('tutorCadastrado')
+);
+
+const [dadosPet, setDadosPet] = useState(() =>
+  lerDadosSalvos('petCadastrado')
+);
+
 
   function voltarEtapa() {
     if (etapaAtual > 1) {
@@ -194,6 +206,7 @@ function Cadastros() {
             </div>
 
             <UserForm
+            dadosIniciais={dadosTutor}
               onContinuar={(dados) => {
                 // AV2 - RESPONSAVEL: ANITA
                 // NIVEL: MEDIO
@@ -202,6 +215,7 @@ function Cadastros() {
                 //
                 // DICA: estados de loading e erro devem ficar claros para o usuario.
                 // TESTE: simule sucesso e falha recuperavel.
+                localStorage.setItem('tutorCadastrado', JSON.stringify(dados));
                 setDadosTutor(dados);
                 setEtapaAtual(2);
               }}
@@ -238,6 +252,7 @@ function Cadastros() {
             </div>
 
             <PetForm
+              dadosIniciais={dadosPet}
               onContinuar={(dados) => {
                 // AV2 - RESPONSAVEL: ANITA
                 // NIVEL: MEDIO
@@ -246,6 +261,7 @@ function Cadastros() {
                 //
                 // DICA: nunca avance se o service indicar erro de validacao.
                 // TESTE: tente cadastrar pet com dados incompletos.
+                localStorage.setItem('petCadastrado', JSON.stringify(dados));
                 setDadosPet(dados);
                 setEtapaAtual(3);
               }}
