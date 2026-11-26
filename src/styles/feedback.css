@@ -114,6 +114,23 @@
   grid-column: 1 / -1;
 }
 
+.mapa-filter__select select:disabled {
+  color: var(--color-text-light);
+  cursor: not-allowed;
+}
+
+.mapa-toolbar__fields {
+  align-items: start;
+}
+
+.mapa-filter__help {
+  margin: 0;
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
 .cadastro-content .field > span,
 .cadastro-content .field > p {
   margin: 4px 0 0;

@@ -124,6 +124,7 @@ function Mapa() {
         if (!ativo) return;
 
         setListaPetshops(dados);
+        setFiltroServico('');
         setUsandoFallback(false);
       } catch (erro) {
         if (!ativo) return;
@@ -156,6 +157,13 @@ function Mapa() {
   // TESTE: carregar, falhar, tentar novamente e limpar filtros.
 
   const navigate = useNavigate();
+
+  const servicosParaFiltro = [
+    ...new Set(listaPetshops.flatMap((petShop) => petShop.servicos)),
+  ].sort((primeiro, segundo) => primeiro.localeCompare(segundo, 'pt-BR'));
+
+  const servicosNaoInformados =
+    !loading && listaPetshops.length > 0 && servicosParaFiltro.length === 0;
 
   const petshopsVisiveis = listaPetshops.filter((petShop) => {
     const correspondeNome = petShop.nome
@@ -274,32 +282,35 @@ function Mapa() {
                 <select
                   id="filtroServico"
                   aria-label="Filtrar por serviço"
+                  aria-describedby={
+                    servicosNaoInformados ? 'filtroServico-ajuda' : undefined
+                  }
+                  disabled={loading || servicosParaFiltro.length === 0}
                   value={filtroServico}
                   onChange={(event) =>
                     setFiltroServico(event.target.value)
                   }
                 >
                   <option value="">
-                    Todos os serviços
+                    {servicosNaoInformados
+                      ? 'Serviços não informados'
+                      : 'Todos os serviços'}
                   </option>
 
-                  <option value="Banho">
-                    Banho
-                  </option>
-
-                  <option value="Tosa">
-                    Tosa
-                  </option>
-
-                  <option value="Banho + Tosa">
-                    Banho + Tosa
-                  </option>
-
-                  <option value="Higiene">
-                    Higiene
-                  </option>
+                  {servicosParaFiltro.map((servico) => (
+                    <option key={servico} value={servico}>
+                      {servico}
+                    </option>
+                  ))}
                 </select>
               </div>
+
+              {servicosNaoInformados && (
+                <p id="filtroServico-ajuda" className="mapa-filter__help">
+                  Os estabelecimentos consultados não informam seus serviços.
+                  Use a busca pelo nome.
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -368,7 +379,9 @@ function Mapa() {
           <div className="mapa-empty">
             <EmptyState
               titulo="Nenhum Pet Shop encontrado"
-              mensagem="Tente outro nome ou escolha outro serviço."
+              mensagem={servicosParaFiltro.length > 0
+                ? 'Tente outro nome ou escolha outro serviço.'
+                : 'Tente buscar por outro nome.'}
             />
 
             <button
