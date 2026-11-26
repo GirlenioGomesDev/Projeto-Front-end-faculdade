@@ -1,0 +1,163 @@
+.feedback,
+.mapa-results > [role="status"],
+.main-content [role="alert"] {
+  margin: 16px 0;
+  padding: 16px;
+
+  border: 1px solid #bae6fd;
+  border-radius: 14px;
+
+  background: #f0f9ff;
+  color: #075985;
+
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.feedback--error,
+.main-content [role="alert"] {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.feedback--success,
+.main-content .schedule-success {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #14532d;
+}
+
+.feedback--warning {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.feedback--empty,
+.main-content .mapa-empty {
+  border: 1px dashed var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.feedback p,
+.main-content [role="alert"] p {
+  margin: 0 0 10px;
+}
+
+.feedback p:last-child,
+.main-content [role="alert"] p:last-child {
+  margin-bottom: 0;
+}
+
+.feedback--loading,
+.mapa-results > [role="status"] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feedback--loading::before,
+.mapa-results > [role="status"]::before {
+  content: "";
+
+  flex: 0 0 auto;
+
+  width: 20px;
+  height: 20px;
+
+  border: 3px solid #bae6fd;
+  border-top-color: #0369a1;
+  border-radius: 50%;
+
+  animation: petnear-loading 0.8s linear infinite;
+}
+
+.main-content > [role="alert"] {
+  width: min(720px, calc(100% - 32px));
+  margin: 32px auto;
+}
+
+.main-content > [role="alert"] button {
+  min-height: 44px;
+  padding: 10px 16px;
+
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: var(--color-primary-dark);
+
+  font: inherit;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.main-content > [role="alert"] button:hover {
+  background: var(--color-primary-light);
+}
+
+.main-content [role="alert"] button:focus-visible,
+.feedback button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.main-content button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.schedule-error {
+  grid-column: 1 / -1;
+}
+
+.cadastro-content .field > span,
+.cadastro-content .field > p {
+  margin: 4px 0 0;
+
+  color: #991b1b;
+
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.auth-login,
+.agendamento-info-card,
+.agendamento-form-card {
+  min-width: 0;
+}
+
+.auth-login__description,
+.agendamento-info-card h2,
+.agendamento-shop-address p {
+  overflow-wrap: anywhere;
+}
+
+@keyframes petnear-loading {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback,
+  .mapa-results > [role="status"],
+  .main-content [role="alert"] {
+    padding: 14px;
+  }
+
+  .main-content [role="alert"] button,
+  .feedback button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback--loading::before,
+  .mapa-results > [role="status"]::before {
+    animation: none;
+  }
+}

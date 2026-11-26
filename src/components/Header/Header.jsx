@@ -1,84 +1,54 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar.jsx';
 import { logout } from '../../services/authService.js';
-import { getSession } from "../../services/sessionService.js";
+import { getSession } from '../../services/sessionService.js';
 import './Header.css';
 
-
-/*
-=================================================
-COMPONENTE: Header
-NIVEL: LEVE
-RESPONSAVEL SUGERIDO: PESSOA 3
-
-FUNCAO:
-Mostrar o topo fixo da aplicacao e agrupar a navegacao.
-
-O QUE JA ESTA PRONTO:
-Nome do projeto e chamada do componente Navbar.
-
-O QUE FALTA:
-Adicionar logo final, revisar acessibilidade e ajustar detalhes visuais.
-
-CONCEITOS:
-componentes, composicao e CSS.
-=================================================
-*/
-
-/*
-=================================================
-GUIA PETNEAR - HEADER
-
-RESPONSAVEL: BIANKA
-NIVEL: LEVE
-
-REQUISITO DA AV1:
-Manter identidade do projeto e acesso claro a navegacao principal.
-
-COMECE POR:
-Verifique se o nome PetNear aparece de forma clara e se o menu
-esta facil de encontrar.
-
-DEPOIS:
-Teste em uma largura menor de tela para observar se os links
-continuam utilizaveis.
-
-DICA:
-O Header agrupa componentes. Ao ajustar visual, confira tambem
-o Navbar.
-
-NAO ESCREVA A SOLUCAO.
-=================================================
-*/
-
 function Header() {
+  const location = useLocation();
   const navigate = useNavigate();
+  const [session, setSession] = useState(() => getSession());
 
+  useEffect(() => {
+    setSession(getSession());
+  }, [location.key]);
+
+  useEffect(() => {
+    function atualizarSessao(event) {
+      if (event.key === 'petnear_session' || event.key === null) {
+        setSession(getSession());
+      }
+    }
+
+    window.addEventListener('storage', atualizarSessao);
+
+    return () => {
+      window.removeEventListener('storage', atualizarSessao);
+    };
+  }, []);
 
   function handleLogout() {
     logout();
-    navigate("/login", { replace: true });
+    setSession(null);
+    navigate('/login', { replace: true });
   }
-
-  const session = getSession();
-
 
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <Link className="site-header__brand" to="/">
+        <Link
+          className="site-header__brand"
+          to="/"
+          aria-label="PetNear — início"
+        >
           PetNear
         </Link>
-        <Navbar />
-        {session && (
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="site-header__logout"
-          >
-            Sair
-          </button>
-        )}
+
+        <Navbar
+          autenticado={Boolean(session?.accessToken)}
+          onSair={handleLogout}
+        />
       </div>
     </header>
   );
